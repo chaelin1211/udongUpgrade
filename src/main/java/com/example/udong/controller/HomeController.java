@@ -98,6 +98,7 @@ public class HomeController {
                 } else if (submitValue.equals("로그아웃")) {
                     viewName = "/home";
                     flagMap.put("flag", false);
+                    idMap.put("ID", "");
                 } else if (submitValue.equals("회원가입")) {
                     Object interestList = interestService.getList(paramMap);
                     Object localList = areaservice.getLocal(paramMap);
@@ -134,7 +135,7 @@ public class HomeController {
                 Object submitValue = paramMap.get("submit");
                 if (submitValue.equals("댓글작성")) { // 댓글작성시
                     commentservice.insertComment(paramMap);
-
+                    paramMap.put("submit","");
                 } else if (submitValue.equals("추천")) {
                     Map x = (Map) recommendservice.isRecommend(paramMap);
                     if (x == null) {

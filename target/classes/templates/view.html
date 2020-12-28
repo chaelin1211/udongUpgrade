@@ -1,6 +1,6 @@
 <div xmlns:th="http://www.thymeleaf.org" layout:decorator="layout/defaultLayout">
     <th:block layout:fragment="layout.content">
-        <div class="row" >
+        <div class="row">
             <!--사이드바-->
             <div class="col-lg-2 col-md-12 col-sm-12 " th:if="${resultMap.CATEGORY=='free'||resultMap.CATEGORY=='qna'}">
                 <th:block th:replace="fragments/boardNav"></th:block>
@@ -33,11 +33,11 @@
                 <div class="border rounded p-3 m-2">
 
                     <!-- 댓글창 -->
-                    <div class="row m-1" >
+                    <div class="row m-1">
                         <h5>댓글 </h5>
                     </div>
                     <div class="form-row">
-                        <table  class="table">
+                        <table class="table">
                             <tr>
                                 <th>작성자</th>
                                 <th>내용</th>
@@ -54,13 +54,16 @@
 
                                     <td class="col-2" name="commentID" th:text="${comment.ID}"></td>
                                     <td class="col-4" th:text="${comment.CONTENT}"></td>
-                                    <td class="col-4" th:text="${comment.TIME}"></td>
-                                    <!-- <td class="col-3"><span></span></th:block> -->
+                                    <td class="col-3" th:text="${comment.TIME}"></td>
                                     <td class="col-1">
-                                        <span th:if="${comment.ID==idMap.ID}"><button type="submit" class="badge badge-pill badge-light" name="submit" value="update" th:formaction="@{/view}">수정</button></span>
+                                        <span th:if="${comment.ID==idMap.ID}"><button type="submit"
+                                                class="badge badge-pill badge-light" name="submit" value="update"
+                                                th:formaction="@{/view}">수정</button></span>
                                     </td>
                                     <td class="col-1">
-                                        <span th:if="${comment.ID==idMap.ID}"><button type="submit" class="badge badge-pill badge-light" name="submit" value="delete" th:formaction="@{/view}">삭제</button></span>
+                                        <span th:if="${comment.ID==idMap.ID}"><button type="submit"
+                                                class="badge badge-pill badge-light" name="submit" value="delete"
+                                                th:formaction="@{/view}">삭제</button></span>
                                     </td>
                                 </form>
                             </tr>
@@ -73,8 +76,8 @@
                             <input type="hidden" name="userID" th:value="${idMap.ID}">
                             <input type="hidden" name="POSTNUM" th:value="${resultMap.POSTNUM}">
                             <input type="text" name="CONTENT" class="col-9 form-control">
-                            <input type="submit" class="btn btn-secondary mx-2 col-2" th:formaction="@{/view}" name="submit"
-                                value="댓글작성">
+                            <input type="submit" class="btn btn-secondary mx-2 col-2" th:formaction="@{/view}"
+                                name="submit" value="댓글작성">
                         </form>
                     </div>
                 </div>

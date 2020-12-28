@@ -12,7 +12,7 @@ function check(form) {
     }
 }
 
-function pswCheck(form){
+function pswCheck(form) {
     var PASSWORD = form.PASSWORD;
     var C_PASSWORD = form.C_PASSWORD;
     if (PASSWORD.value != C_PASSWORD.value) {
@@ -21,7 +21,7 @@ function pswCheck(form){
     else return true;
 }
 
-function fieldCheck(form){
+function fieldCheck(form) {
     var NAME = form.NAME;
     var ID = form.ID;
     var TEL = form.TEL;
@@ -30,7 +30,7 @@ function fieldCheck(form){
         return false;
     }
     else {
-        return true ;
+        return true;
     }
 }
 function check(form) {
@@ -90,37 +90,63 @@ function checkUser(form) {
     }
 }
 
-function checkAdmin(form){
-    var goodURL  = "/admin/answer"  //이곳에 인증이 되었을때 이동할 페이지  입력
+function checkAdmin(form) {
+    var goodURL = "/admin/answer"  //이곳에 인증이 되었을때 이동할 페이지  입력
     alert("패스워드를 입력하셔야 합니다.")
 
-    var password =  prompt("PASSWD 입력","")
+    var password = prompt("PASSWD 입력", "")
 
-    if (password == null)  {
+    if (password == null) {
         alert("출입금지")
-        location  = "/home"         // 실패시 이동 주소       history.back();를 넣어도 됨
+        location = "/home"         // 실패시 이동 주소       history.back();를 넣어도 됨
     }
-    else  {
-        var  combo =  password
-        var  total =  combo.toLowerCase()
+    else {
+        var combo = password
+        var total = combo.toLowerCase()
 
-    if  (total == "1234")  {                // 비밀번호
-        alert("안녕하세요...어서오십시요...")
-        location  =  goodURL
-    }
-    else  {
-        alert("출입금지")
-        location  = "/home"    // 실패시 이동 주소      history.back();를 넣어도 됨
+        if (total == "1234") {                // 비밀번호
+            alert("안녕하세요...어서오십시요...")
+            location = goodURL
+        }
+        else {
+            alert("출입금지")
+            location = "/home"    // 실패시 이동 주소      history.back();를 넣어도 됨
+        }
     }
 }
+
+function test(){
+    alert("object")
+    return false
 }
 
-function reformTime(time){
-    const nowDate = new Date();
-    const writeDate =new Date(time);
+function reformTime(object) {
+    alert(object)
+    var time = $("#commentTimeId").val()
+    var string = ""
 
-    const year = Date.getYear()-time.substring(0,4);
-    if(year != 0){
-        const month = Date.getMonth()-time.sum        
+    const nowDate = new Date()
+    const writeDate = new Date(time)
+
+    var year = nowDate.getFullYear() - writeDate.getFullYear()
+    if (year == 0) {
+        var month = nowDate.getMonth() - writeDate.getMonth()
+        if (month == 0) {
+            var date = nowDate.getDate() - writeDate.getDate()
+            if (date == 0) {
+                var h = nowDate.getHours() - writeDate.getHours()
+                if (h != 0) {
+                    string = string + h + "시간 전"
+                } else {
+                    string = string + "방금 전"
+                }
+            } else {
+                string = string + date + "일 전"
+            }
+        } else {
+            string = string + month + "개월 전"
+        }
+    } else {
+        string = string + year + "년 전"
     }
 }
