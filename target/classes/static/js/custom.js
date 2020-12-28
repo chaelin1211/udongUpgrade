@@ -83,11 +83,12 @@ function check(form) {
 
 
 function checkUser(form) {
-    var userID = form.userID.value;
+    var userID = form.userID.value
     if (userID == "") {
-        alert("로그인이 필요합니다.");
-        return false;
+        alert("로그인이 필요합니다.")
+        return false
     }
+    return true
 }
 
 function checkAdmin(form) {
@@ -112,6 +113,16 @@ function checkAdmin(form) {
             alert("출입금지")
             location = "/home"    // 실패시 이동 주소      history.back();를 넣어도 됨
         }
+    }
+}
+
+function checkComment(form){
+    var result = checkUser(form)
+    if(form.CONTENT.value == ""){
+        alert("내용을 입력하세요")
+        return false
+    }else{
+        return result&true
     }
 }
 

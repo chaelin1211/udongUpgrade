@@ -135,7 +135,6 @@ public class HomeController {
                 Object submitValue = paramMap.get("submit");
                 if (submitValue.equals("댓글작성")) { // 댓글작성시
                     commentservice.insertComment(paramMap);
-                    paramMap.put("submit","");
                 } else if (submitValue.equals("추천")) {
                     Map x = (Map) recommendservice.isRecommend(paramMap);
                     if (x == null) {
