@@ -118,11 +118,13 @@ function checkAdmin(form) {
 
 function checkComment(form){
     var result = checkUser(form)
+    if(result==false) return false
+
     if(form.CONTENT.value == ""){
         alert("내용을 입력하세요")
         return false
     }else{
-        return result&true
+        return true
     }
 }
 
