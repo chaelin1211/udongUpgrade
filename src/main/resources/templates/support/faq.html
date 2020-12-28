@@ -1,0 +1,99 @@
+<div xmlns:th="http://www.thymeleaf.org" layout:decorator="layout/defaultLayout">
+
+    <th:block layout:fragment="layout.content">
+
+        <div class="text-center mt-3 p-5">
+            <p class="cs-logo cs-logo-main">FAQ</p>
+        </div>
+        <!-- th:each="resultData: ${resultMap.resultList}" -->
+        <th:block >
+            <div class="accordion" id="accordionExample">
+
+                <div class="card">
+                    <div class="card-header" id="headingOne">
+                        <h5 class="mb-0"  th:each="resultData: ${resultMap.resultList}" >
+                            <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne"
+                                aria-controls="collapse" th:text="${resultData.TITLE}"
+                                th:if="${resultData.NUM} == '01'">
+
+                            </button>
+                        </h5>
+                    </div>
+
+                    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne"
+                        data-parent="#accordionExample"   th:each="resultData: ${resultMap.resultList}" >
+                        <div class="card-body" th:text="${resultData.CONTENT}"
+                            th:if="${resultData.NUM} == '01'">
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header" id="headingTwo">
+                        <h5 class="mb-0"  th:each="resultData: ${resultMap.resultList}" >
+                            <button class="btn btn-link collapsed" type="button" data-toggle="collapse"
+                                data-target="#collapseTwo" aria-controls="collapse" th:text="${resultData.TITLE}"
+                                th:if="${resultData.NUM} == '02'">
+
+                            </button>
+                        </h5>
+                    </div>
+
+                    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample"   th:each="resultData: ${resultMap.resultList}" >
+                        <div class="card-body" th:text="${resultData.CONTENT}"
+                            th:if="${resultData.NUM} == '02'">
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header" id="headingThree">
+                        <h5 class="mb-0"  th:each="resultData: ${resultMap.resultList}" >
+                            <button class="btn btn-link collapsed" type="button" data-toggle="collapse"
+                                data-target="#collapseThree" aria-controls="collapse" th:text="${resultData.TITLE}"
+                                th:if="${resultData.NUM} == '03'">
+
+                            </button>
+                        </h5>
+                    </div>
+
+                    <div id="collapseThree" class="collapse" aria-labelledby="headingThree"
+                        data-parent="#accordionExample"  th:each="resultData: ${resultMap.resultList}" >
+                        <div class="card-body" th:text="${resultData.CONTENT}"
+                            th:if="${resultData.NUM} == '03'">
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header" id="headingFour">
+                        <h5 class="mb-0"  th:each="resultData: ${resultMap.resultList}" >
+                            <button class="btn btn-link collapsed" type="button" data-toggle="collapse"
+                                data-target="#collapseFour" aria-controls="collapse" th:text="${resultData.TITLE}"
+                                th:if="${resultData.NUM} == '04'">
+
+                            </button>
+                        </h5>
+                    </div>
+
+                    <div id="collapseFour" class="collapse" aria-labelledby="headingFour"
+                        data-parent="#accordionExample"  th:each="resultData: ${resultMap.resultList}" >
+                        <div class="card-body" th:text="${resultData.CONTENT}"
+                            th:if="${resultData.NUM} == '04'">
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </th:block>
+
+
+
+    </th:block>
+
+
+</div>

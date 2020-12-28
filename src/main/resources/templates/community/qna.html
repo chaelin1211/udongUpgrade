@@ -1,0 +1,44 @@
+<div xmlns:th="http://www.thymeleaf.org" layout:decorator="layout/defaultLayout">
+    <th:block layout:fragment="layout.content">
+        <div class="row">
+            <!--사이드바-->
+            <div class="col-lg-2 col-md-12 col-sm-12 ">
+                <th:block th:replace="fragments/boardNav"></th:block>
+            </div>
+            <div class="col-lg-8 col-md-12 col-sm-12  m-3 p-2  row">
+                <h1>질문게시판</h1>
+                <div class="col-12 row my-3 justify-content-between">
+                    <input type="text" name="search" th:value="${paramMap.search}" class="form-control col-7">
+                    <input type="submit" name="submit" value="검색" th:formaction="@{/community/free}" class="btn px-2 col-2 btn-outline-dark">
+                    <input type="submit" name="submit" value="글쓰기" th:formaction="@{/post}" class="btn px-2 col-2 btn-secondary">
+                    <input type="hidden" name="CATEGORY" value="qna">
+                </div>
+                <!--리스트-->
+                <table class="table table-hover tb text-center">
+                    <thead>
+                        <tr>
+                            <th>제목</th>
+                            <th>작성자</th>
+                            <th>작성시간</th>
+                            <th>추천</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="post:${resultList}">
+                            <td><input type="submit" class="btn" name="POSTNUM"
+                                th:value="${post.POSTNUM}" th:formaction="@{/view}"></td>
+                            <td><button type="submit"class="btn float-left" name="POSTNUM"
+                                th:value="${post.POSTNUM}" th:formaction="@{/view}"th:text="${post.TITLE}"></button>
+                            </td>
+                            <td th:text="${post.ID}"></td>
+                            <td th:text="${post.TIME}"></td>
+                            <td th:text="${post.RECOMMEND}"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </th:block>
+
+
+</div>

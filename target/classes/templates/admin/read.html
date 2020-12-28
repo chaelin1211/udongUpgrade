@@ -1,0 +1,38 @@
+<div xmlns:th="http://www.thymeleaf.org" layout:decorator="layout/defaultLayout">
+    <th:block layout:fragment="layout.content">
+        <div class="text-center mt-3 p-5">
+            <p class="cs-logo cs-logo-main">문의 내용</p>
+        </div>
+        <div>
+            <div class="col-lg-6">
+                <form role="form" method="POST">
+                    <input type="hidden" name="NUM" th:value="${resultMap.NUM}">
+                    <div class="form-group row">
+                        <h5 class="font-weight-bold col bg-primary text-white ">작성 일자</h5>
+                        <p class="form-control-static col" th:text=${resultMap.TIME}></p>
+                    </div>
+                    <div class="form-group row">
+                        <h5 class="font-weight-bold col bg-primary text-white">작성자</h5>
+                        <p class="form-control-static col" th:text=${resultMap.ID}></p>
+                    </div>
+                    <div class="form-group row">
+                        <h5 class="font-weight-bold col bg-primary text-white">이메일</h5>
+                        <p class="form-control-static col" th:text=${resultMap.EMAIL}></p>
+                    </div>
+            </div>
+            <hr style="border: solid 1px;">
+            <div class="form-group border p-3">
+                <h5 class="font-weight-bold">제목</h5>
+                <p class="form-control-static" th:text=${resultMap.TITLE}></p>
+            </div>
+            <div class="form-group border p-3">
+                <h5 class="font-weight-bold">내용</h5>
+                <p class="form-control-static" th:text=${resultMap.CONTENT}></p>
+            </div>
+            <button type="submit" class="btn btn-dark m-5" th:formaction=@{/admin/answer}>목록으로</button>
+                    <!--<button type="submit" class="btn btn-default" th:formaction=@{/organization/edit}>Edit Button</button>
+                        <button type="submit" class="btn btn-default" th:formaction=@{/organization/input}>Add Button</button> -->
+            </form>
+        </div>
+    </th:block>
+</div>

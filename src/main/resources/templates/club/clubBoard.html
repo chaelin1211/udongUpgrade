@@ -1,0 +1,83 @@
+<div xmlns:th="http://www.thymeleaf.org" layout:decorator="layout/defaultLayout">
+
+    <th:block layout:fragment="layout.content">
+        <th:block th:replace="fragments/clubBoardNav"></th:block>
+        <form>
+            <div class="m-3 p-2  row">
+                <div class="col-12 row my-4 justify-content-around">
+                    <input type="text" formaction="" class="form-control col-7">
+                    <select class="form-control col-2">
+                        <option>최신순</option>
+                        <option>추천순</option>
+                    </select>
+                    <input type="button" value="검색" formaction="" class="btn px-2 col-2 btn-outline-dark">
+
+                </div>
+                <!--리스트-->
+                <table class="table tb">
+                    <tr>
+                        <th>번호</th>
+                        <th>제목</th>
+                        <th>작성자</th>
+                        <th>작성시간</th>
+                        <th>추천</th>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>title</td>
+                        <td>member</td>
+                        <td>time</td>
+                        <td>1</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>title</td>
+                        <td>member</td>
+                        <td>time</td>
+                        <td>1</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>title</td>
+                        <td>member</td>
+                        <td>time</td>
+                        <td>1</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>title</td>
+                        <td>member</td>
+                        <td>time</td>
+                        <td>1</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>title</td>
+                        <td>member</td>
+                        <td>time</td>
+                        <td>1</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>title</td>
+                        <td>member</td>
+                        <td>time</td>
+                        <td>1</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>title</td>
+                        <td>member</td>
+                        <td>time</td>
+                        <td>1</td>
+                    </tr>
+                </table>
+            </div>
+            <div class="row justify-content-end">
+                <input type="button" value="글쓰기" formaction="" class="btn px-2 col-2 btn-secondary">
+            </div>
+        </form>
+    </th:block>
+
+
+</div>

@@ -1,0 +1,36 @@
+@import url('https://fonts.googleapis.com/css?family=Do+Hyeon|Jua&display=swap');
+
+.cs-logo {
+    font-family: 'Do Hyeon', sans-serif;
+    text-decoration: none;
+    color: black;
+}
+
+.cs-logo:hover {
+    text-decoration: none;
+    color: black;
+}
+
+.cs-logo-main {
+    font-size: 3rem;
+}
+
+.cs-nav *,
+.cs-nav * a:hover {
+    font-family: 'Jua', sans-serif;
+    text-decoration: none;
+    color: black;
+}
+
+.board{
+    resize: none;
+}
+
+.decoration{
+    text-decoration: underline  ;
+    text-decoration-color: rgb(127, 171, 253);
+}
+.decoration:hover{
+    text-decoration: underline  ;
+    text-decoration-color: rgb(41, 41, 255);
+}

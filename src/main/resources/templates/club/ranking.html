@@ -1,0 +1,34 @@
+<div xmlns:th="http://www.thymeleaf.org" layout:decorator="layout/defaultLayout">
+
+    <th:block layout:fragment="layout.content">
+
+        <div class="row">
+            <!--사이드바-->
+            <th:block th:replace="fragments/clubNav"></th:block>
+            <div class="container myhometown col-lg-10 col-md-12 col-sm-12">
+                <h1 class="display-4 text-center cs-logo">TOP 10</h1>
+                <table class="table table-sm table-hover table-striped">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>순위</th>
+                            <th>클럽명</th>
+                            <th>지역</th>
+                            <th>분야</th>
+                            <th>추천 수</th>
+                        </tr>
+                    <tbody>
+                        <tr th:each="resultData: ${resultMap}">
+                            <td th:text=${resultData.RANK}></td>
+                            <td th:text=${resultData.CLUB_NAME}></td>
+                            <td th:text=${resultData.AREA_NAME}></td>
+                            <td th:text=${resultData.CONTENT}></td>
+                            <td th:text=${resultData.RECOMMEND}></td>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+</div>
+</th:block>
+
+
+</div>

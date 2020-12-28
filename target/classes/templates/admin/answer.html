@@ -1,0 +1,30 @@
+<div xmlns:th="http://www.thymeleaf.org" layout:decorator="layout/defaultLayout">
+    <th:block layout:fragment="layout.content">
+        <div class="text-center mt-3 p-5">
+            <p class="cs-logo cs-logo-main">1:1 문의 목록</p>
+        </div>
+        <th:block>
+            <table class="table table-striped table-bordered table-hover">
+                <tr>
+                    <th>질문 번호</th>
+                    <th>제목</th>
+                    <th>작성일자</th>
+                    <th>작성자</th>
+                    <th>삭제하기</th>
+                </tr>
+                <tbody>
+                    <tr th:each="resultData: ${resultMap.resultList}">
+                        <td th:text=${resultData.NUM}></td>
+                        <td><a href="./admin/read"
+                            th:href=@{/admin/read(NUM=${resultData.NUM})} th:text=${resultData.TITLE}></a></td>
+                        <td th:text=${resultData.TIME}></td>
+                        <td th:text=${resultData.ID}></td>
+                        <td><a href="./admin/delete"
+                            th:href=@{/admin/delete(NUM=${resultData.NUM})}>삭제
+                            </a> </td>
+                    </tr>
+                </tbody>
+            </table>
+        </th:block>
+    </th:block>
+</div>

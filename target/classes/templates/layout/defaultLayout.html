@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" class="h-100">
+
+<head>
+    <!-- 공통 css, js, meta tag -->
+    <th:block th:replace="fragments/commonHead"></th:block>
+</head>
+
+<body class="d-flex flex-column h-100">
+    <form method="POST">
+        <input type="hidden" name="flag" th:value="${flag.flag}"> 
+        <input type="hidden" name="userID" th:value="${idMap.ID}">
+        <div class="container">
+            <div class="text-right">
+                <input type="submit" th:formaction="@{/admin/answer}" class="btn" value="Admin">
+            </div>
+            <div class="text-center mt-3 pt-3">
+                <input type="submit" class="cs-logo cs-logo-main btn col-2" th:formaction="@{/home}" value="우동">
+                <form class="d-inline">
+                    <button class="cs-logo btn" th:formaction="@{/home}">우리들의 동아리</button>
+                </form>
+                <!-- navbar -->
+                <nav class="navbar navbar-expand-lg">
+                    <button class="navbar-toggler" type="button" data-toggle="collapse"
+                        data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse justify-content-between cs-nav" id="navbarSupportedContent">
+                        <ul class="navbar-nav">
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" th:href="@{/}" id="navbarDropdown" role="button"
+                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    동아리
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <input type="submit" class="btn dropdown-item" th:formaction="@{/club/location}"
+                                        value="지역별 찾기">
+                                    <input type="submit" class="btn dropdown-item" th:formaction="@{/club/interest}"
+                                        value="주제별 찾기">
+                                    <input type="submit" class="btn dropdown-item" th:formaction="@{/club/ranking}"
+                                        value="랭킹">
+                                </div>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" th:href="@{/}" id="navbarDropdown" role="button"
+                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    커뮤니티
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <input type="submit" class="btn dropdown-item" th:formaction="@{/community/free}"
+                                        value="자유게시판">
+                                    <input type="submit" class="btn dropdown-item" th:formaction="@{/community/qna}"
+                                        value="질문게시판">
+                                </div>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" th:href="@{/}" id="navbarDropdown" role="button"
+                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    뉴스
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <input type="submit" class="btn dropdown-item" th:formaction="@{/news/notice}"
+                                        value="공지사항">
+                                    <input type="submit" class="btn dropdown-item" th:formaction="@{/news/event}"
+                                        value="이벤트">
+                                </div>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" th:href="@{/}" id="navbarDropdown" role="button"
+                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    고객지원
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <input type="submit" class="btn dropdown-item" th:formaction="@{/support/faq}"
+                                        value="FAQ">
+                                    <input type="submit" class="btn dropdown-item" th:formaction="@{/support/ask}"
+                                        value="1:1 문의">
+                                </div>
+                            </li>
+                        </ul>
+                        <ul class="navbar-nav">
+                            <form class="form-inline">
+                                <input class="form-control mr-sm-2" type="search" placeholder="동아리 검색"
+                                    aria-label="Search">
+                                <button class="btn btn-outline-dark mx-2 my-2 my-sm-0" type="submit" >검색</button>
+                            </form>
+                            <input type="submit" th:if="${flag.flag}" th:formaction="@{/home}" class="btn btn-outline-dark nav-link mx-2" name="submit" value="로그아웃">
+                            <input type="submit" th:if="${flag.flag}" th:formaction="@{/home}" class="btn btn-outline-dark nav-link mx-2" name="submit" value="회원탈퇴">
+                            <input type="submit" th:if="${!flag.flag}" th:formaction="@{/login}" class="btn nav-link mx-2" value="로그인">
+                            <input type="submit" th:if="${!flag.flag}" th:formaction="@{/signup}" class="btn nav-link mx-2" value="회원가입">
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+            <!-- page content body 구성 -->
+            <div class="my-4">
+                <th:block layout:fragment="layout.content"></th:block>
+            </div>
+        </div>
+        <!-- 공통 footer -->
+        <th:block th:replace="fragments/commonFooter"></th:block>
+    </form>
+</body>
+
+</html>
