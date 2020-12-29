@@ -132,34 +132,37 @@ function test(){
     alert("object")
     return false
 }
+$(document).ready(function(){
+    reformTime();
+});
+function reformTime() {
+    var time = document.getElementById('hiddenCommentTime').value;
+    var string = "";
 
-function reformTime(object) {
-    alert(object)
-    var time = $("#commentTimeId").val()
-    var string = ""
+    const nowDate = new Date();
+    const writeDate = new Date(time);
 
-    const nowDate = new Date()
-    const writeDate = new Date(time)
-
-    var year = nowDate.getFullYear() - writeDate.getFullYear()
+    var year = nowDate.getFullYear() - writeDate.getFullYear();
     if (year == 0) {
-        var month = nowDate.getMonth() - writeDate.getMonth()
+        var month = nowDate.getMonth() - writeDate.getMonth();
         if (month == 0) {
-            var date = nowDate.getDate() - writeDate.getDate()
+            var date = nowDate.getDate() - writeDate.getDate();
             if (date == 0) {
-                var h = nowDate.getHours() - writeDate.getHours()
+                var h = nowDate.getHours() - writeDate.getHours();
                 if (h != 0) {
-                    string = string + h + "시간 전"
+                    string = string + h + "시간 전";
                 } else {
-                    string = string + "방금 전"
+                    string = string + "방금 전";
                 }
             } else {
-                string = string + date + "일 전"
+                string = string + date + "일 전";
             }
         } else {
-            string = string + month + "개월 전"
+            string = string + month + "개월 전";
         }
     } else {
-        string = string + year + "년 전"
+        string = string + year + "년 전";
     }
+    var id = document.getElementById('commentNum').value;
+    document.getElementById(id).innerHTML=string;
 }
