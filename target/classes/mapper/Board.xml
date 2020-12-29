@@ -8,7 +8,7 @@
 	<select id="post" resultType="Map" parameterType="Map">
 	    select * from BOARD
 		where CATEGORY = #{CATEGORY}
-		Order by TIME;
+		Order by TIME DESC;
     </select>
 
 	<select id="postOne" resultType="Map" parameterType="Map">
