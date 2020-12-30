@@ -3,7 +3,7 @@
         <div class="row">
             <!--사이드바-->
             <th:block th:replace="fragments/boardNav"></th:block>
-            
+
             <div class="col-lg-8 col-md-12 col-sm-12 m-3 p-2">
                 <div class="col">
                     <h1>질문게시판</h1>
@@ -23,11 +23,12 @@
                     </thead>
                     <tbody>
                         <tr th:each="post:${resultList}">
-                            <td class="col-2"><input type="submit" class="btn" name="POSTNUM"
-                                th:value="${post.POSTNUM}" th:formaction="@{/view}"></td>
+                            <td class="col-2"><input type="submit" class="btn" name="POSTNUM" th:value="${post.POSTNUM}"
+                                    th:formaction="@{/view}"></td>
                             <td class="col-2" th:text="${post.ID}"></td>
-                            <td class="col-5 text-left"><button type="submit"class="btn" name="POSTNUM"
-                                th:value="${post.POSTNUM}" th:formaction="@{/view}"><span th:text="${post.TITLE}"></span></button>
+                            <td class="col-5 text-left"><button type="submit" class="btn" name="POSTNUM"
+                                    th:value="${post.POSTNUM}" th:formaction="@{/view}"><span
+                                        th:text="${post.TITLE}"></span></button>
                             </td>
                             <td class="col-2" th:text="${#strings.substring(post.TIME,0,19)}"></td>
                             <td class="col-1" th:text="${post.RECOMMEND}"></td>
