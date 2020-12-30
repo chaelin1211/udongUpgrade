@@ -1,9 +1,8 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<div class="col-12 row my-3 justify-content-between">
-    <input type="text" name="search" th:value="${paramMap.search}" class="form-control col-7">
-    <input type="submit" name="submit" value="검색" class="btn px-2 col-2 btn-outline-dark">
-    <input type="submit" name="submit" value="글쓰기" th:formaction="@{/post}" class="btn px-2 col-2 btn-secondary">
+<div class="col row my-3">
+    <input type="text" name="search" th:value="${paramMap.search}" class="form-control col">
+    <input type="submit" name="submit" value="검색" class="btn px-2 mx-2 col-2 btn-outline-dark">
+    <input type="submit" name="submit" th:if="${paramMap.flag}"value="글쓰기" th:formaction="@{/post}" class="btn px-2 col-2 btn-secondary">
 </div>
-
 </html>

@@ -6,11 +6,9 @@
                 <th:block th:replace="fragments/newsNav"></th:block>
             </div>
             <div class="col-lg-8 col-md-12 col-sm-12  m-3 p-2  row">
-                <h1>공지사항</h1>
-                <div class="col-12 row my-3 justify-content-around">
-                    <input type="text" name="search" th:value="${paramMap.search}" class="form-control col-7">
-                    <input type="submit" name="submit" value="검색" th:formaction="@{/news/notice}"
-                        class="btn px-2 col-2 btn-outline-dark">
+                <div class="col">
+                    <h1>공지사항</h1>
+                    <th:block th:replace="fragments/searchBar"></th:block>
                 </div>
                 <!--리스트-->
                 <table class="table table-hover tb text-center">
