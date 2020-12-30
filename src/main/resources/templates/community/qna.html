@@ -6,11 +6,9 @@
                 <th:block th:replace="fragments/boardNav"></th:block>
             </div>
             <div class="col-lg-8 col-md-12 col-sm-12  m-3 p-2  row">
-                <h1>질문게시판</h1>
-                <div class="col-12 row my-3 justify-content-between">
-                    <input type="text" name="search" th:value="${paramMap.search}" class="form-control col-7">
-                    <input type="submit" name="submit" value="검색" th:formaction="@{/community/free}" class="btn px-2 col-2 btn-outline-dark">
-                    <input type="submit" name="submit" value="글쓰기" th:formaction="@{/post}" class="btn px-2 col-2 btn-secondary">
+                <div class="col">
+                    <h1>질문게시판</h1>
+                    <th:block th:replace="fragments/searchBar"></th:block>
                     <input type="hidden" name="CATEGORY" value="qna">
                 </div>
                 <!--리스트-->
