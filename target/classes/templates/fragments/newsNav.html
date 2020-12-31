@@ -1,12 +1,11 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <!--사이드바-->
-<div class="col-lg-2 col-md-12 col-sm-12 ">
-    <li class="list-group-item col py-2 active">
-        <h5>뉴스</h5>
-    </li>
-    <li class="list-group-item"><input type="submit" class="btn p-0" th:formaction="@{/news/notice}" value="공지사항"></li>
-    <li class="list-group-item"><input type="submit" class="btn p-0" th:formaction="@{/news/event}" value="이벤트"></li>
-</div>
+<li class="list-group-item col py-2 active">
+    <h5>뉴스</h5>
+</li>
+<li class="list-group-item"><input type="submit" class="btn p-0" th:formaction="@{/news/notice}" value="공지사항"></li>
+<li class="list-group-item"><input type="submit" class="btn p-0" th:formaction="@{/news/event}" value="이벤트"></li>
+
 
 </html>

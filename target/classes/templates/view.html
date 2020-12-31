@@ -2,11 +2,10 @@
     <th:block layout:fragment="layout.content">
         <div class="row">
             <!--사이드바-->
-            <div class="col-lg-2 col-md-12 col-sm-12 " th:if="${resultMap.CATEGORY=='free'||resultMap.CATEGORY=='qna'}">
+            <div class="col-lg-2 col-md-12 col-sm-12" th:if="${resultMap.CATEGORY=='free'||resultMap.CATEGORY=='qna'}">
                 <th:block th:replace="fragments/boardNav"></th:block>
             </div>
-            <div class="col-lg-2 col-md-12 col-sm-12 "
-                th:if="${resultMap.CATEGORY=='event'||resultMap.CATEGORY=='notice'}">
+            <div class="col-lg-2 col-md-12 col-sm-12" th:if="${resultMap.CATEGORY=='event'||resultMap.CATEGORY=='notice'}">
                 <th:block th:replace="fragments/newsNav"></th:block>
             </div>
 
@@ -46,11 +45,11 @@
                                 <th></th>
                             </tr>
                             <tr th:each="comment:${commentList}">
-                                <form method="POST" >
+                                <form method="POST">
                                     <input type="hidden" name="flag" th:value="${flag.flag}">
                                     <input type="hidden" name="userID" th:value="${idMap.ID}">
                                     <input type="hidden" id="hiddenCommentTime" name="TIME" th:value="${comment.TIME}">
-                                    <input type="hidden" id = "commentNum" name="CommentNum" th:value="${comment.CO_NUM}">
+                                    <input type="hidden" id="commentNum" name="CommentNum" th:value="${comment.CO_NUM}">
                                     <input type="hidden" name="POSTNUM" th:value="${resultMap.POSTNUM}">
 
                                     <td class="col-2" name="commentID" th:text="${comment.ID}"></td>

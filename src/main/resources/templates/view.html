@@ -2,10 +2,10 @@
     <th:block layout:fragment="layout.content">
         <div class="row">
             <!--사이드바-->
-            <div class="col-lg-2 col-md-12 col-sm-12 " th:if="${resultMap.CATEGORY=='free'||resultMap.CATEGORY=='qna'}">
+            <div class="col" th:if="${resultMap.CATEGORY=='free'||resultMap.CATEGORY=='qna'}">
                 <th:block th:replace="fragments/boardNav"></th:block>
             </div>
-            <div class="col-lg-2 col-md-12 col-sm-12 "
+            <div class="col"
                 th:if="${resultMap.CATEGORY=='event'||resultMap.CATEGORY=='notice'}">
                 <th:block th:replace="fragments/newsNav"></th:block>
             </div>
