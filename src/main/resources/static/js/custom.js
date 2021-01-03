@@ -128,13 +128,20 @@ function checkComment(form){
     }
 }
 
+function updateComment(form){   
+    var object = document.form.getElementById("commentContent");
+    object.attr("readonly", false);
+}
+
 function test(){
     alert("object")
     return false
 }
+
 $(document).ready(function(){
     reformTime();
 });
+
 function reformTime() {
     var time = document.getElementById('hiddenCommentTime').value;
     var string = "";
