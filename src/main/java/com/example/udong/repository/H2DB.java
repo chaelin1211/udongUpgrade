@@ -15,8 +15,8 @@ public interface H2DB {
     public static final String DRIVER_NAME = "org.h2.Driver";
 
     // DB 연결
-    public static final String URL = "jdbc:h2:~/test";
-    public static final String USER = "";
+    public static final String URL = "jdbc:h2:mem:testdb";
+    public static final String USER = "sa";
     public static final String PWD = "";
 
     // DB 연결 메소드
