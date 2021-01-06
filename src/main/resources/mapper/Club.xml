@@ -10,17 +10,9 @@
 		where AREA_NAME like #{AREA_NAME} ORDER BY AREA_NAME;
 	</select>
 
-	<select id="location_search" resultType="Map" parameterType="Map">
-		select * from CLUB
-	</select>
-
 	<select id="interest" resultType="Map" parameterType="Map">
 		select * from CLUB
-	</select>
-
-	<select id="interest_search" resultType="Map" parameterType="Map">
-		select * from CLUB
-		where INTEREST = #{INTEREST};
+		where INTEREST like #{INTEREST} ORDER BY INTEREST;
 	</select>
 
 	<insert id="insert" parameterType="Map">

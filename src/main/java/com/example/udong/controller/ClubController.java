@@ -51,11 +51,13 @@ public class ClubController {
                 paramMap.replace("AREA_NAME", "%");
             }
             resultMap = service2.getlocation(paramMap);
-            // location logic
-        //} else if ("location_search".equals(action)) {
-           // resultMap = service2.getlocation_search(paramMap);
-            // interest up logic
         } else if ("interest".equals(action)) {
+            if(paramMap.get("INTEREST")==null){
+                paramMap.put("INTEREST", "%");
+            }
+            if(paramMap.get("INTEREST").equals("모두")){
+                paramMap.replace("INTEREST", "%");
+            }
             resultMap = service2.getinterest(paramMap);
             // interest up logic
         } else if ("interest_search".equals(action)) {
