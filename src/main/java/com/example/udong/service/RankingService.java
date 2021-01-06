@@ -16,7 +16,7 @@ public class RankingService {
     private RankingDao dao;
 
     public Object get(Object dataMap) {
-        String sqlMapid = "ranking.fetch";
+        String sqlMapid = "ranking.getRanking";
         Object resultObject = dao.getList(sqlMapid, dataMap);
 
         // Append Rank num

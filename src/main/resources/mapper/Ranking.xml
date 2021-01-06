@@ -5,7 +5,7 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
     
 <mapper namespace="ranking">
-	<select id="fetch" resultType="Map" parameterType="Map">
+	<select id="getRanking" resultType="Map" parameterType="Map">
 	    select * from CLUB
         order by RECOMMEND DESC
     </select>
