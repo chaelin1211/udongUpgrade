@@ -44,10 +44,16 @@ public class ClubController {
 
         // divided depending on action value
         if ("location".equals(action)) {
+            if(paramMap.get("AREA_NAME")==null){
+                paramMap.put("AREA_NAME", "%");
+            }
+            if(paramMap.get("AREA_NAME").equals("모두")){
+                paramMap.replace("AREA_NAME", "%");
+            }
             resultMap = service2.getlocation(paramMap);
             // location logic
-        } else if ("location_search".equals(action)) {
-            resultMap = service2.getlocation_search(paramMap);
+        //} else if ("location_search".equals(action)) {
+           // resultMap = service2.getlocation_search(paramMap);
             // interest up logic
         } else if ("interest".equals(action)) {
             resultMap = service2.getinterest(paramMap);

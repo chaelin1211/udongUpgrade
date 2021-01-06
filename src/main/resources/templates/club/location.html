@@ -11,7 +11,7 @@
                 <div class="col">
                     <h1>지역 찾기</h1>
                     <div class="mt-2">원하시는 지역을 설정해주세요.</div>
-                    <form name="search1" class="row mt-3" th:action="@{/club/location_search}">
+                    <form name="search1" class="row mt-3" th:action="@{/club/location}">
                         <!--도,시지역 검색-->
                         <input type="hidden" name="flag" th:value="${flag.flag}">
                         <input type="hidden" name="userID" th:value="${idMap.ID}">
@@ -21,7 +21,7 @@
                         </div>
                         <div class="form-group col-lg-7 col-md-7 col-sm-7">
                             <select class="form-control custom-select" name="AREA_NAME" id="AREA_NAME">
-                                <option selected disabled>-선택-</option>
+                                <option selected value="모두">모두</option>
                                 <option value="강원도">강원도</option>
                                 <option value="경기도">경기도</option>
                                 <option value="서울특별시">서울특별시</option>
