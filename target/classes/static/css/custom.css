@@ -1,7 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=Do+Hyeon|Jua&display=swap');
 
 .cs-logo {
-    font-family: 'Do Hyeon', sans-serif;
     text-decoration: none;
     color: black;
 }
@@ -17,7 +16,6 @@
 
 .cs-nav *,
 .cs-nav * a:hover {
-    font-family: 'Jua', sans-serif;
     text-decoration: none;
     color: black;
 }
