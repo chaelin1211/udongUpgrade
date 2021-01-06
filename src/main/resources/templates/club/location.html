@@ -4,58 +4,62 @@
 
         <div class="row">
             <!--사이드바-->
-            <th:block th:replace="fragments/clubNav"></th:block>
-           
-            <div class="col-lg-9 col-md-12 col-sm-12 m-3 p-2">
-                <h1>지역 찾기</h1>
-                <div class="mt-2">원하시는 지역을 설정해주세요.</div>
-                <form name="search1" class="row mt-3" th:action="@{/club/location_search}">
-                    <!--도,시지역 검색-->
-                    <input type="hidden" name="flag" th:value="${flag.flag}">
-                    <input type="hidden" name="userID" th:value="${idMap.ID}">
-    
-                    <div class="form-group col-lg-3 col-md-3 col-sm-3">
-                        <span class="form-control font-weight-bold text-center">지역선택</span>
-                    </div>
-                    <div class="form-group col-lg-7 col-md-7 col-sm-7">
-                        <select class="form-control custom-select" name="AREA_NAME" id="AREA_NAME">
-                            <option selected disabled>-선택-</option>
-                            <option value="강원도">강원도</option>
-                            <option value="경기도">경기도</option>
-                            <option value="서울특별시">서울특별시</option>
-                            <option value="부산광역시">부산광역시</option>
-                        </select>
-                    </div>
-                    <div class="form-group col-lg-2 col-md-2 col-sm-2">
-                        <button type="submit" class="form-control btn-primary">검색</button>
-                    </div>
-                </form>
-                <!--리스트-->
-                <table class="table col-lg-12 col-md-12 col-sm-12">
-                    <thead>
-                        <tr>
-                            <th>번호</th>
-                            <th>동아리명</th>
-                            <th>팀장아이디</th>
-                            <th>활동주제</th>
-                            <th>활동지역명</th>
-                            <th>추천수</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr th:each="resultData: ${resultMap}">
-                            <td th:text=${resultData.CLUB_NUM}></td>
-                            <td><button type="submit" class="btn p-0 m-0" th:formaction="@{/club/introduce}"><p class="p-0 m-0" th:text=${resultData.CLUB_NAME}></p></button></td>
-                            <td th:text=${resultData.ID}></td>
-                            <td th:text=${resultData.INTEREST}></td>
-                            <td th:text=${resultData.AREA_NAME}></td>
-                            <td th:text=${resultData.RECOMMEND}></td>
-                        </tr>
-                    </tbody>
-                </table>
+            <div class="col-lg-2 col-md-12 col-sm-12">
+                <th:block th:replace="fragments/clubNav"></th:block>
             </div>
+            <div class="col-lg-8 col-md-12 col-sm-12 m-3 p-2">
+                <div class="col">
+                    <h1>지역 찾기</h1>
+                    <div class="mt-2">원하시는 지역을 설정해주세요.</div>
+                    <form name="search1" class="row mt-3" th:action="@{/club/location_search}">
+                        <!--도,시지역 검색-->
+                        <input type="hidden" name="flag" th:value="${flag.flag}">
+                        <input type="hidden" name="userID" th:value="${idMap.ID}">
 
-        </div>
+                        <div class="form-group col-lg-3 col-md-3 col-sm-3">
+                            <span class="form-control font-weight-bold text-center">지역선택</span>
+                        </div>
+                        <div class="form-group col-lg-7 col-md-7 col-sm-7">
+                            <select class="form-control custom-select" name="AREA_NAME" id="AREA_NAME">
+                                <option selected disabled>-선택-</option>
+                                <option value="강원도">강원도</option>
+                                <option value="경기도">경기도</option>
+                                <option value="서울특별시">서울특별시</option>
+                                <option value="부산광역시">부산광역시</option>
+                            </select>
+                        </div>
+                        <div class="form-group col-lg-2 col-md-2 col-sm-2">
+                            <button type="submit" class="form-control btn-primary">검색</button>
+                        </div>
+                    </form>
+                    <!--리스트-->
+                    <table class="table table-hover tb text-center">
+                        <thead>
+                            <tr>
+                                <th>번호</th>
+                                <th>동아리명</th>
+                                <th>팀장아이디</th>
+                                <th>활동주제</th>
+                                <th>활동지역명</th>
+                                <th>추천수</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="resultData: ${resultMap}">
+                                <td th:text=${resultData.CLUB_NUM}></td>
+                                <td><button type="submit" class="btn p-0 m-0" th:formaction="@{/club/introduce}">
+                                        <p class="p-0 m-0" th:text=${resultData.CLUB_NAME}></p>
+                                    </button></td>
+                                <td th:text=${resultData.ID}></td>
+                                <td th:text=${resultData.INTEREST}></td>
+                                <td th:text=${resultData.AREA_NAME}></td>
+                                <td th:text=${resultData.RECOMMEND}></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
     </th:block>
 
 
