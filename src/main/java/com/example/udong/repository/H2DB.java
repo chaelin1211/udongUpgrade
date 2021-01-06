@@ -20,7 +20,7 @@ public interface H2DB {
     public static final String PWD = "";
 
     // DB 연결 메소드
-    public static Connection getConnection() {
+    public static Connection getConnection() throws SQLException{
         // 1. 드라이버 로딩
         Connection con = null;
 
