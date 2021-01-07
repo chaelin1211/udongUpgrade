@@ -6,8 +6,8 @@ import java.sql.ResultSet;
 
 import com.example.udong.repository.H2DB;
 
-import org.json.JSONArray;
-import org.json.JSONObject;
+import org.json.simple.JSONObject;
+import org.json.simple.JSONArray;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -39,18 +39,23 @@ public class ClubDao {
 
 			while(rs.next()){
 				JSONObject obj = new JSONObject();
-				obj.put("CLUB_NUM", rs.getString("CLUB_NUM");
-				obj.put("CLUB_NAME", rs.getString("CLUB_NAME");
-				obj.put("INTRO", rs.getString("INTRO");
-				obj.put("AREA_NAME", rs.getString("AREA_NAME");
-				obj.put("CONTENT", rs.getString("CONTENT");
-				obj.put("ID", rs.getString("ID");
-				obj.put("INTEREST", rs.getString("INTEREST");
-				obj.put("RECOMMEND", rs.getString("RECOMMEND");
+				obj.put("CLUB_NUM", rs.getString("CLUB_NUM"));
+				obj.put("CLUB_NAME", rs.getString("CLUB_NAME"));
+				obj.put("INTRO", rs.getString("INTRO"));
+				obj.put("AREA_NAME", rs.getString("AREA_NAME"));
+				obj.put("CONTENT", rs.getString("CONTENT"));
+				obj.put("ID", rs.getString("ID"));
+				obj.put("INTEREST", rs.getString("INTEREST"));
+				obj.put("RECOMMEND", rs.getString("RECOMMEND"));
 				jsonArray.add(obj);
 			}
 
+		}catch (Exception e){
+			e.printStackTrace();
+		}finally{
+			H2DB.closeJDBC(con, pstmt, rs);
 		}
+		return jsonArray;
 	}
 
 	public Object getList(String sqlMapId, Object dataMap) {
