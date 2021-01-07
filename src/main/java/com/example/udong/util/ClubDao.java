@@ -6,6 +6,8 @@ import java.sql.ResultSet;
 
 import com.example.udong.repository.H2DB;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -15,6 +17,13 @@ public class ClubDao {
 
 	@Autowired
 	private SqlSessionTemplate sqlSession;
+
+	private static final ClubDao CLUB_DAO = new ClubDao();
+
+	public static ClubDao getInstance(){
+		return CLUB_DAO;
+	}
+
 
 	public JSONArray getListJSON(Object dataMap){
 		Connection con = null;
