@@ -117,14 +117,14 @@ function checkAdmin(form) {
 }
 
 function checkComment(form) {
-    var result = checkUser(form)
-    if (result == false) return false
+    var result = checkUser(form);
+    if (result == false) return false;
 
     if (form.CONTENT.value == "") {
         alert("내용을 입력하세요")
-        return false
+        return false;
     } else {
-        return true
+        return true;
     }
 }
 
@@ -139,7 +139,8 @@ function test() {
 }
 
 $(document).ready(function () {
-    reformTime();
+    // reformTime();
+    commentListLoad();
 });
 
 function reformTime() {
@@ -177,24 +178,26 @@ function reformTime() {
 function printCommentList(result) {
     $.each(result, function (index, item) {
         var str = '<tr><td>' + item.ID + '</td>;';
-        str += '<tr><td>' + item.CONTENT + '</td>;';
-        str += '<tr><td>' + item.TIME + '</td>;';
+        str += '<td>' + item.CONTENT + '</td>;';
+        str += '<td>' + item.TIME + '</td></tr>;';
 
         $('#commentTable').append(str);
     })
 }
 
 function commentListLoad() {
-    $.ajax('commentJSON.jsp', {
-        dataType: 'json',
-        success: function (result) {
-            printCommentList(result);
-        },
-        error: function (request, status, error) {
-            var str = 'code: ' + request.status + '\n';
-            str += 'message: ' + request.responseText + '\n';
-            str += 'error: ' + error;
-            alert(str);
-        }
+    $('#commentWriteButton').click(function () {
+        $.ajax('commentJSON.jsp', {
+            dataType: 'json',
+            success: function (result) {
+                printCommentList(result);
+            },
+            error: function (request, status, error) {
+                var str = 'code: ' + request.status + '\n';
+                str += 'message: ' + request.responseText + '\n';
+                str += 'error: ' + error;
+                alert(str);
+            }
+        })
     })
 }

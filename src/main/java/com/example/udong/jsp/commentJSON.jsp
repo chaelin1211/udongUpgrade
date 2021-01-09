@@ -4,7 +4,7 @@
 <%@page language="java" contentType="application/json; charset=UTF-8" pageEncoding="UTF-8"%>
 
 <%  
-    String postNumber = (String)request.getSession().getAttribute("POST_NUM");
+    String postNumber = (String)request.getSession().getAttribute("POSTNUM");
     //DB 객체 준비
     CommentDao commentDao = commentDao.getInstance();
 
