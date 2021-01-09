@@ -2,25 +2,22 @@
     <th:block layout:fragment="layout.content">
         <div class="row">
             <!--사이드바-->
-            <div class="col-lg-2 col-md-12 col-sm-12">
-                <div th:if="${resultMap.CATEGORY=='free'||resultMap.CATEGORY=='qna'}">
-                    <th:block th:replace="fragments/boardNav"></th:block>
-                </div>
-                <div th:if="${resultMap.CATEGORY=='event'||resultMap.CATEGORY=='notice'}">
-                    <th:block th:replace="fragments/newsNav"></th:block>
-                </div>
+            <div class="col" th:if="${resultMap.CATEGORY=='free'||resultMap.CATEGORY=='qna'}">
+                <th:block th:replace="fragments/boardNav"></th:block>
             </div>
-            <!--글 읽기 페이지-->
-            <div class="col-lg-9 col-sm-12 col-md-12">
-                <!-- 글 정보 -->
-                <div class=" border rounded p-3 my-2">
-                    <span class="col-1" th:text="${resultMap.POSTNUM}"></span>
-                    <span class="col-6" th:text="${resultMap.TITLE}"></span>
-                    <span class="float-right" th:text="${#strings.substring(resultMap.TIME,0,19)}"></span>
-                </div>
+            <div class="col"
+                th:if="${resultMap.CATEGORY=='event'||resultMap.CATEGORY=='notice'}">
+                <th:block th:replace="fragments/newsNav"></th:block>
+            </div>
 
-                <!-- 글 내용 -->
-                <div class="border rounded p-3 my-2">
+            <!--글 읽기 페이지-->
+            <div class="col-lg-8 col-sm-12 col-md-12">
+                <div class="row border rounded p-3 m-2 justify-content-between">
+                    <div class="col-1" th:text="${resultMap.POSTNUM}"></div>
+                    <div class="col-4" th:text="${resultMap.TITLE}"></div>
+                    <div class="col-6 text-right" th:text="${resultMap.TIME}"></div>
+                </div>
+                <div class="border rounded p-3 m-2">
                     <p th:text="${resultMap.CONTENT}"></p>
                     <div class="row col justify-content-center">
                         <form method="POST" onsubmit="return checkUser(this)">
@@ -33,36 +30,45 @@
                         </form>
                     </div>
                 </div>
+                <div class="border rounded p-3 m-2">
 
-                <!-- 댓글창 -->
-                <div class="border rounded p-3 my-2">
+                    <!-- 댓글창 -->
                     <div class="row m-1">
                         <h5>댓글 </h5>
                     </div>
-                    <div th:each="comment:${commentList}" class="border-top clearfix p-2">
-                        <form>
-                            <input type="hidden" name="flag" th:value="${flag.flag}">
-                            <input type="hidden" name="userID" th:value="${idMap.ID}">
-                            <input type="hidden" id="hiddenCommentTime" name="TIME" th:value="${comment.TIME}">
-                            <input type="hidden" id="commentNum" name="CommentNum" th:value="${comment.CO_NUM}">
-                            <input type="hidden" name="POSTNUM" th:value="${resultMap.POSTNUM}">
-                            <div>
-                                <a class="col-2 p-0" name="commentID" th:text="${comment.ID}"></a>
-                                <small class="col-3 text-muted"
-                                    th:text="${#strings.substring(comment.TIME,0,19)}"></small>
-                            </div>
-                            <div>
-                                <p id="commentContent" th:text="${comment.CONTENT}"></p>
-                            </div>
-                            <div class="row px-3 float-right">
-                                <button th:if="${comment.ID==idMap.ID}" type="submit"
-                                    class="btn btn-outline-secondary btn-sm mx-2" name="submit"
-                                    value="update">수정</button>
-                                <button th:if="${comment.ID==idMap.ID}" type="submit"
-                                    class="btn btn-outline-secondary btn-sm" name="submit" value="delete"
-                                    th:formaction="@{/view}">삭제</button>
-                            </div>
-                        </form>
+                    <div class="form-row">
+                        <table class="table" id="commentTable">
+                            <tr>
+                                <th>작성자</th>
+                                <th>내용</th>
+                                <th>시간</th>
+                                <th></th>
+                                <th></th>
+                            </tr>
+                            <tr th:each="comment:${commentList}">
+                                <form method="POST" onsubmit="updateComment(this)">
+                                    <input type="hidden" name="flag" th:value="${flag.flag}">
+                                    <input type="hidden" name="userID" th:value="${idMap.ID}">
+                                    <input type="hidden" id="hiddenCommentTime" name="TIME" th:value="${comment.TIME}">
+                                    <input type="hidden" id = "commentNum" name="CommentNum" th:value="${comment.CO_NUM}">
+                                    <input type="hidden" name="POSTNUM" th:value="${resultMap.POSTNUM}">
+
+                                    <td class="col-2" name="commentID" th:text="${comment.ID}"></td>
+                                    <td class="col-4" th:text="${comment.CONTENT}"></td>
+                                    <td class="col-3" th:text="${#strings.substring(comment.TIME,0,19)}"></td>
+                                    <td class="col-1">
+                                        <span th:if="${comment.ID==idMap.ID}"><button type="submit"
+                                                class="badge badge-pill badge-light" name="submit" value="update"
+                                               >수정</button></span>
+                                    </td>
+                                    <td class="col-1">
+                                        <span th:if="${comment.ID==idMap.ID}"><button type="submit"
+                                                class="badge badge-pill badge-light" name="submit" value="delete"
+                                                >삭제</button></span>
+                                    </td>
+                                </form>
+                            </tr>
+                        </table>
                     </div>
                     <!-- 작성란&버튼 -->
                     <div class="col justify-content-center my-1 mx-0">
@@ -70,9 +76,8 @@
                             <input type="hidden" name="flag" th:value="${flag.flag}">
                             <input type="hidden" name="userID" th:value="${idMap.ID}">
                             <input type="hidden" name="POSTNUM" th:value="${resultMap.POSTNUM}">
-                            <input type="text" name="CONTENT" class="col form-control">
-                            <input type="submit" class="btn btn-secondary mx-2 col-2" th:formaction="@{/view}"
-                                name="submit" value="댓글작성">
+                            <input type="text" name="CONTENT" class="col-9 form-control">
+                            <input type="submit" class="btn btn-secondary mx-2 col-2" id="commentWriteButton" name="submit" value="댓글작성">
                         </form>
                     </div>
                 </div>
@@ -98,5 +103,6 @@
                 </div>
             </div>
         </div>
-    </th:block>
+</div>
+</th:block>
 </div>
