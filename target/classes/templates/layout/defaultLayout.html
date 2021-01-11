@@ -62,7 +62,7 @@
                                     <input type="submit" class="dropdown-item" th:formaction="@{/club/ranking}"
                                         value="랭킹 보기">
                                     <input type="submit" class="dropdown-item" th:formaction="@{/club/ranking}"
-                                        value="동아리 열기">
+                                        value="동아리 만들기">
                                 </div>
                             </li>
                             <li class="nav-item dropdown">
@@ -109,13 +109,12 @@
                     </div>
                 </nav>
             </div>
+            <!-- page content body 구성 -->
+            <div class="my-4">
+                <th:block layout:fragment="layout.content"></th:block>
+            </div>
         </div>
     </form>
-
-    <!-- page content body 구성 -->
-    <div class="my-4">
-        <th:block layout:fragment="layout.content"></th:block>
-    </div>
 
     <!-- 공통 footer -->
     <th:block th:replace="fragments/commonFooter"></th:block>
