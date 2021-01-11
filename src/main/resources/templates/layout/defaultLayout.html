@@ -8,17 +8,21 @@
 
 <body class="d-flex flex-column h-100">
     <form method="POST">
-        <input type="hidden" name="flag" th:value="${flag.flag}"> 
+        <input type="hidden" name="flag" th:value="${flag.flag}">
         <input type="hidden" name="userID" th:value="${idMap.ID}">
         <div class="container">
             <div class="text-right">
                 <input type="submit" th:formaction="@{/admin/answer}" class="btn" value="Admin">
             </div>
             <div class="text-center mt-3 pt-3">
-                <input type="submit" class="cs-logo cs-logo-main btn col-2" th:formaction="@{/home}" value="우동">
-                <form class="d-inline">
-                    <button class="cs-logo btn" th:formaction="@{/home}">우리들의 동아리</button>
-                </form>
+                <div class="position-static">
+                    <form class="d-inline">
+                        <input type="image" class="cs-logo cs-logo-main p-0 btn" style="width: 100px; height: 100px"
+                            th:src="@{/img/woodong.jpeg}" th:formaction="@{/home}">
+                        <button class="cs-logo btn align-bottom" th:formaction="@{/home}">우동 <small> [우리들의 동아리]</small></button>
+                    </form>
+                </div>
+
                 <!-- navbar -->
                 <nav class="navbar navbar-expand-lg">
                     <button class="navbar-toggler" type="button" data-toggle="collapse"
@@ -85,12 +89,16 @@
                             <form class="form-inline">
                                 <input class="form-control mr-sm-2" type="search" placeholder="동아리 검색"
                                     aria-label="Search">
-                                <button class="btn btn-outline-dark mx-2 my-2 my-sm-0" type="submit" >검색</button>
+                                <button class="btn btn-outline-dark mx-2 my-2 my-sm-0" type="submit">검색</button>
                             </form>
-                            <input type="submit" th:if="${flag.flag}" th:formaction="@{/home}" class="btn btn-outline-dark nav-link mx-2" name="submit" value="로그아웃">
-                            <input type="submit" th:if="${flag.flag}" th:formaction="@{/home}" class="btn btn-outline-dark nav-link mx-2" name="submit" value="회원탈퇴">
-                            <input type="submit" th:if="${!flag.flag}" th:formaction="@{/login}" class="btn nav-link mx-2" value="로그인">
-                            <input type="submit" th:if="${!flag.flag}" th:formaction="@{/signup}" class="btn nav-link mx-2" value="회원가입">
+                            <input type="submit" th:if="${flag.flag}" th:formaction="@{/home}"
+                                class="btn btn-outline-dark nav-link mx-2" name="submit" value="로그아웃">
+                            <input type="submit" th:if="${flag.flag}" th:formaction="@{/home}"
+                                class="btn btn-outline-dark nav-link mx-2" name="submit" value="회원탈퇴">
+                            <input type="submit" th:if="${!flag.flag}" th:formaction="@{/login}"
+                                class="btn nav-link mx-2" value="로그인">
+                            <input type="submit" th:if="${!flag.flag}" th:formaction="@{/signup}"
+                                class="btn nav-link mx-2" value="회원가입">
                         </ul>
                     </div>
                 </nav>
