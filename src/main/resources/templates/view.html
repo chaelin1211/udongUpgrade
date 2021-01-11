@@ -11,13 +11,16 @@
             </div>
 
             <!--글 읽기 페이지-->
-            <div class="col-lg-8 col-sm-12 col-md-12">
-                <div class="row border rounded p-3 m-2 justify-content-between">
-                    <div class="col-1" th:text="${resultMap.POSTNUM}"></div>
-                    <div class="col-4" th:text="${resultMap.TITLE}"></div>
-                    <div class="col-6 text-right" th:text="${resultMap.TIME}"></div>
+            <div class="col-lg-9 col-md-12 col-sm-12">
+                <!-- 글 정보 -->
+                <div class="border rounded p-3 mt-2 justify-content-between">
+                    <span class="col-1" th:text="${resultMap.POSTNUM}"></span>
+                    <span class="col-4" th:text="${resultMap.TITLE}"></span>
+                    <span class="col-6 text-right" th:text="${resultMap.TIME}"></span>
                 </div>
-                <div class="border rounded p-3 m-2">
+
+                <!-- 글 본문 -->
+                <div class="border rounded p-3 my-2">
                     <p th:text="${resultMap.CONTENT}"></p>
                     <div class="row col justify-content-center">
                         <form method="POST" onsubmit="return checkUser(this)">
@@ -30,12 +33,13 @@
                         </form>
                     </div>
                 </div>
-                <div class="border rounded p-3 m-2">
 
-                    <!-- 댓글창 -->
+                <!-- 댓글창 -->
+                <div class="border rounded p-3 my-2">
                     <div class="row m-1">
                         <h5>댓글 </h5>
                     </div>
+                    <!-- 댓글 목록 -->
                     <div class="form-row">
                         <table class="table" id="commentTable">
                             <tr>
@@ -70,18 +74,26 @@
                             </tr>
                         </table>
                     </div>
+
                     <!-- 작성란&버튼 -->
                     <div class="col justify-content-center my-1 mx-0">
                         <form method="POST" class="row justify-content-center" onsubmit="return checkComment(this)">
+                            <!-- hidden 영역 -->
                             <input type="hidden" name="flag" th:value="${flag.flag}">
                             <input type="hidden" name="userID" th:value="${idMap.ID}">
                             <input type="hidden" name="POSTNUM" th:value="${resultMap.POSTNUM}">
-                            <input type="text" name="CONTENT" class="col-9 form-control">
-                            <input type="submit" class="btn btn-secondary mx-2 col-2" id="commentWriteButton" name="submit" value="댓글작성">
+
+                            <!-- 입력 영역 -->
+                            <input type="text" name="CONTENT" class="col form-control">
+                            <input type="submit" class="btn btn-secondary ml-2 col-2" id="commentWriteButton" name="submit" value="댓글작성">
                         </form>
                     </div>
                 </div>
+                
+                <!-- 게시글 수정&삭제 버튼 -->
+                <!-- 목록으로 버튼 -->
                 <div class="justify-content-end col row m-3">
+                    <!-- 수정 버튼 -->
                     <input th:if="${resultMap.ID==idMap.ID}" name="submit" type="submit" value="수정"
                         class="btn btn-outline-secondary m-1">
                     <!--삭제 버튼-->
