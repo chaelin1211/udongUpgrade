@@ -2,10 +2,10 @@
     <th:block layout:fragment="layout.content">
         <div class="row">
             <!--사이드바-->
-            <div class="col" th:if="${resultMap.CATEGORY=='free'||resultMap.CATEGORY=='qna'}">
+            <div class="col-lg-2 col-md-12 col-sm-12" th:if="${resultMap.CATEGORY=='free'||resultMap.CATEGORY=='qna'}">
                 <th:block th:replace="fragments/boardNav"></th:block>
             </div>
-            <div class="col"
+            <div class="col-lg-2 col-md-12 col-sm-12"
                 th:if="${resultMap.CATEGORY=='event'||resultMap.CATEGORY=='notice'}">
                 <th:block th:replace="fragments/newsNav"></th:block>
             </div>
@@ -54,7 +54,7 @@
                                     <input type="hidden" name="flag" th:value="${flag.flag}">
                                     <input type="hidden" name="userID" th:value="${idMap.ID}">
                                     <input type="hidden" id="hiddenCommentTime" name="TIME" th:value="${comment.TIME}">
-                                    <input type="hidden" id = "commentNum" name="CommentNum" th:value="${comment.CO_NUM}">
+                                    <input type="hidden" id="commentNum" name="CommentNum" th:value="${comment.CO_NUM}">
                                     <input type="hidden" name="POSTNUM" th:value="${resultMap.POSTNUM}">
 
                                     <td class="col-2" name="commentID" th:text="${comment.ID}"></td>
@@ -62,13 +62,13 @@
                                     <td class="col-3" th:text="${#strings.substring(comment.TIME,0,19)}"></td>
                                     <td class="col-1">
                                         <span th:if="${comment.ID==idMap.ID}"><button type="submit"
-                                                class="badge badge-pill badge-light" name="submit" value="update"
-                                               >수정</button></span>
+                                                class="badge badge-pill badge-light" name="submit"
+                                                value="update">수정</button></span>
                                     </td>
                                     <td class="col-1">
                                         <span th:if="${comment.ID==idMap.ID}"><button type="submit"
-                                                class="badge badge-pill badge-light" name="submit" value="delete"
-                                                >삭제</button></span>
+                                                class="badge badge-pill badge-light" name="submit"
+                                                value="delete">삭제</button></span>
                                     </td>
                                 </form>
                             </tr>
@@ -85,11 +85,12 @@
 
                             <!-- 입력 영역 -->
                             <input type="text" name="CONTENT" class="col form-control">
-                            <input type="submit" class="btn btn-secondary ml-2 col-2" id="commentWriteButton" name="submit" value="댓글작성">
+                            <input type="submit" class="btn btn-secondary ml-2 col-2" id="commentWriteButton"
+                                name="submit" value="댓글작성">
                         </form>
                     </div>
                 </div>
-                
+
                 <!-- 게시글 수정&삭제 버튼 -->
                 <!-- 목록으로 버튼 -->
                 <div class="justify-content-end col row m-3">
