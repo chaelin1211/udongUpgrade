@@ -2,10 +2,11 @@
     <th:block layout:fragment="layout.content">
         <div class="row">
             <!--사이드바-->
-            <div class="col-lg-2 col-md-12 col-sm-12 ">
+            <div class="col-lg-2 col-md-12 col-sm-12">
                 <th:block th:replace="fragments/newsNav"></th:block>
             </div>
-            <div class="col-lg-8 col-md-12 col-sm-12  m-3 p-2  row">
+
+            <div class="col-lg-8 col-md-12 col-sm-12 my-2 p-2">
                 <div class="col">
                     <h1>공지사항</h1>
                     <th:block th:replace="fragments/searchBar"></th:block>
@@ -14,19 +15,25 @@
                 <table class="table table-hover tb text-center">
                     <thead>
                         <tr>
-                            <th>제목</th>
+                            <th>글번호</th>
                             <th>작성자</th>
+                            <th>제목</th>
                             <th>작성시간</th>
                             <th>추천</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr th:each="post:${resultList}">
-                            <td><input type="submit" class="btn" name="POSTNUM"
-                                    th:value="${post.POSTNUM +' '+ post.TITLE}" th:formaction="@{/view}"></td>
-                            <td th:text="${post.ID}"></td>
-                            <td th:text="${post.TIME}"></td>
-                            <td th:text="${post.RECOMMEND}"></td>
+                            <td class="col-2"><input type="submit" class="btn" name="POSTNUM" th:value="${post.POSTNUM}"
+                                    th:formaction="@{/view}"></td>
+                            <td><input type="submit" class="btn" name="POSTID" th:value="${post.ID}"
+                                    th:formaction="@{/view}"></td>
+                            <td class="col-5 text-left"><button type="submit" class="btn text-left" name="POSTNUM"
+                                    th:value="${post.POSTNUM}" th:formaction="@{/view}"><span
+                                        th:text="${post.TITLE}"></span></button>
+                            </td>
+                            <td class="col-2" th:text="${#strings.substring(post.TIME,0,19)}"></td>
+                            <td class="col-1" th:text="${post.RECOMMEND}"></td>
                         </tr>
                     </tbody>
                 </table>
