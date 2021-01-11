@@ -27,8 +27,9 @@
                         <tr th:each="post:${resultList}">
                             <td class="col-2"><input type="submit" class="btn" name="POSTNUM" th:value="${post.POSTNUM}"
                                     th:formaction="@{/view}"></td>
-                            <td class="col-2" th:text="${post.ID}"></td>
-                            <td class="col-5 text-left"><button type="submit" class="btn" name="POSTNUM"
+                            <td><input type="submit" class="btn" name="POSTID" th:value="${post.ID}"
+                                    th:formaction="@{/view}"></td>
+                            <td class="col-5 text-left"><button type="submit" class="btn text-left" name="POSTNUM"
                                     th:value="${post.POSTNUM}" th:formaction="@{/view}"><span
                                         th:text="${post.TITLE}"></span></button>
                             </td>
