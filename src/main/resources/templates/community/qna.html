@@ -2,18 +2,18 @@
     <th:block layout:fragment="layout.content">
         <div class="row">
             <!--사이드바-->
-            <div class="col-lg-2 col-md-12 col-sm-12 ">
+            <div class="col-lg-2 col-md-12 col-sm-12">
                 <th:block th:replace="fragments/boardNav"></th:block>
             </div>
 
-            <div class="col-lg-8 col-md-12 col-sm-12 m-3 p-2">
+            <div class="col-lg-8 col-md-12 col-sm-12 my-2 p-2">
                 <div class="col">
                     <h1>질문게시판</h1>
                     <th:block th:replace="fragments/searchBar"></th:block>
                     <input type="hidden" name="CATEGORY" value="qna">
                 </div>
                 <!--리스트-->
-                <table class="table table-hover tb text-center">
+                <table class="table table-hover tb text-center col">
                     <thead>
                         <tr>
                             <th>글번호</th>
