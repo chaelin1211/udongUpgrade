@@ -16,14 +16,14 @@
             <!-- 로그인 관리 -->
             <div class="row d-flex m-2 justify-content-end">
                 <!-- <input type="submit" th:formaction="@{/admin/answer}" class="btn" value="Admin"> -->
-                <input type="submit" th:if="${flag.flag}" th:formaction="@{/home}" class="btn btn-outline-secondary m-1"
+                <input type="submit" th:if="${userInform.email!=null}" th:formaction="@{/home}" class="btn btn-outline-secondary m-1"
                     name="submit" value="로그아웃">
-                <input type="submit" th:if="${flag.flag}" th:formaction="@{/home}" class="btn btn-outline-secondary m-1"
-                    name="submit" value="회원탈퇴">
-                <input type="submit" th:if="${!flag.flag}" th:formaction="@{/login}" class="btn btn-secondary m-1"
-                    value="로그인">
-                <input type="submit" th:if="${!flag.flag}" th:formaction="@{/signup}" class="btn btn-secondary m-1"
-                    value="회원가입">
+                <!-- <input type="submit" th:if="${flag.flag}" th:formaction="@{/home}" class="btn btn-outline-secondary m-1"
+                    name="submit" value="회원탈퇴"> -->
+                <input type="submit" th:if="${userInform.email==null}" th:formaction="@{/login}" class="btn btn-outline-secondary m-1"
+                    value="네이버로 로그인">
+                <!-- <input type="submit" th:if="${!flag.flag}" th:formaction="@{/signup}" class="btn btn-secondary m-1"
+                    value="회원가입"> -->
             </div>
 
             <!-- 로고 & 네비게이션 바 -->
