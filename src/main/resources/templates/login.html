@@ -3,11 +3,13 @@
     <th:block layout:fragment="layout.content">
         <div class="container col-6">
             <div class="row justify-content-center py-3 border rounded">
-                <div class="col-12 px-5">
-                    <h1 class="text-center my-4">Login</h1>
-                    <form th:action="@{/home}" method="POST" onclick="return check(this)">
+                <div class="text-center col-12 px-5">
+                    <h1 class="my-4">Login</h1>
+                    <p>편하게 네이버로 로그인 하세요!</p>
+                    <th:block th:replace="fragments/naverLogin"></th:block>
+                    <!-- <form th:action="@{/home}" method="POST" onclick="return check(this)">
                         <input type="hidden" name="flag" th:value="${flag.flag}">
-                        <!-- <input type="hidden" th:value="${resultMap.PASSWORD}" id="${resultMap.ID}"> -->
+                        <input type="hidden" th:value="${resultMap.PASSWORD}" id="${resultMap.ID}">
                         <div class="form-group">
                             <input class="form-control" type="text" name="ID" placeholder="아이디">
                         </div>
@@ -23,7 +25,7 @@
                         <div class="text-center mt-3">
                             <p class="warning text-danger"></p>
                         </div>
-                    </form>
+                    </form> -->
                 </div>
             </div>
         </div>
