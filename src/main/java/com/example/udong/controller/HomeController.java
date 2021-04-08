@@ -6,7 +6,6 @@ import java.util.Map;
 import com.example.udong.service.AreaService;
 import com.example.udong.service.BoardService;
 import com.example.udong.service.ClubService;
-import com.example.udong.service.HomeService;
 import com.example.udong.service.CommentService;
 import com.example.udong.service.InterestCategoryService;
 import com.example.udong.service.MemberService;
@@ -44,9 +43,6 @@ public class HomeController {
 
     @Autowired
     private AreaService areaservice;
-
-    @Autowired
-    private HomeService homeservice;
 
     @RequestMapping(value = "/{action}", method = { RequestMethod.GET, RequestMethod.POST })
     public ModelAndView actionMethod(@RequestParam Map<String, Object> paramMap, @PathVariable String action,
