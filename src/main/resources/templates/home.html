@@ -27,21 +27,24 @@
                         </ol>
                         <div class="carousel-inner">
                             <div class="carousel-item active">
-                                <a th:href="@{/club/introduce}"><img th:src="@{/img/dance.jpg}"class="d-block w-100"></a>
+                                <a th:href="@{/club/introduce}"><img th:src="@{/img/dance.jpg}"
+                                        class="d-block w-100"></a>
                                 <div class="carousel-caption d-none d-md-block cs-logo text-white">
                                     <h1>[ 노력하는 춤꾼들 ]</h1>
                                     <h5>춤추고 배우는 모임</h5>
                                 </div>
                             </div>
                             <div class="carousel-item">
-                                <a th:href="@{/club/introduce}"><img th:src="@{/img/hiking.jpg}" class="d-block w-100"></a>
+                                <a th:href="@{/club/introduce}"><img th:src="@{/img/hiking.jpg}"
+                                        class="d-block w-100"></a>
                                 <div class="carousel-caption d-none d-md-block cs-logo text-white">
                                     <h1>[ 산을 타는 사람들 ]</h1>
                                     <h5>등산 모임</h5>
                                 </div>
                             </div>
                             <div class="carousel-item">
-                                <a th:href="@{/club/introduce}"><img th:src="@{/img/book.jpg}" class="d-block w-100"></a>
+                                <a th:href="@{/club/introduce}"><img th:src="@{/img/book.jpg}"
+                                        class="d-block w-100"></a>
                                 <div class="carousel-caption d-none d-md-block cs-logo text-white">
                                     <h1>[ 교양을 먹고 살다 ]</h1>
                                     <h5>음악,미술,문학,역사,종교 교양 공유</h5>
@@ -62,18 +65,15 @@
                 </div>
             </div>
         </div>
-        <!--추천 동아리-->
-        <!-- 분야별 동아리 헤드 -->
+        <!--최신 동아리-->
         <div class="p-3 m-3">
             <div class="row">
                 <div class="col-lg-12 m-4">
-                    <h2 class="cs-logo">분야별 인기 동아리</h2>
+                    <h2 class="cs-logo">최신 동아리</h2>
                 </div>
             </div>
-            <!-- 분야별 동아리 -->
+            <!-- 분야별 동아리
             <form th:action="@{/home}" id="insert_form">
-                <input type="hidden" name="flag" th:value="${flag.flag}">
-                <input type="hidden" name="userID" th:value="${idMap.ID}">
                 <div class="ml-4">
                     <input type="submit" class="btn-sm btn-secondary" name="INSERT" value="교양">
                     <input type="submit" class="btn-sm btn-secondary" name="INSERT" value="문화">
@@ -82,16 +82,18 @@
                     <input type="submit" class="btn-sm btn-secondary" name="INSERT" value="요리">
                     <input type="submit" class="btn-sm btn-secondary" name="INSERT" value="정치">
                 </div>
-            </form>
-            <div class="card-deck m-4">
-                <div class="card col-4" th:each="resultData: ${resultList}">
-                    <h5 class="card-header cs-logo" th:text=${resultData.CLUB_NAME}></h5>
-                    <div class="card-body cs-logo">
-                        <h5 class="card-title">Activity</h5>
-                        <p class="card-text" th:text=${resultData.INTRO}></p>
-                        <a th:href="@{/club/introduce}" class="btn btn-secondary">상세 페이지</a>
-                    </div>
-                    <div class="card-footer text-muted" th:text=${resultData.AREA_NAME}></div>
+            </form> -->
+            <div class="card-deck">
+                <div class="col-lg-3 col-sm-12" th:each="resultData: ${resultList}" th:if="${resultDataStat.index < 4}">
+                        <div class="card border-secondary mb-3">
+                            <h5 class="card-header cs-logo" th:text=${resultData.CLUB_NAME}></h5>
+                            <div class="card-body cs-logo">
+                                <h5 class="card-title">Activity</h5>
+                                <p class="card-text" th:text=${resultData.INTRO}></p>
+                                <a th:href="@{/club/introduce}" class="btn btn-secondary">상세 페이지</a>
+                            </div>
+                            <!-- <div class="card-footer text-muted" th:text=${resultData.AREA_NAME}></div> -->
+                        </div>
                 </div>
             </div>
         </div>
