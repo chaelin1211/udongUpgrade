@@ -10,6 +10,11 @@
 		where AREA_NAME like #{AREA_NUM} ORDER BY AREA_NUM;
 	</select>
 
+    <select id="getNewlyList" resultType="Map" parameterType="Map">
+        select * from CLUB
+        order by TIME DESC;
+    </select>
+
 	<select id="interest" resultType="Map" parameterType="Map">
 		select * from CLUB
 		where INTEREST_NUM = #{INTEREST_NUM} ORDER BY CLUB_NAME;
