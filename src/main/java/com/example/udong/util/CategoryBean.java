@@ -14,41 +14,41 @@ public class CategoryBean implements Serializable{
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue
-    Integer NUM;
-    String NAME;
+    Integer CATEGORY_NUM;
+    String CATEGORY_NAME;
 
 
     public CategoryBean() {
     }
 
-    public CategoryBean(Integer NUM, String NAME) {
-        this.NUM = NUM;
-        this.NAME = NAME;
+    public CategoryBean(Integer CATEGORY_NUM, String CATEGORY_NAME) {
+        this.CATEGORY_NUM = CATEGORY_NUM;
+        this.CATEGORY_NAME = CATEGORY_NAME;
     }
 
-    public Integer getNUM() {
-        return this.NUM;
+    public Integer getCATEGORY_NUM() {
+        return this.CATEGORY_NUM;
     }
 
-    public void setNUM(Integer NUM) {
-        this.NUM = NUM;
+    public void setCATEGORY_NUM(Integer CATEGORY_NUM) {
+        this.CATEGORY_NUM = CATEGORY_NUM;
     }
 
-    public String getNAME() {
-        return this.NAME;
+    public String getCATEGORY_NAME() {
+        return this.CATEGORY_NAME;
     }
 
-    public void setNAME(String NAME) {
-        this.NAME = NAME;
+    public void setCATEGORY_NAME(String CATEGORY_NAME) {
+        this.CATEGORY_NAME = CATEGORY_NAME;
     }
 
-    public CategoryBean NUM(Integer NUM) {
-        this.NUM = NUM;
+    public CategoryBean CATEGORY_NUM(Integer CATEGORY_NUM) {
+        this.CATEGORY_NUM = CATEGORY_NUM;
         return this;
     }
 
-    public CategoryBean NAME(String NAME) {
-        this.NAME = NAME;
+    public CategoryBean CATEGORY_NAME(String CATEGORY_NAME) {
+        this.CATEGORY_NAME = CATEGORY_NAME;
         return this;
     }
 
@@ -60,19 +60,19 @@ public class CategoryBean implements Serializable{
             return false;
         }
         CategoryBean categoryBean = (CategoryBean) o;
-        return Objects.equals(NUM, categoryBean.NUM) && Objects.equals(NAME, categoryBean.NAME);
+        return Objects.equals(CATEGORY_NAME, categoryBean.CATEGORY_NAME) && Objects.equals(CATEGORY_NUM, categoryBean.CATEGORY_NUM);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(NUM, NAME);
+        return Objects.hash(CATEGORY_NUM, CATEGORY_NAME);
     }
 
     @Override
     public String toString() {
         return "{" +
-            " NUM='" + getNUM() + "'" +
-            ", NAME='" + getNAME() + "'" +
+            " CATEGORY_NUM='" + getCATEGORY_NUM() + "'" +
+            ", CATEGORY_NAME='" + getCATEGORY_NAME() + "'" +
             "}";
     }
 

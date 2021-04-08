@@ -14,41 +14,40 @@ public class InterestCategoryBean implements Serializable{
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue
-    Integer NUM;
-    String NAME;
-
+    Integer INTEREST_NUM;
+    String INTEREST_NAME;
 
     public InterestCategoryBean() {
     }
 
-    public InterestCategoryBean(Integer NUM, String NAME) {
-        this.NUM = NUM;
-        this.NAME = NAME;
+    public InterestCategoryBean(Integer INTEREST_NUM, String INTEREST_NAME) {
+        this.INTEREST_NUM = INTEREST_NUM;
+        this.INTEREST_NAME = INTEREST_NAME;
     }
 
-    public Integer getNUM() {
-        return this.NUM;
+    public Integer getINTEREST_NUM() {
+        return this.INTEREST_NUM;
     }
 
-    public void setNUM(Integer NUM) {
-        this.NUM = NUM;
+    public void setINTEREST_NUM(Integer INTEREST_NUM) {
+        this.INTEREST_NUM = INTEREST_NUM;
     }
 
-    public String getNAME() {
-        return this.NAME;
+    public String getINTEREST_NAME() {
+        return this.INTEREST_NAME;
     }
 
-    public void setNAME(String NAME) {
-        this.NAME = NAME;
+    public void setINTEREST_NAME(String INTEREST_NAME) {
+        this.INTEREST_NAME = INTEREST_NAME;
     }
 
-    public InterestCategoryBean NUM(Integer NUM) {
-        this.NUM = NUM;
+    public InterestCategoryBean INTEREST_NUM(Integer INTEREST_NUM) {
+        setINTEREST_NUM(INTEREST_NUM);
         return this;
     }
 
-    public InterestCategoryBean NAME(String NAME) {
-        this.NAME = NAME;
+    public InterestCategoryBean INTEREST_NAME(String INTEREST_NAME) {
+        setINTEREST_NAME(INTEREST_NAME);
         return this;
     }
 
@@ -60,20 +59,19 @@ public class InterestCategoryBean implements Serializable{
             return false;
         }
         InterestCategoryBean interestCategoryBean = (InterestCategoryBean) o;
-        return Objects.equals(NUM, interestCategoryBean.NUM) && Objects.equals(NAME, interestCategoryBean.NAME);
+        return Objects.equals(INTEREST_NUM, interestCategoryBean.INTEREST_NUM) && Objects.equals(INTEREST_NAME, interestCategoryBean.INTEREST_NAME);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(NUM, NAME);
+        return Objects.hash(INTEREST_NUM, INTEREST_NAME);
     }
 
     @Override
     public String toString() {
         return "{" +
-            " NUM='" + getNUM() + "'" +
-            ", NAME='" + getNAME() + "'" +
+            " INTEREST_NUM='" + getINTEREST_NUM() + "'" +
+            ", INTEREST_NAME='" + getINTEREST_NAME() + "'" +
             "}";
     }
-
 }

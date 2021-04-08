@@ -17,18 +17,19 @@ public class CommentBean implements Serializable{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Integer CO_NUM;
     String POST_NUM;
-    String ID;
+    String EMAIL;
+    String NICKNAME;
     String CONTENT;
     String TIME;
-
 
     public CommentBean() {
     }
 
-    public CommentBean(Integer CO_NUM, String POST_NUM, String ID, String CONTENT, String TIME) {
+    public CommentBean(Integer CO_NUM, String POST_NUM, String EMAIL, String NICKNAME, String CONTENT, String TIME) {
         this.CO_NUM = CO_NUM;
         this.POST_NUM = POST_NUM;
-        this.ID = ID;
+        this.EMAIL = EMAIL;
+        this.NICKNAME = NICKNAME;
         this.CONTENT = CONTENT;
         this.TIME = TIME;
     }
@@ -49,12 +50,20 @@ public class CommentBean implements Serializable{
         this.POST_NUM = POST_NUM;
     }
 
-    public String getID() {
-        return this.ID;
+    public String getEMAIL() {
+        return this.EMAIL;
     }
 
-    public void setID(String ID) {
-        this.ID = ID;
+    public void setEMAIL(String EMAIL) {
+        this.EMAIL = EMAIL;
+    }
+
+    public String getNICKNAME() {
+        return this.NICKNAME;
+    }
+
+    public void setNICKNAME(String NICKNAME) {
+        this.NICKNAME = NICKNAME;
     }
 
     public String getCONTENT() {
@@ -74,27 +83,32 @@ public class CommentBean implements Serializable{
     }
 
     public CommentBean CO_NUM(Integer CO_NUM) {
-        this.CO_NUM = CO_NUM;
+        setCO_NUM(CO_NUM);
         return this;
     }
 
     public CommentBean POST_NUM(String POST_NUM) {
-        this.POST_NUM = POST_NUM;
+        setPOST_NUM(POST_NUM);
         return this;
     }
 
-    public CommentBean ID(String ID) {
-        this.ID = ID;
+    public CommentBean EMAIL(String EMAIL) {
+        setEMAIL(EMAIL);
+        return this;
+    }
+
+    public CommentBean NICKNAME(String NICKNAME) {
+        setNICKNAME(NICKNAME);
         return this;
     }
 
     public CommentBean CONTENT(String CONTENT) {
-        this.CONTENT = CONTENT;
+        setCONTENT(CONTENT);
         return this;
     }
 
     public CommentBean TIME(String TIME) {
-        this.TIME = TIME;
+        setTIME(TIME);
         return this;
     }
 
@@ -106,12 +120,12 @@ public class CommentBean implements Serializable{
             return false;
         }
         CommentBean commentBean = (CommentBean) o;
-        return Objects.equals(CO_NUM, commentBean.CO_NUM) && Objects.equals(POST_NUM, commentBean.POST_NUM) && Objects.equals(ID, commentBean.ID) && Objects.equals(CONTENT, commentBean.CONTENT) && Objects.equals(TIME, commentBean.TIME);
+        return Objects.equals(CO_NUM, commentBean.CO_NUM) && Objects.equals(POST_NUM, commentBean.POST_NUM) && Objects.equals(EMAIL, commentBean.EMAIL) && Objects.equals(NICKNAME, commentBean.NICKNAME) && Objects.equals(CONTENT, commentBean.CONTENT) && Objects.equals(TIME, commentBean.TIME);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(CO_NUM, POST_NUM, ID, CONTENT, TIME);
+        return Objects.hash(CO_NUM, POST_NUM, EMAIL, NICKNAME, CONTENT, TIME);
     }
 
     @Override
@@ -119,10 +133,10 @@ public class CommentBean implements Serializable{
         return "{" +
             " CO_NUM='" + getCO_NUM() + "'" +
             ", POST_NUM='" + getPOST_NUM() + "'" +
-            ", ID='" + getID() + "'" +
+            ", EMAIL='" + getEMAIL() + "'" +
+            ", NICKNAME='" + getNICKNAME() + "'" +
             ", CONTENT='" + getCONTENT() + "'" +
             ", TIME='" + getTIME() + "'" +
             "}";
     }
-
 }

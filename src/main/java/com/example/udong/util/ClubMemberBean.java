@@ -15,26 +15,15 @@ public class ClubMemberBean implements Serializable{
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Integer NUM;
+    String EMAIL;
     Integer CLUB_NUM;
-    String ID;
 
-
-    public ClubMemberBean() {
+    public String getEMAIL() {
+        return this.EMAIL;
     }
 
-    public ClubMemberBean(Integer NUM, Integer CLUB_NUM, String ID) {
-        this.NUM = NUM;
-        this.CLUB_NUM = CLUB_NUM;
-        this.ID = ID;
-    }
-
-    public Integer getNUM() {
-        return this.NUM;
-    }
-
-    public void setNUM(Integer NUM) {
-        this.NUM = NUM;
+    public void setEMAIL(String EMAIL) {
+        this.EMAIL = EMAIL;
     }
 
     public Integer getCLUB_NUM() {
@@ -45,29 +34,14 @@ public class ClubMemberBean implements Serializable{
         this.CLUB_NUM = CLUB_NUM;
     }
 
-    public String getID() {
-        return this.ID;
-    }
 
-    public void setID(String ID) {
-        this.ID = ID;
+    @Override
+    public String toString() {
+        return "{" +
+            " EMAIL='" + getEMAIL() + "'" +
+            ", CLUB_NUM='" + getCLUB_NUM() + "'" +
+            "}";
     }
-
-    public ClubMemberBean NUM(Integer NUM) {
-        this.NUM = NUM;
-        return this;
-    }
-
-    public ClubMemberBean CLUB_NUM(Integer CLUB_NUM) {
-        this.CLUB_NUM = CLUB_NUM;
-        return this;
-    }
-
-    public ClubMemberBean ID(String ID) {
-        this.ID = ID;
-        return this;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (o == this)
@@ -76,21 +50,32 @@ public class ClubMemberBean implements Serializable{
             return false;
         }
         ClubMemberBean clubMemberBean = (ClubMemberBean) o;
-        return Objects.equals(NUM, clubMemberBean.NUM) && Objects.equals(CLUB_NUM, clubMemberBean.CLUB_NUM) && Objects.equals(ID, clubMemberBean.ID);
+        return Objects.equals(EMAIL, clubMemberBean.EMAIL) && Objects.equals(CLUB_NUM, clubMemberBean.CLUB_NUM);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(NUM, CLUB_NUM, ID);
+        return Objects.hash(EMAIL, CLUB_NUM);
     }
 
-    @Override
-    public String toString() {
-        return "{" +
-            " NUM='" + getNUM() + "'" +
-            ", CLUB_NUM='" + getCLUB_NUM() + "'" +
-            ", ID='" + getID() + "'" +
-            "}";
+
+    public ClubMemberBean() {
     }
+
+    public ClubMemberBean(Integer CLUB_NUM, String EMAIL) {
+        this.EMAIL = EMAIL;
+        this.CLUB_NUM = CLUB_NUM;
+    }
+    public ClubMemberBean CLUB_NUM(Integer CLUB_NUM) {
+        this.CLUB_NUM = CLUB_NUM;
+        return this;
+    }
+
+    public ClubMemberBean EMAIL(String EMAIL) {
+        this.EMAIL = EMAIL;
+        return this;
+    }
+
+
 
 }

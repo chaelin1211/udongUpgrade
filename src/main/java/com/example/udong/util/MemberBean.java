@@ -16,35 +16,35 @@ public class MemberBean implements Serializable{
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue
-    String ID;
+    String EMAIL;
     String NAME;
-    String AREA_NAME;
-    String TEL;
-    String PASSWORD;
-
+    String GENDER;
+    Integer BIRTH_YEAR;
+    Integer BIRTH_MONTH;
+    Integer BIRTH_DAY;
+    String NICKNAME;
+    Integer AREA_NUM;
 
     public MemberBean() {
-        ID="";
-        NAME="";
-        AREA_NAME="";
-        TEL="";
-        PASSWORD="";
     }
 
-    public MemberBean(String ID, String NAME, String AREA_NAME, String TEL, String PASSWORD) {
-        this.ID = ID;
+    public MemberBean(String EMAIL, String NAME, String GENDER, Integer BIRTH_YEAR, Integer BIRTH_MONTH, Integer BIRTH_DAY, String NICKNAME, Integer AREA_NUM) {
+        this.EMAIL = EMAIL;
         this.NAME = NAME;
-        this.AREA_NAME = AREA_NAME;
-        this.TEL = TEL;
-        this.PASSWORD = PASSWORD;
+        this.GENDER = GENDER;
+        this.BIRTH_YEAR = BIRTH_YEAR;
+        this.BIRTH_MONTH = BIRTH_MONTH;
+        this.BIRTH_DAY = BIRTH_DAY;
+        this.NICKNAME = NICKNAME;
+        this.AREA_NUM = AREA_NUM;
     }
 
-    public String getID() {
-        return this.ID;
+    public String getEMAIL() {
+        return this.EMAIL;
     }
 
-    public void setID(String ID) {
-        this.ID = ID;
+    public void setEMAIL(String EMAIL) {
+        this.EMAIL = EMAIL;
     }
 
     public String getNAME() {
@@ -55,53 +55,91 @@ public class MemberBean implements Serializable{
         this.NAME = NAME;
     }
 
-    public String getAREA_NAME() {
-        return this.AREA_NAME;
+    public String getGENDER() {
+        return this.GENDER;
     }
 
-    public void setAREA_NAME(String AREA_NAME) {
-        this.AREA_NAME = AREA_NAME;
+    public void setGENDER(String GENDER) {
+        this.GENDER = GENDER;
     }
 
-    public String getTEL() {
-        return this.TEL;
+    public Integer getBIRTH_YEAR() {
+        return this.BIRTH_YEAR;
     }
 
-    public void setTEL(String TEL) {
-        this.TEL = TEL;
+    public void setBIRTH_YEAR(Integer BIRTH_YEAR) {
+        this.BIRTH_YEAR = BIRTH_YEAR;
     }
 
-    public String getPASSWORD() {
-        return this.PASSWORD;
+    public Integer getBIRTH_MONTH() {
+        return this.BIRTH_MONTH;
     }
 
-    public void setPASSWORD(String PASSWORD) {
-        this.PASSWORD = PASSWORD;
+    public void setBIRTH_MONTH(Integer BIRTH_MONTH) {
+        this.BIRTH_MONTH = BIRTH_MONTH;
     }
 
+    public Integer getBIRTH_DAY() {
+        return this.BIRTH_DAY;
+    }
 
-    public MemberBean ID(String ID) {
-        this.ID = ID;
+    public void setBIRTH_DAY(Integer BIRTH_DAY) {
+        this.BIRTH_DAY = BIRTH_DAY;
+    }
+
+    public String getNICKNAME() {
+        return this.NICKNAME;
+    }
+
+    public void setNICKNAME(String NICKNAME) {
+        this.NICKNAME = NICKNAME;
+    }
+
+    public Integer getAREA_NUM() {
+        return this.AREA_NUM;
+    }
+
+    public void setAREA_NUM(Integer AREA_NUM) {
+        this.AREA_NUM = AREA_NUM;
+    }
+
+    public MemberBean EMAIL(String EMAIL) {
+        setEMAIL(EMAIL);
         return this;
     }
 
     public MemberBean NAME(String NAME) {
-        this.NAME = NAME;
+        setNAME(NAME);
         return this;
     }
 
-    public MemberBean AREA_NAME(String AREA_NAME) {
-        this.AREA_NAME = AREA_NAME;
+    public MemberBean GENDER(String GENDER) {
+        setGENDER(GENDER);
         return this;
     }
 
-    public MemberBean TEL(String TEL) {
-        this.TEL = TEL;
+    public MemberBean BIRTH_YEAR(Integer BIRTH_YEAR) {
+        setBIRTH_YEAR(BIRTH_YEAR);
         return this;
     }
 
-    public MemberBean PASSWORD(String PASSWORD) {
-        this.PASSWORD = PASSWORD;
+    public MemberBean BIRTH_MONTH(Integer BIRTH_MONTH) {
+        setBIRTH_MONTH(BIRTH_MONTH);
+        return this;
+    }
+
+    public MemberBean BIRTH_DAY(Integer BIRTH_DAY) {
+        setBIRTH_DAY(BIRTH_DAY);
+        return this;
+    }
+
+    public MemberBean NICKNAME(String NICKNAME) {
+        setNICKNAME(NICKNAME);
+        return this;
+    }
+
+    public MemberBean AREA_NUM(Integer AREA_NUM) {
+        setAREA_NUM(AREA_NUM);
         return this;
     }
 
@@ -113,23 +151,27 @@ public class MemberBean implements Serializable{
             return false;
         }
         MemberBean memberBean = (MemberBean) o;
-        return Objects.equals(ID, memberBean.ID) && Objects.equals(NAME, memberBean.NAME) && Objects.equals(AREA_NAME, memberBean.AREA_NAME) && Objects.equals(TEL, memberBean.TEL) && Objects.equals(PASSWORD, memberBean.PASSWORD);
+        return Objects.equals(EMAIL, memberBean.EMAIL) && Objects.equals(NAME, memberBean.NAME) && Objects.equals(GENDER, memberBean.GENDER) && Objects.equals(BIRTH_YEAR, memberBean.BIRTH_YEAR) && Objects.equals(BIRTH_MONTH, memberBean.BIRTH_MONTH) && Objects.equals(BIRTH_DAY, memberBean.BIRTH_DAY) && Objects.equals(NICKNAME, memberBean.NICKNAME) && Objects.equals(AREA_NUM, memberBean.AREA_NUM);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(ID, NAME, AREA_NAME, TEL, PASSWORD);
+        return Objects.hash(EMAIL, NAME, GENDER, BIRTH_YEAR, BIRTH_MONTH, BIRTH_DAY, NICKNAME, AREA_NUM);
     }
 
     @Override
     public String toString() {
         return "{" +
-            " ID='" + getID() + "'" +
+            " EMAIL='" + getEMAIL() + "'" +
             ", NAME='" + getNAME() + "'" +
-            ", AREA_NAME='" + getAREA_NAME() + "'" +
-            ", TEL='" + getTEL() + "'" +
-            ", PASSWORD='" + getPASSWORD() + "'" +
+            ", GENDER='" + getGENDER() + "'" +
+            ", BIRTH_YEAR='" + getBIRTH_YEAR() + "'" +
+            ", BIRTH_MONTH='" + getBIRTH_MONTH() + "'" +
+            ", BIRTH_DAY='" + getBIRTH_DAY() + "'" +
+            ", NICKNAME='" + getNICKNAME() + "'" +
+            ", AREA_NUM='" + getAREA_NUM() + "'" +
             "}";
     }
+
 
 }

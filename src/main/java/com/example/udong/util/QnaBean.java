@@ -15,32 +15,31 @@ public class QnaBean implements Serializable{
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Integer NUM;
+    Integer QNA_NUM;
     String TIME;
     String TITLE;
-    String ID;
+    String NICKNAME;
     String CONTENT;
     String EMAIL;
-
 
     public QnaBean() {
     }
 
-    public QnaBean(Integer NUM, String TIME, String TITLE, String ID, String CONTENT, String EMAIL) {
-        this.NUM = NUM;
+    public QnaBean(Integer QNA_NUM, String TIME, String TITLE, String NICKNAME, String CONTENT, String EMAIL) {
+        this.QNA_NUM = QNA_NUM;
         this.TIME = TIME;
         this.TITLE = TITLE;
-        this.ID = ID;
+        this.NICKNAME = NICKNAME;
         this.CONTENT = CONTENT;
         this.EMAIL = EMAIL;
     }
 
-    public Integer getNUM() {
-        return this.NUM;
+    public Integer getQNA_NUM() {
+        return this.QNA_NUM;
     }
 
-    public void setNUM(Integer NUM) {
-        this.NUM = NUM;
+    public void setQNA_NUM(Integer QNA_NUM) {
+        this.QNA_NUM = QNA_NUM;
     }
 
     public String getTIME() {
@@ -59,12 +58,12 @@ public class QnaBean implements Serializable{
         this.TITLE = TITLE;
     }
 
-    public String getID() {
-        return this.ID;
+    public String getNICKNAME() {
+        return this.NICKNAME;
     }
 
-    public void setID(String ID) {
-        this.ID = ID;
+    public void setNICKNAME(String NICKNAME) {
+        this.NICKNAME = NICKNAME;
     }
 
     public String getCONTENT() {
@@ -83,33 +82,33 @@ public class QnaBean implements Serializable{
         this.EMAIL = EMAIL;
     }
 
-    public QnaBean NUM(Integer NUM) {
-        this.NUM = NUM;
+    public QnaBean QNA_NUM(Integer QNA_NUM) {
+        setQNA_NUM(QNA_NUM);
         return this;
     }
 
     public QnaBean TIME(String TIME) {
-        this.TIME = TIME;
+        setTIME(TIME);
         return this;
     }
 
     public QnaBean TITLE(String TITLE) {
-        this.TITLE = TITLE;
+        setTITLE(TITLE);
         return this;
     }
 
-    public QnaBean ID(String ID) {
-        this.ID = ID;
+    public QnaBean NICKNAME(String NICKNAME) {
+        setNICKNAME(NICKNAME);
         return this;
     }
 
     public QnaBean CONTENT(String CONTENT) {
-        this.CONTENT = CONTENT;
+        setCONTENT(CONTENT);
         return this;
     }
 
     public QnaBean EMAIL(String EMAIL) {
-        this.EMAIL = EMAIL;
+        setEMAIL(EMAIL);
         return this;
     }
 
@@ -121,24 +120,25 @@ public class QnaBean implements Serializable{
             return false;
         }
         QnaBean qnaBean = (QnaBean) o;
-        return Objects.equals(NUM, qnaBean.NUM) && Objects.equals(TIME, qnaBean.TIME) && Objects.equals(TITLE, qnaBean.TITLE) && Objects.equals(ID, qnaBean.ID) && Objects.equals(CONTENT, qnaBean.CONTENT) && Objects.equals(EMAIL, qnaBean.EMAIL);
+        return Objects.equals(QNA_NUM, qnaBean.QNA_NUM) && Objects.equals(TIME, qnaBean.TIME) && Objects.equals(TITLE, qnaBean.TITLE) && Objects.equals(NICKNAME, qnaBean.NICKNAME) && Objects.equals(CONTENT, qnaBean.CONTENT) && Objects.equals(EMAIL, qnaBean.EMAIL);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(NUM, TIME, TITLE, ID, CONTENT, EMAIL);
+        return Objects.hash(QNA_NUM, TIME, TITLE, NICKNAME, CONTENT, EMAIL);
     }
 
     @Override
     public String toString() {
         return "{" +
-            " NUM='" + getNUM() + "'" +
+            " QNA_NUM='" + getQNA_NUM() + "'" +
             ", TIME='" + getTIME() + "'" +
             ", TITLE='" + getTITLE() + "'" +
-            ", ID='" + getID() + "'" +
+            ", NICKNAME='" + getNICKNAME() + "'" +
             ", CONTENT='" + getCONTENT() + "'" +
             ", EMAIL='" + getEMAIL() + "'" +
             "}";
     }
+
 
 }

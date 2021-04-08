@@ -16,26 +16,28 @@ public class BoardBean implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Integer POSTNUM;
-    String CATEGORY;
+    int CATEGORY_NUM;
     String TIME;
     String TITLE;
     String CONTENT;
     Integer RECOMMEND;
-    String ID;
+    String EMAIL;
+    String NICKNAME;
 
 
     public BoardBean() {
         RECOMMEND=0;
     }
 
-    public BoardBean(Integer POSTNUM, String CATEGORY, String TIME, String TITLE, String CONTENT, Integer RECOMMEND, String ID) {
+    public BoardBean(Integer POSTNUM, int CATEGORY_NUM, String TIME, String TITLE, String CONTENT, Integer RECOMMEND, String EMAIL, String NICKNAME) {
         this.POSTNUM = POSTNUM;
-        this.CATEGORY = CATEGORY;
+        this.CATEGORY_NUM = CATEGORY_NUM;
         this.TIME = TIME;
         this.TITLE = TITLE;
         this.CONTENT = CONTENT;
         this.RECOMMEND = RECOMMEND;
-        this.ID = ID;
+        this.EMAIL = EMAIL;
+        this.NICKNAME = NICKNAME;
     }
 
     public Integer getPOSTNUM() {
@@ -46,12 +48,12 @@ public class BoardBean implements Serializable{
         this.POSTNUM = POSTNUM;
     }
 
-    public String getCATEGORY() {
-        return this.CATEGORY;
+    public int getCATEGORY() {
+        return this.CATEGORY_NUM;
     }
 
-    public void setCATEGORY(String CATEGORY) {
-        this.CATEGORY = CATEGORY;
+    public void setCATEGORY(int CATEGORY_NUM) {
+        this.CATEGORY_NUM = CATEGORY_NUM;
     }
 
     public String getTIME() {
@@ -86,21 +88,30 @@ public class BoardBean implements Serializable{
         this.RECOMMEND = RECOMMEND;
     }
 
-    public String getID() {
-        return this.ID;
+    public String getEMAIL() {
+        return this.EMAIL;
     }
 
-    public void setID(String ID) {
-        this.ID = ID;
+    public void setEMAIL(String EMAIL) {
+        this.EMAIL = EMAIL;
+    }
+
+    public String getNICKNAME() {
+        return this.NICKNAME;
+    }
+
+    public void setNICKNAME(String NICKNAME) {
+        this.NICKNAME = NICKNAME;
     }
 
     public BoardBean POSTNUM(Integer POSTNUM) {
         this.POSTNUM = POSTNUM;
         return this;
     }
+    
 
-    public BoardBean CATEGORY(String CATEGORY) {
-        this.CATEGORY = CATEGORY;
+    public BoardBean CATEGORY(int CATEGORY_NUM) {
+        this.CATEGORY_NUM = CATEGORY_NUM;
         return this;
     }
 
@@ -124,8 +135,13 @@ public class BoardBean implements Serializable{
         return this;
     }
 
-    public BoardBean ID(String ID) {
-        this.ID = ID;
+    public BoardBean EMAIL(String EMAIL) {
+        this.EMAIL = EMAIL;
+        return this;
+    }
+
+    public BoardBean NICKNAME(String NICKNAME){
+        this.NICKNAME = NICKNAME;
         return this;
     }
 
@@ -137,24 +153,25 @@ public class BoardBean implements Serializable{
             return false;
         }
         BoardBean boardBean = (BoardBean) o;
-        return Objects.equals(POSTNUM, boardBean.POSTNUM) && Objects.equals(CATEGORY, boardBean.CATEGORY) && Objects.equals(TIME, boardBean.TIME) && Objects.equals(TITLE, boardBean.TITLE) && Objects.equals(CONTENT, boardBean.CONTENT) && Objects.equals(RECOMMEND, boardBean.RECOMMEND) && Objects.equals(ID, boardBean.ID);
+        return Objects.equals(POSTNUM, boardBean.POSTNUM) && Objects.equals(CATEGORY_NUM, boardBean.CATEGORY_NUM) && Objects.equals(TIME, boardBean.TIME) && Objects.equals(TITLE, boardBean.TITLE) && Objects.equals(CONTENT, boardBean.CONTENT) && Objects.equals(RECOMMEND, boardBean.RECOMMEND) && Objects.equals(EMAIL, boardBean.EMAIL) && Objects.equals(NICKNAME, boardBean.NICKNAME);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(POSTNUM, CATEGORY, TIME, TITLE, CONTENT, RECOMMEND, ID);
+        return Objects.hash(POSTNUM, CATEGORY_NUM, TIME, TITLE, CONTENT, RECOMMEND, EMAIL);
     }
 
     @Override
     public String toString() {
         return "{" +
             " POSTNUM='" + getPOSTNUM() + "'" +
-            ", CATEGORY='" + getCATEGORY() + "'" +
+            ", CATEGORY_NUM='" + getCATEGORY() + "'" +
             ", TIME='" + getTIME() + "'" +
             ", TITLE='" + getTITLE() + "'" +
             ", CONTENT='" + getCONTENT() + "'" +
             ", RECOMMEND='" + getRECOMMEND() + "'" +
-            ", ID='" + getID() + "'" +
+            ", EMAIL='" + getEMAIL() + "'" +
+            ", NICKNAME='" + getNICKNAME()+"'"+
             "}";
     }
 

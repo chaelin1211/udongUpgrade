@@ -15,56 +15,40 @@ public class MemberInterestBean implements Serializable{
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Integer NUM;
-    String ID;
-    String NAME;
-
+    Integer INTEREST_NUM;
+    String EMAIL;
 
     public MemberInterestBean() {
     }
 
-    public MemberInterestBean(Integer NUM, String ID, String NAME) {
-        this.NUM = NUM;
-        this.ID = ID;
-        this.NAME = NAME;
+    public MemberInterestBean(Integer INTEREST_NUM, String EMAIL) {
+        this.INTEREST_NUM = INTEREST_NUM;
+        this.EMAIL = EMAIL;
     }
 
-    public Integer getNUM() {
-        return this.NUM;
+    public Integer getINTEREST_NUM() {
+        return this.INTEREST_NUM;
     }
 
-    public void setNUM(Integer NUM) {
-        this.NUM = NUM;
+    public void setINTEREST_NUM(Integer INTEREST_NUM) {
+        this.INTEREST_NUM = INTEREST_NUM;
     }
 
-    public String getID() {
-        return this.ID;
+    public String getEMAIL() {
+        return this.EMAIL;
     }
 
-    public void setID(String ID) {
-        this.ID = ID;
+    public void setEMAIL(String EMAIL) {
+        this.EMAIL = EMAIL;
     }
 
-    public String getNAME() {
-        return this.NAME;
-    }
-
-    public void setNAME(String NAME) {
-        this.NAME = NAME;
-    }
-
-    public MemberInterestBean NUM(Integer NUM) {
-        this.NUM = NUM;
+    public MemberInterestBean INTEREST_NUM(Integer INTEREST_NUM) {
+        setINTEREST_NUM(INTEREST_NUM);
         return this;
     }
 
-    public MemberInterestBean ID(String ID) {
-        this.ID = ID;
-        return this;
-    }
-
-    public MemberInterestBean NAME(String NAME) {
-        this.NAME = NAME;
+    public MemberInterestBean EMAIL(String EMAIL) {
+        setEMAIL(EMAIL);
         return this;
     }
 
@@ -76,22 +60,19 @@ public class MemberInterestBean implements Serializable{
             return false;
         }
         MemberInterestBean memberInterestBean = (MemberInterestBean) o;
-        return Objects.equals(NUM, memberInterestBean.NUM) && Objects.equals(ID, memberInterestBean.ID) && Objects.equals(NAME, memberInterestBean.NAME);
+        return Objects.equals(INTEREST_NUM, memberInterestBean.INTEREST_NUM) && Objects.equals(EMAIL, memberInterestBean.EMAIL);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(NUM, ID, NAME);
+        return Objects.hash(INTEREST_NUM, EMAIL);
     }
 
     @Override
     public String toString() {
         return "{" +
-            " NUM='" + getNUM() + "'" +
-            ", ID='" + getID() + "'" +
-            ", NAME='" + getNAME() + "'" +
+            " INTEREST_NUM='" + getINTEREST_NUM() + "'" +
+            ", EMAIL='" + getEMAIL() + "'" +
             "}";
     }
-
-
 }

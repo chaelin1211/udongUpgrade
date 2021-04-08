@@ -15,26 +15,25 @@ public class FaqBean implements Serializable{
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Integer NUM;
+    Integer FAQ_NUM;
     String TITLE;
     String CONTENT;
-
 
     public FaqBean() {
     }
 
-    public FaqBean(Integer NUM, String TITLE, String CONTENT) {
-        this.NUM = NUM;
+    public FaqBean(Integer FAQ_NUM, String TITLE, String CONTENT) {
+        this.FAQ_NUM = FAQ_NUM;
         this.TITLE = TITLE;
         this.CONTENT = CONTENT;
     }
 
-    public Integer getNUM() {
-        return this.NUM;
+    public Integer getFAQ_NUM() {
+        return this.FAQ_NUM;
     }
 
-    public void setNUM(Integer NUM) {
-        this.NUM = NUM;
+    public void setFAQ_NUM(Integer FAQ_NUM) {
+        this.FAQ_NUM = FAQ_NUM;
     }
 
     public String getTITLE() {
@@ -53,18 +52,18 @@ public class FaqBean implements Serializable{
         this.CONTENT = CONTENT;
     }
 
-    public FaqBean NUM(Integer NUM) {
-        this.NUM = NUM;
+    public FaqBean FAQ_NUM(Integer FAQ_NUM) {
+        setFAQ_NUM(FAQ_NUM);
         return this;
     }
 
     public FaqBean TITLE(String TITLE) {
-        this.TITLE = TITLE;
+        setTITLE(TITLE);
         return this;
     }
 
     public FaqBean CONTENT(String CONTENT) {
-        this.CONTENT = CONTENT;
+        setCONTENT(CONTENT);
         return this;
     }
 
@@ -76,18 +75,18 @@ public class FaqBean implements Serializable{
             return false;
         }
         FaqBean faqBean = (FaqBean) o;
-        return Objects.equals(NUM, faqBean.NUM) && Objects.equals(TITLE, faqBean.TITLE) && Objects.equals(CONTENT, faqBean.CONTENT);
+        return Objects.equals(FAQ_NUM, faqBean.FAQ_NUM) && Objects.equals(TITLE, faqBean.TITLE) && Objects.equals(CONTENT, faqBean.CONTENT);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(NUM, TITLE, CONTENT);
+        return Objects.hash(FAQ_NUM, TITLE, CONTENT);
     }
 
     @Override
     public String toString() {
         return "{" +
-            " NUM='" + getNUM() + "'" +
+            " FAQ_NUM='" + getFAQ_NUM() + "'" +
             ", TITLE='" + getTITLE() + "'" +
             ", CONTENT='" + getCONTENT() + "'" +
             "}";

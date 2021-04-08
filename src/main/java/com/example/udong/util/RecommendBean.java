@@ -15,15 +15,14 @@ public class RecommendBean implements Serializable{
     @Id
     @GeneratedValue
     String POST_NUM;
-    String ID;
-
+    String EMAIL;
 
     public RecommendBean() {
     }
 
-    public RecommendBean(String POST_NUM, String ID) {
+    public RecommendBean(String POST_NUM, String EMAIL) {
         this.POST_NUM = POST_NUM;
-        this.ID = ID;
+        this.EMAIL = EMAIL;
     }
 
     public String getPOST_NUM() {
@@ -34,21 +33,21 @@ public class RecommendBean implements Serializable{
         this.POST_NUM = POST_NUM;
     }
 
-    public String getID() {
-        return this.ID;
+    public String getEMAIL() {
+        return this.EMAIL;
     }
 
-    public void setID(String ID) {
-        this.ID = ID;
+    public void setEMAIL(String EMAIL) {
+        this.EMAIL = EMAIL;
     }
 
     public RecommendBean POST_NUM(String POST_NUM) {
-        this.POST_NUM = POST_NUM;
+        setPOST_NUM(POST_NUM);
         return this;
     }
 
-    public RecommendBean ID(String ID) {
-        this.ID = ID;
+    public RecommendBean EMAIL(String EMAIL) {
+        setEMAIL(EMAIL);
         return this;
     }
 
@@ -60,19 +59,19 @@ public class RecommendBean implements Serializable{
             return false;
         }
         RecommendBean recommendBean = (RecommendBean) o;
-        return Objects.equals(POST_NUM, recommendBean.POST_NUM) && Objects.equals(ID, recommendBean.ID);
+        return Objects.equals(POST_NUM, recommendBean.POST_NUM) && Objects.equals(EMAIL, recommendBean.EMAIL);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(POST_NUM, ID);
+        return Objects.hash(POST_NUM, EMAIL);
     }
 
     @Override
     public String toString() {
         return "{" +
             " POST_NUM='" + getPOST_NUM() + "'" +
-            ", ID='" + getID() + "'" +
+            ", EMAIL='" + getEMAIL() + "'" +
             "}";
     }
     
