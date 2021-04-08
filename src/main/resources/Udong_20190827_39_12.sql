@@ -40,13 +40,10 @@ ALTER TABLE MEMBER COMMENT '멤버';
 
 -- CLUB Table Create SQL
 CREATE TABLE CLUB_MEMBER
-(
-    `CLUB_NUM`  INT            NULL        COMMENT '동아리 번호', 
-    `ID`        VARCHAR
-(45)    NULL        COMMENT '멤버 아이디', 
-    `NUM`       INT            NOT NULL    AUTO_INCREMENT COMMENT '일련번호', 
-    PRIMARY KEY
-(NUM)
+( 
+    `EMAIL`     VARCHAR(45)    NOT NULL    COMMENT '멤버 아이디'
+    `CLUB_NUM`       INT            NOT NULL    AUTO_INCREMENT COMMENT '일련번호', 
+    PRIMARY KEY (CLUB_NUM)
 );
 
 ALTER TABLE CLUB_MEMBER COMMENT '동아리멤버';
