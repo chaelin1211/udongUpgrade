@@ -5,6 +5,7 @@ import java.util.Map;
 
 import com.example.udong.service.AreaService;
 import com.example.udong.service.BoardService;
+import com.example.udong.service.ClubService;
 import com.example.udong.service.HomeService;
 import com.example.udong.service.CommentService;
 import com.example.udong.service.InterestCategoryService;
@@ -31,6 +32,9 @@ public class HomeController {
 
     @Autowired
     private BoardService boardservice;
+
+    @Autowired
+    private ClubService clubService;
 
     @Autowired
     private RecommendService recommendservice;
@@ -77,7 +81,7 @@ public class HomeController {
             modelAndView.addObject("idCheck", false);
         } else if ("home".equals(action)) {
             if (!paramMap.keySet().contains("submit")) {// home으로 가려할 때
-                resultList = homeservice.get(paramMap);
+                resultList = clubService.getNewlylist(paramMap);
                 viewName = "/home";
             } else {
                 Object submitValue = paramMap.get("submit");
