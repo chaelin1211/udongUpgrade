@@ -41,7 +41,8 @@ public class CommentDao {
             
 				obj.put("CO_NUM", rs.getString("CO_NUM"));
 				obj.put("POST_NUM", rs.getString("POST_NUM"));
-				obj.put("ID", rs.getString("ID"));
+				obj.put("EMAIL", rs.getString("EMAIL"));
+				obj.put("NICKNAME", rs.getString("NICKNAME"));
 				obj.put("CONTENT", rs.getString("CONTENT"));
                 obj.put("TIME", rs.getString("TIME"));
                 

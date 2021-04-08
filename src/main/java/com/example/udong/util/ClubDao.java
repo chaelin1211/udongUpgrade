@@ -42,11 +42,12 @@ public class ClubDao {
 				obj.put("CLUB_NUM", rs.getString("CLUB_NUM"));
 				obj.put("CLUB_NAME", rs.getString("CLUB_NAME"));
 				obj.put("INTRO", rs.getString("INTRO"));
-				obj.put("AREA_NAME", rs.getString("AREA_NAME"));
+				obj.put("AREA_NUM", rs.getString("AREA_NUM"));
 				obj.put("CONTENT", rs.getString("CONTENT"));
-				obj.put("ID", rs.getString("ID"));
-				obj.put("INTEREST", rs.getString("INTEREST"));
-				obj.put("RECOMMEND", rs.getString("RECOMMEND"));
+				obj.put("EMAIL", rs.getString("EMAIL"));
+				obj.put("NICKNAME", rs.getString("NICKNAME"));
+				obj.put("INTEREST_NUM", rs.getString("INTEREST_NUM"));
+				obj.put("MEMBER_COUNT", rs.getString("MEMBER_COUNT"));
 				jsonArray.add(obj);
 			}
 
