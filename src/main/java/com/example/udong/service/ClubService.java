@@ -26,6 +26,12 @@ public class ClubService {
         return resultObject;
     }
 
+    public Object getNewlylist(Object dataMap) {
+        String sqlMapid = "Club.getNewlyList";
+        Object resultObject = dao.getList(sqlMapid, dataMap);
+        return resultObject;
+    }
+
     public Object getlocation_search(Object dataMap){
         String sqlMapid = "Club.location_search";
         Object resultObject = dao.getList(sqlMapid,dataMap);
