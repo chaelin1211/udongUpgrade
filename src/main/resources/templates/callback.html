@@ -24,10 +24,10 @@
       // alert(naver_id_login.getProfileData('email'));
       // alert(naver_id_login.getProfileData('nickname'));
       // alert(naver_id_login.getProfileData('age'));
-    }
-    function submitFunction() {
       window.opener.document.getElementById("userEmail").value = naver_id_login.getProfileData('email');
       window.opener.document.sendEmailForm.submit();
+    }
+    function submitFunction() {
       self.close();
     }
   </script>
