@@ -7,7 +7,7 @@
 <mapper namespace="Board">
 	<select id="post" resultType="Map" parameterType="Map">
 	    select * from BOARD
-		where CATEGORY = #{CATEGORY}
+		where CATEGORY_NUM = #{CATEGORY_NUM}
 		Order by TIME;
     </select>
 
@@ -18,7 +18,7 @@
 
 	<select id="searchPost" resultType="Map" parameterType="Map">
 	    select * from BOARD
-		where TITLE like CONCAT('%',#{search},'%') and CATEGORY = #{CATEGORY};
+		where TITLE like CONCAT('%',#{search},'%') and CATEGORY_NUM = #{CATEGORY_NUM};
     </select>
 
 	<select id="getComment" resultType="Map" parameterType="Map">
@@ -27,8 +27,8 @@
     </select>
 
 	<insert id="insertPost" parameterType="Map">
-		insert into BOARD (CATEGORY, TIME, TITLE, CONTENT, ID, RECOMMEND)
-		values(#{CATEGORY}, NOW(), #{TITLE}, #{CONTENT}, #{userID}, 0);
+		insert into BOARD (CATEGORY_NUM, TIME, TITLE, CONTENT, EMAIL, NICKNAME)
+		values(#{CATEGORY_NUM}, NOW(), #{TITLE}, #{CONTENT}, #{EMAIL}, #{NICKNAME});
 	</insert>
 
 	<!-- 추천을 했을 때 추천 수 추가 및 감소 -->
