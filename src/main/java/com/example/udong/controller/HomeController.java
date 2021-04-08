@@ -55,19 +55,18 @@ public class HomeController {
 
         Map<String, Object> userInform = new HashMap<String, Object>();
 
-        if (paramMap.get("userEmail") == null )
+        if (paramMap.get("userEmail") == null)
             userInform.put("userEmail", "");
         else
             userInform.put("userEmail", paramMap.get("userEmail"));
 
-        // divided depending on action value
-        if ("login".equals(action)) {
+        if ("login".equals(action) && userInform.get("userEmail") != "") {
             viewName = "/home";
-            if (userInform.get("userEmail") == "" || userInform.get("userEmail") == null) {
-                viewName = "/login";
-            }
+        }
+        // divided depending on action value
+        if ("login".equals(action) && !viewName.equals("/home")) {
         } else if ("callback".equals(action)) {
-            
+
         } else if ("signup".equals(action)) {
             Object interestList = interestService.getList(paramMap);
             Object localList = areaservice.getLocal(paramMap);
@@ -75,21 +74,20 @@ public class HomeController {
             modelAndView.addObject("localList", localList);
             modelAndView.addObject("resultBean", member);
             modelAndView.addObject("idCheck", false);
-        } else if ("home".equals(action)) {
-            if (!paramMap.keySet().contains("submit")) {// home으로 가려할 때
-                resultList = clubService.getNewlylist(paramMap);
-                viewName = "/home";
-            } else {
+        } else if ("home".equals(action) || viewName.equals("/home")) {
+            resultList = clubService.getNewlylist(paramMap);
+
+            // home으로 가려할 때
+            if (paramMap.keySet().contains("submit")) {
                 Object submitValue = paramMap.get("submit");
-                if (submitValue.equals("로그인")) { // 로그인 창에서 버튼을 눌렀을때
-                    resultMap = (Map) service.getMember(paramMap);
-                    if (resultMap.size() != 0) {
-                        userInform.put("userEmail", paramMap.get("userEmail"));
-                    } else {
-                        viewName = "/login";
-                    }
-                } else if (submitValue.equals("로그아웃")) {
-                    viewName = "/home";
+                // if (submitValue.equals("로그인")) { // 로그인 창에서 버튼을 눌렀을때
+                // resultMap = (Map) service.getMember(paramMap);
+                // if (resultMap.size() != 0) {
+                // userInform.put("userEmail", paramMap.get("userEmail"));
+                // } else {
+                // viewName = "/login";
+                // }
+                if (submitValue.equals("로그아웃")) {
                     userInform.put("userEmail", "");
                 } else if (submitValue.equals("회원가입")) {
                     Object interestList = interestService.getList(paramMap);
