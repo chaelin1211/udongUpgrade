@@ -26,11 +26,12 @@ ALTER TABLE CLUB COMMENT '동아리';
 
 CREATE TABLE MEMBER
 (
-    `ID`         VARCHAR(45)    NOT NULL    COMMENT '아이디', 
-    `AREA_NAME`  VARCHAR(45)    NULL        COMMENT '지역', 
-    `TEL`        VARCHAR(45)    NULL        COMMENT '휴대폰번호', 
-    `PASSWORD`   VARCHAR(45)    NULL        COMMENT '비밀번호', 
-    `NAME`       VARCHAR(45)    NULL        COMMENT '이름', 
+    `EMAIL`         VARCHAR(45)    NOT NULL    COMMENT '아이디', 
+    `NAME`       VARCHAR(45)    NULL        COMMENT '이름',  
+    `GENDER`       VARCHAR(45)    NULL        COMMENT '성별',  
+    `BIRTH_YEAR`       INT    NULL        COMMENT '출생연도',  
+    `BIRTH_MONTH`       INT    NULL        COMMENT '생일-월',  
+    `BIRTH_DAY`       INT    NULL        COMMENT '생일-일', 
     PRIMARY KEY(ID)
 );
 
