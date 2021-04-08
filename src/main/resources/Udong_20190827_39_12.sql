@@ -13,15 +13,15 @@ ALTER TABLE INTEREST_CATEGORY COMMENT '흥미분야';
 -- CLUB Table Create SQL
 CREATE TABLE CLUB
 (
-    `CLUB_NAME`     VARCHAR(45)    NOT NULL        COMMENT '동아리명', 
-    `INTRO`         VARCHAR        NOT NULL        COMMENT '동아리 소개', 
-    `AREA_NUM`      INT            NOT NULL        COMMENT '활동 지역명', 
-    `CONTENT`       VARCHAR        NOT NULL        COMMENT '활동내용', 
-    `EMAIL`         VARCHAR(45)    NOT NULL        COMMENT '팀장 이메일',
-    `NICKNAME`      VARCHAR(45)    NULL            COMMENT '팀장 별명',  
-    `CLUB_NUM`      INT            NOT NULL        AUTO_INCREMENT COMMENT '동아리 번호', 
-    `INTEREST_NUM`  INT            NOT NULL        COMMENT '활동 주제', 
-    `RECOMMEND`     INT            NOT NULL        COMMENT '추천 수', 
+    `CLUB_NAME`     VARCHAR(45)     NOT NULL        COMMENT '동아리명', 
+    `INTRO`         VARCHAR         NOT NULL        COMMENT '동아리 소개', 
+    `AREA_NUM`      INT             NOT NULL        COMMENT '활동 지역명', 
+    `CONTENT`       VARCHAR         NOT NULL        COMMENT '활동내용', 
+    `EMAIL`         VARCHAR(45)     NOT NULL        COMMENT '팀장 이메일',
+    `NICKNAME`      VARCHAR(45)     NULL            COMMENT '팀장 별명',  
+    `CLUB_NUM`      INT             NOT NULL        AUTO_INCREMENT COMMENT '동아리 번호', 
+    `INTEREST_NUM`  INT             NOT NULL        COMMENT '활동 주제', 
+    `MEMBER_COUNT`  INT             NOT NULL    DEFAULT 0 COMMENT '멤버 수'
     PRIMARY KEY (CLUB_NUM)
 );
 
