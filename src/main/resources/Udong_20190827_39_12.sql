@@ -4,7 +4,7 @@
 CREATE TABLE INTEREST_CATEGORY
 (
     `INTEREST_NUM`  INT            NULL        COMMENT '분류 번호', 
-    `NAME`          VARCHAR(45)    NULL        COMMENT '이름', 
+    `INTEREST_NAME`          VARCHAR(45)    NULL        COMMENT '이름', 
     PRIMARY KEY (INTEREST_NUM)
 );
 
