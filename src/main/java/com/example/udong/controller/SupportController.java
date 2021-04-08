@@ -29,26 +29,20 @@ public class SupportController {
             ModelAndView modelandView) {
 
         Object resultMap = new HashMap<String, Object>();
-        Map<String, Object> flagMap = new HashMap<String, Object>();
 
-        if (paramMap.get("flag") == null)
-            flagMap.put("flag", false);
-        else{
-            flagMap.put("flag", paramMap.get("flag"));
-        }
-        Map<String, Object> idMap = new HashMap<String, Object>();
+        Map<String, Object> userInform = new HashMap<String, Object>();
 
-        if(paramMap.get("userID")==null)
-            idMap.put("ID", "");
-        else   
-            idMap.put("ID", paramMap.get("userID"));
+        if (paramMap.get("userEmail") == null)
+            userInform.put("userEmail", "");
+        else
+            userInform.put("userEmail", paramMap.get("userEmail"));
 
         // divided depending on action value
         if ("faq".equals(action)) {
             resultMap = faq_service.getList(paramMap);
         } else if ("ask".equals(action)) {
         } else if ("insert".equals(action)) {
-			resultMap = qna_service.setObject(paramMap);
+            resultMap = qna_service.setObject(paramMap);
             action = "ask";
         }
 
@@ -58,8 +52,7 @@ public class SupportController {
 
         modelandView.addObject("paramMap", paramMap);
         modelandView.addObject("resultMap", resultMap);
-        modelandView.addObject("idMap", idMap);
-        modelandView.addObject("flag", flagMap);
+        modelandView.addObject("userInform", userInform);
         return modelandView;
     }
 }

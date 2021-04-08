@@ -24,20 +24,14 @@ public class NewsController {
             ModelAndView modelandView) {
 
         Object resultMap = new HashMap<String, Object>();
-        Map<String, Object> flagMap = new HashMap<String, Object>();
         Object resultList = new Object();
 
-        if (paramMap.get("flag") == null)
-            flagMap.put("flag", false);
-        else {
-            flagMap.put("flag", paramMap.get("flag"));
-        }
-        Map<String, Object> idMap = new HashMap<String, Object>();
+        Map<String, Object> userInform = new HashMap<String, Object>();
 
-        if (paramMap.get("userID") == null)
-            idMap.put("ID", "");
+        if (paramMap.get("userEmail") == null)
+            userInform.put("userEmail", "");
         else
-            idMap.put("ID", paramMap.get("userID"));
+            userInform.put("userEmail", paramMap.get("userEmail"));
 
         paramMap.put("search", "");
         // divided depending on action value
@@ -80,8 +74,7 @@ public class NewsController {
         modelandView.addObject("paramMap", paramMap);
         modelandView.addObject("resultMap", resultMap);
         modelandView.addObject("resultList", resultList);
-        modelandView.addObject("idMap", idMap);
-        modelandView.addObject("flag", flagMap);
+        modelandView.addObject("userInform", userInform);
         return modelandView;
     }
 }

@@ -26,22 +26,15 @@ public class CommunityController {
             ModelAndView modelandView) {
 
         Object resultMap = new HashMap<String, Object>();
-        Map<String, Object> flagMap = new HashMap<String, Object>();
         Object resultList = new Object();
+        Map<String, Object> userInform = new HashMap<String, Object>();
 
-        if (paramMap.get("flag") == null)
-            flagMap.put("flag", false);
-        else {
-            flagMap.put("flag", paramMap.get("flag"));
-        }
-        Map<String, Object> idMap = new HashMap<String, Object>();
-
-        if (paramMap.get("userID") == null)
-            idMap.put("ID", "");
+        if (paramMap.get("userEmail") == null)
+            userInform.put("userEmail", "");
         else
-            idMap.put("ID", paramMap.get("userID"));
+            userInform.put("userEmail", paramMap.get("userEmail"));
 
-        if(paramMap.get("search")==null)
+        if (paramMap.get("search") == null)
             paramMap.put("search", "");
 
         // divided depending on action value
@@ -57,12 +50,12 @@ public class CommunityController {
                     // 검색 기능
                     paramMap.put("CATEGORY", "free");
                     resultList = boardservice.getSearchPost(paramMap);
-                }else if(submitValue.equals("삭제")) {
+                } else if (submitValue.equals("삭제")) {
                     // 삭제 기능
                     paramMap.put("CATEGORY", "free");
                     boardservice.deletePost(paramMap);
                     resultList = boardservice.getPost(paramMap);
-                }else if(submitValue.equals("글작성")){
+                } else if (submitValue.equals("글작성")) {
                     boardservice.insertPost(paramMap);
                     resultList = boardservice.getPost(paramMap);
                 }
@@ -79,7 +72,7 @@ public class CommunityController {
                     // 검색 기능
                     paramMap.put("CATEGORY", "qna");
                     resultList = boardservice.getSearchPost(paramMap);
-                }else if(submitValue.equals("글작성")){
+                } else if (submitValue.equals("글작성")) {
                     boardservice.insertPost(paramMap);
                     resultList = boardservice.getPost(paramMap);
                 }
@@ -93,8 +86,7 @@ public class CommunityController {
         modelandView.addObject("resultMap", resultMap);
         modelandView.addObject("paramMap", paramMap);
         modelandView.addObject("resultList", resultList);
-        modelandView.addObject("idMap", idMap);
-        modelandView.addObject("flag", flagMap);
+        modelandView.addObject("userInform", userInform);
         return modelandView;
     }
 }

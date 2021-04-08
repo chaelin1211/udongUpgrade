@@ -28,34 +28,28 @@ public class ClubController {
             ModelAndView modelandView) {
 
         Object resultMap = new HashMap<String, Object>();
-        Map<String, Object> flagMap = new HashMap<String, Object>();
 
-        if (paramMap.get("flag") == null)
-            flagMap.put("flag", false);
-        else {
-            flagMap.put("flag", paramMap.get("flag"));
-        }
-        Map<String, Object> idMap = new HashMap<String, Object>();
+        Map<String, Object> userInform = new HashMap<String, Object>();
 
-        if (paramMap.get("userID") == null)
-            idMap.put("ID", "");
+        if (paramMap.get("userEmail") == null)
+            userInform.put("userEmail", "");
         else
-            idMap.put("ID", paramMap.get("userID"));
+            userInform.put("userEmail", paramMap.get("userEmail"));
 
         // divided depending on action value
         if ("location".equals(action)) {
-            if(paramMap.get("AREA_NAME")==null){
+            if (paramMap.get("AREA_NAME") == null) {
                 paramMap.put("AREA_NAME", "%");
             }
-            if(paramMap.get("AREA_NAME").equals("모두")){
+            if (paramMap.get("AREA_NAME").equals("모두")) {
                 paramMap.replace("AREA_NAME", "%");
             }
             resultMap = service2.getlocation(paramMap);
         } else if ("interest".equals(action)) {
-            if(paramMap.get("INTEREST")==null){
+            if (paramMap.get("INTEREST") == null) {
                 paramMap.put("INTEREST", "%");
             }
-            if(paramMap.get("INTEREST").equals("모두")){
+            if (paramMap.get("INTEREST").equals("모두")) {
                 paramMap.replace("INTEREST", "%");
             }
             resultMap = service2.getinterest(paramMap);
@@ -77,8 +71,7 @@ public class ClubController {
 
         modelandView.addObject("paramMap", paramMap);
         modelandView.addObject("resultMap", resultMap);
-        modelandView.addObject("idMap", idMap);
-        modelandView.addObject("flag", flagMap);
+        modelandView.addObject("userInform", userInform);
         return modelandView;
     }
 }

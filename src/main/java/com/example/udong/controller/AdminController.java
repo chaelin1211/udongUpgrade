@@ -25,19 +25,13 @@ public class AdminController {
             ModelAndView modelandView) {
 
         Object resultMap = new HashMap<String, Object>();
-        Map<String, Object> flagMap = new HashMap<String, Object>();
+       
+        Map<String, Object> userInform = new HashMap<String, Object>();
 
-        if (paramMap.get("flag") == null)
-            flagMap.put("flag", false);
-        else{
-            flagMap.put("flag", paramMap.get("flag"));
-        }
-        Map<String, Object> idMap = new HashMap<String, Object>();
-
-        if(paramMap.get("userID")==null)
-            idMap.put("ID", "");
-        else   
-            idMap.put("ID", paramMap.get("userID"));
+        if (paramMap.get("userEmail") == null )
+            userInform.put("userEmail", "");
+        else
+            userInform.put("userEmail", paramMap.get("userEmail"));
 
         // divided depending on action value
         if ("answer".equals(action)) {
@@ -45,9 +39,9 @@ public class AdminController {
         } else if ("read".equals(action)) {
             resultMap = qna_service.getObject(paramMap);
         } else if ("delete".equals(action)) {
-			resultMap = qna_service.deleteObject(paramMap);
-			action = "answer";
-		} else if ("statistic".equals(action)) {
+            resultMap = qna_service.deleteObject(paramMap);
+            action = "answer";
+        } else if ("statistic".equals(action)) {
             // interest up logic
         }
 
@@ -57,8 +51,7 @@ public class AdminController {
 
         modelandView.addObject("paramMap", paramMap);
         modelandView.addObject("resultMap", resultMap);
-        modelandView.addObject("idMap", idMap);
-        modelandView.addObject("flag", flagMap);
+        modelandView.addObject("userInform", userInform);
         return modelandView;
     }
 }
