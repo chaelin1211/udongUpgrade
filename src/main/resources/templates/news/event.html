@@ -24,15 +24,20 @@
                     </thead>
                     <tbody>
                         <tr th:each="post:${resultList}">
+                            <!-- 글 번호 -->
                             <td class="col-2"><input type="submit" class="btn" name="POSTNUM" th:value="${post.POSTNUM}"
                                     th:formaction="@{/view}"></td>
+                            <!-- 작성자 -->
                             <td><input type="submit" class="btn" name="POSTID" th:value="${post.ID}"
                                     th:formaction="@{/view}"></td>
+                            <!-- 글 제목 -->
                             <td class="col-5 text-left"><button type="submit" class="btn text-left" name="POSTNUM"
                                     th:value="${post.POSTNUM}" th:formaction="@{/view}"><span
                                         th:text="${post.TITLE}"></span></button>
                             </td>
+                            <!-- 작성 시간 -->
                             <td class="col-2" th:text="${#strings.substring(post.TIME,0,19)}"></td>
+                            <!-- 추천 수 -->
                             <td class="col-1" th:text="${post.RECOMMEND}"></td>
                         </tr>
                     </tbody>
