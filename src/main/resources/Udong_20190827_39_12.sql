@@ -31,7 +31,8 @@ CREATE TABLE MEMBER
     `GENDER`       VARCHAR(45)    NULL        COMMENT '성별',  
     `BIRTH_YEAR`       INT    NULL        COMMENT '출생연도',  
     `BIRTH_MONTH`       INT    NULL        COMMENT '생일-월',  
-    `BIRTH_DAY`       INT    NULL        COMMENT '생일-일',
+    `BIRTH_DAY`       INT    NULL        COMMENT '생일-일',  
+    `Nickname`       INT    NULL        COMMENT '별명',
     PRIMARY KEY(ID)
 );
 
@@ -99,7 +100,8 @@ CREATE TABLE BOARD
     `TIME`      TIMESTAMP      NOT NULL        COMMENT '작성일자', 
     `TITLE`     VARCHAR(45)    NOT NULL        COMMENT '제목', 
     `CONTENT`   VARCHAR(45)    NOT NULL        COMMENT '내용', 
-    `NAME`     VARCHAR(45)    NOT NULL    COMMENT '작성자'
+    `NAME`     VARCHAR(45)    NOT NULL    COMMENT '작성자',
+    `EMAIL`     VARCHAR(45)    NOT NULL    COMMENT '작성자 이메일',
     `RECOMMEND`   INT    NULL        COMMENT '추천' 
     PRIMARY KEY
 (POSTNUM)
