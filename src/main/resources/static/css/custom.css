@@ -32,3 +32,13 @@
     text-decoration: underline  ;
     text-decoration-color: rgb(41, 41, 255);
 }
+
+.callback-container{
+    width: 70%;
+    margin: 50px auto;
+    border: 1px solid darkgray;
+    text-align: center;
+    padding: 7%;
+    border-radius: 15px;
+    background-color: white;
+}
