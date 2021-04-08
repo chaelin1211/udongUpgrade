@@ -18,6 +18,14 @@ public class ClubMemberBean implements Serializable{
     String EMAIL;
     Integer CLUB_NUM;
 
+    public ClubMemberBean() {
+    }
+
+    public ClubMemberBean(String EMAIL, Integer CLUB_NUM) {
+        this.EMAIL = EMAIL;
+        this.CLUB_NUM = CLUB_NUM;
+    }
+
     public String getEMAIL() {
         return this.EMAIL;
     }
@@ -34,14 +42,16 @@ public class ClubMemberBean implements Serializable{
         this.CLUB_NUM = CLUB_NUM;
     }
 
-
-    @Override
-    public String toString() {
-        return "{" +
-            " EMAIL='" + getEMAIL() + "'" +
-            ", CLUB_NUM='" + getCLUB_NUM() + "'" +
-            "}";
+    public ClubMemberBean EMAIL(String EMAIL) {
+        setEMAIL(EMAIL);
+        return this;
     }
+
+    public ClubMemberBean CLUB_NUM(Integer CLUB_NUM) {
+        setCLUB_NUM(CLUB_NUM);
+        return this;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (o == this)
@@ -58,24 +68,12 @@ public class ClubMemberBean implements Serializable{
         return Objects.hash(EMAIL, CLUB_NUM);
     }
 
-
-    public ClubMemberBean() {
+    @Override
+    public String toString() {
+        return "{" +
+            " EMAIL='" + getEMAIL() + "'" +
+            ", CLUB_NUM='" + getCLUB_NUM() + "'" +
+            "}";
     }
-
-    public ClubMemberBean(Integer CLUB_NUM, String EMAIL) {
-        this.EMAIL = EMAIL;
-        this.CLUB_NUM = CLUB_NUM;
-    }
-    public ClubMemberBean CLUB_NUM(Integer CLUB_NUM) {
-        this.CLUB_NUM = CLUB_NUM;
-        return this;
-    }
-
-    public ClubMemberBean EMAIL(String EMAIL) {
-        this.EMAIL = EMAIL;
-        return this;
-    }
-
-
 
 }
