@@ -7,24 +7,21 @@
 <mapper namespace="Member">
 	<select id="user" resultType="Map" parameterType="Map">
 	    select * from MEMBER
-		where ID = #{ID};
+		where EMAIL = #{EMAIL};
     </select>
 	<select id="interest" resultType="Map" parameterType="Map">
 	    select * from INTEREST_CATEGORY;
     </select>
 
 	<insert id="signup" parameterType="Map">
-		insert into MEMBER(ID,Name,Area_Name, Tel, Password)
-		values (#{ID},#{NAME},#{AREA_NAME},#{TEL},#{PASSWORD})
-	</insert>
-
-	<insert id="insert" parameterType="Map">
+		insert into MEMBER(EMAIL)
+		values (#{EMAIL})
 	</insert>
 
 	<update id="update" parameterType="Map">
 	</update>
 
 	<delete id="delete" parameterType="Map">
-		DELETE FROM MEMBER WHERE ID = #{ID};
+		DELETE FROM MEMBER WHERE EMAIL = #{EMAIL};
 	</delete>
 </mapper>

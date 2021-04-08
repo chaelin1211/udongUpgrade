@@ -12,7 +12,7 @@
     
 	<!-- 추천을 누른 적 있는지 확인 -->
 	<select id="isRecommend" resultType="Map" parameterType="Map">
-	    select * from RECOMMEND where POST_NUM=#{POSTNUM} and ID = #{userID};
+	    select * from RECOMMEND where POST_NUM=#{POSTNUM} and EMAIL = #{EMAIL};
     </select>
 	
 	<!-- 추천 수 확인 -->
@@ -21,12 +21,12 @@
     </select>
 
 	<insert id="insertRecommend" parameterType="Map">
-        insert into RECOMMEND (ID, POST_NUM)
-        values (#{userID},#{POSTNUM});
+        insert into RECOMMEND (EMAIL, POST_NUM)
+        values (#{EMAIL},#{POSTNUM});
 	</insert>
 
 	<delete id="deleteRecommend" parameterType="Map">
 		delete from RECOMMEND
-		where ID=#{userID} and POST_NUM=#{POSTNUM};
+		where EMAIL=#{userID} and POST_NUM=#{POSTNUM};
 	</delete>
 </mapper>

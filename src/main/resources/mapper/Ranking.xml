@@ -7,6 +7,6 @@
 <mapper namespace="ranking">
 	<select id="getRanking" resultType="Map" parameterType="Map">
 	    select * from CLUB
-        order by RECOMMEND DESC
+        order by MEMBER_COUNT DESC;
     </select>
 </mapper>

@@ -5,14 +5,14 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="Comment">
-	<select id="getComment" resultType="Map" parameterType="Map">
+	<select id="get" resultType="Map" parameterType="Map">
 	    select * from COMMENT where POST_NUM = #{POSTNUM};
     </select>
-    <insert id="insertComment" parameterType="Map">
-        insert into COMMENT (ID, POST_NUM, CONTENT, TIME)
-        values (#{userID},#{POSTNUM},#{CONTENT},NOW());
+    <insert id="insert" parameterType="Map">
+        insert into COMMENT (EMAIL, POST_NUM, CONTENT, TIME)
+        values (#{EMAIL},#{POSTNUM},#{CONTENT},NOW());
     </insert>
-    <delete id="deleteComment" parameterType="Map">
-        delete from Comment where ID = #{userID} and TIME=#{TIME};
+    <delete id="delete" parameterType="Map">
+        delete from Comment where CO_NUM=#{CO_NUM};
     </delete>
 </mapper>

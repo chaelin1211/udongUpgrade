@@ -5,12 +5,12 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="Faq">
-	<select id="list" resultType="Map" parameterType="Map">
+	<select id="getAll" resultType="Map" parameterType="Map">
 	    select TITLE, CONTENT, NUM
 		from FAQ
     </select>
 
-	<select id="read" resultType="Map" parameterType="Map">
+	<select id="get" resultType="Map" parameterType="Map">
 		<!-- select TITLE, CONTENT
 		from FAQ
 		where NUM = #{NUM} -->

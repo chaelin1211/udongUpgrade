@@ -5,19 +5,19 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
     
 <mapper namespace="home">
-	<select id="fetchbyinterest" resultType="Map" parameterType="Map">
+	<select id="getByInterest" resultType="Map" parameterType="Map">
 	    select * from CLUB
-        where INTEREST = #{INSERT} order by RECOMMEND DESC
+        where INTEREST_NUM = #{INTEREST_NUM} order by CLUB_NUM DESC
     </select>
-    <select id="fetchbyinterest_ifparamNull" resultType="Map" parameterType="Map">
+    <select id="getByinterest_ifparamNull" resultType="Map" parameterType="Map">
 	    select * from CLUB
-        where INTEREST = '교양' order by RECOMMEND DESC
+        where INTEREST_NUM = 1 order by CLUB_NUM DESC
     </select>
-    <select id="fetchnewlylist" resultType="Map" parameterType="Map">
+    <!-- <select id="fetchnewlylist" resultType="Map" parameterType="Map">
         select * from CLUB
         order by TIME DESC
     </select>
     <select id="editor_pick" resultType="Map" parameterType="Map">
 	    select * from CLUB
-    </select>
+    </select> -->
 </mapper>
