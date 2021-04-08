@@ -9,18 +9,17 @@
 <body class="d-flex flex-column h-100 container">
     <!-- 페이지 상단 부분-->
     <form method="POST">
-        <input type="hidden" name="flag" th:value="${flag.flag}">
-        <input type="hidden" name="userID" th:value="${idMap.ID}">
+        <input type="hidden" name="userEmail" th:value="${userInform.userEmail}">
 
         <div>
             <!-- 로그인 관리 -->
             <div class="row d-flex m-2 justify-content-end">
                 <!-- <input type="submit" th:formaction="@{/admin/answer}" class="btn" value="Admin"> -->
-                <input type="submit" th:if="${userInform.email!=null}" th:formaction="@{/home}" class="btn btn-outline-secondary m-1"
+                <input type="submit" th:if="${userInform.userEmail!=''}" th:formaction="@{/home}" class="btn btn-outline-secondary m-1"
                     name="submit" value="로그아웃">
                 <!-- <input type="submit" th:if="${flag.flag}" th:formaction="@{/home}" class="btn btn-outline-secondary m-1"
                     name="submit" value="회원탈퇴"> -->
-                <input type="submit" th:if="${userInform.email==null}" th:formaction="@{/login}" class="btn btn-outline-secondary m-1"
+                <input type="submit" th:if="${userInform.userEmail==''}" th:formaction="@{/login}" class="btn btn-outline-secondary m-1"
                     value="네이버로 로그인">
                 <!-- <input type="submit" th:if="${!flag.flag}" th:formaction="@{/signup}" class="btn btn-secondary m-1"
                     value="회원가입"> -->
