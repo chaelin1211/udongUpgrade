@@ -7,7 +7,7 @@
                     <h1 class="my-4">Login</h1>
                     <p>편하게 네이버로 로그인 하세요!</p>
                     <th:block th:replace="fragments/naverLogin"></th:block>
-                    <form name="sendEmailForm" th:formaction  ="@{/home}">
+                    <form name="sendEmailForm" th:formaction="@{/home}">
                         <input type="hidden" name="userEmail" id="userEmail">
                     </form>
                     <!-- <form th:action="@{/home}" method="POST" onclick="return check(this)">
