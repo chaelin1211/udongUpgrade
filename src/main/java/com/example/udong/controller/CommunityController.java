@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import com.example.udong.service.BoardService;
+import com.example.udong.service.CategoryService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,12 +14,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import groovy.transform.ASTTest;
-
 @Controller
 public class CommunityController {
     @Autowired
     BoardService boardservice;
+
+    @Autowired
+    CategoryService categoryService;
 
     // Receive Parameters from Html Using @RequestParam Map with @PathVariable
     @RequestMapping(value = "/community/{action}", method = { RequestMethod.GET, RequestMethod.POST })
@@ -27,6 +29,15 @@ public class CommunityController {
 
         Object resultMap = new HashMap<String, Object>();
         Object resultList = new Object();
+        Object categoryMap = new HashMap<String, Object>();
+
+        // get Category number - use action(01: free, 02: qna, 03: event, 04: notice)
+        paramMap.put("CATEGORY_NAME", action);
+        categoryMap = categoryService.getCategoryNum(paramMap);
+        int categoryNum = (int) ((Map<String, Object>) categoryMap).get("CATEGORY_NUM");
+        paramMap.put("CATEGORY_NUM", categoryNum);
+
+        // set userInform
         Map<String, Object> userInform = new HashMap<String, Object>();
 
         if (paramMap.get("userEmail") == null)
@@ -37,46 +48,48 @@ public class CommunityController {
         if (paramMap.get("search") == null)
             paramMap.put("search", "");
 
+        // 페이지 공통 로직
+        // 전체 목록 불러오기
+        if (!paramMap.keySet().contains("submit")) {
+            resultList = boardservice.getPost(paramMap);
+        } else {
+            Object submitValue = paramMap.get("submit");
+            // 검색 기능
+            if (submitValue.equals("검색")) {
+                resultList = boardservice.getSearchPost(paramMap);
+            }
+            // 삭제 기능
+            else if (submitValue.equals("삭제")) {
+                paramMap.put("CATEGORY", "free");
+                boardservice.deletePost(paramMap);
+                resultList = boardservice.getPost(paramMap);
+            }
+            // 글 작성
+            else if (submitValue.equals("글작성")) {
+                boardservice.insertPost(paramMap);
+                resultList = boardservice.getPost(paramMap);
+            }
+        }
         // divided depending on action value
         if ("free".equals(action)) {
             // free logic
-            paramMap.put("CATEGORY", "free");
-            if (!paramMap.keySet().contains("submit")) {
-                // 전체 목록 불러오기
-                resultList = boardservice.getPost(paramMap);
-            } else {
-                Object submitValue = paramMap.get("submit");
-                if (submitValue.equals("검색")) {
-                    // 검색 기능
-                    paramMap.put("CATEGORY", "free");
-                    resultList = boardservice.getSearchPost(paramMap);
-                } else if (submitValue.equals("삭제")) {
-                    // 삭제 기능
-                    paramMap.put("CATEGORY", "free");
-                    boardservice.deletePost(paramMap);
-                    resultList = boardservice.getPost(paramMap);
-                } else if (submitValue.equals("글작성")) {
-                    boardservice.insertPost(paramMap);
-                    resultList = boardservice.getPost(paramMap);
-                }
-            }
+
         } else if ("qna".equals(action)) {
             // qna logic
-            paramMap.put("CATEGORY", "qna");
-            if (!paramMap.keySet().contains("submit")) {
-                // 전체 목록 불러오기
-                resultList = boardservice.getPost(paramMap);
-            } else {
-                Object submitValue = paramMap.get("submit");
-                if (submitValue.equals("검색")) {
-                    // 검색 기능
-                    paramMap.put("CATEGORY", "qna");
-                    resultList = boardservice.getSearchPost(paramMap);
-                } else if (submitValue.equals("글작성")) {
-                    boardservice.insertPost(paramMap);
-                    resultList = boardservice.getPost(paramMap);
-                }
-            }
+            // paramMap.put("CATEGORY", "qna");
+            // if (!paramMap.keySet().contains("submit")) {
+            //     // 전체 목록 불러오기
+            //     resultList = boardservice.getPost(paramMap);
+            // } else {
+            //     Object submitValue = paramMap.get("submit");
+            //     if (submitValue.equals("검색")) {
+            //         // 검색 기능
+            //         resultList = boardservice.getSearchPost(paramMap);
+            //     } else if (submitValue.equals("글작성")) {
+            //         boardservice.insertPost(paramMap);
+            //         resultList = boardservice.getPost(paramMap);
+            //     }
+            // }
         }
 
         String viewName = "/community/" + action;
