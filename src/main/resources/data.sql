@@ -48,11 +48,11 @@ VALUES ('Q3. 우동은 무엇인가요?', '우동이란 [우리들의 동아리]
 INSERT INTO FAQ (TITLE, CONTENT) 
 VALUES ('Q4. 동아리의 추천수 랭킹을 알고 싶어요', '상단 메뉴바에서 동아리 버튼 클릭 후 랭킹 버튼을 누르면 추천 수 상위 10개의 동아리를 확인할 수 있습니다.');
 
-INSERT INTO CLUB (CLUB_NAME, INTRO, AREA_NUM, CONTENT, EMAIL, INTEREST_NUM, CLUB_NUM, TIME, RECOMMEND) VALUES ('동아리 1', '동아리 인트로 입니다.', 1, '저희 동아리는 동아리 1 입니다.', 'cofls749@naver.com', 1, 1, NOW(), 0);
-INSERT INTO CLUB (CLUB_NAME, INTRO, AREA_NUM, CONTENT, EMAIL, INTEREST_NUM, CLUB_NUM, TIME, RECOMMEND) VALUES ('동아리 2', '동아리 인트로 입니다.', 2, '저희 동아리는 동아리 1 입니다.', 'cofls749@naver.com', 2, 2, NOW(), 0);
-INSERT INTO CLUB (CLUB_NAME, INTRO, AREA_NUM, CONTENT, EMAIL, INTEREST_NUM, CLUB_NUM, TIME, RECOMMEND) VALUES ('동아리 3', '동아리 인트로 입니다.', 3, '저희 동아리는 동아리 1 입니다.', 'cofls749@naver.com', 3, 3, NOW(), 0);
-INSERT INTO CLUB (CLUB_NAME, INTRO, AREA_NUM, CONTENT, EMAIL, INTEREST_NUM, CLUB_NUM, TIME, RECOMMEND) VALUES ('동아리 4', '동아리 인트로 입니다.', 4, '저희 동아리는 동아리 1 입니다.', 'cofls749@naver.com', 4, 4, NOW(), 0);
-INSERT INTO CLUB (CLUB_NAME, INTRO, AREA_NUM, CONTENT, EMAIL, INTEREST_NUM, CLUB_NUM, TIME, RECOMMEND) VALUES ('동아리 5', '동아리 인트로 입니다.', 5, '저희 동아리는 동아리 1 입니다.', 'cofls749@naver.com', 5, 5, NOW(), 0);
+INSERT INTO CLUB (CLUB_NAME, INTRO, CONTENT, EMAIL, CLUB_NUM, TIME, RECOMMEND) VALUES ('동아리 1', '동아리 인트로 입니다.', '저희 동아리는 동아리  1입니다.', 'cofls749@naver.com', 1, NOW(), 0);
+INSERT INTO CLUB (CLUB_NAME, INTRO, CONTENT, EMAIL, CLUB_NUM, TIME, RECOMMEND) VALUES ('동아리 2', '동아리 인트로 입니다.', '저희 동아리는 동아리  2입니다.', 'cofls749@naver.com', 2, NOW(), 0);
+INSERT INTO CLUB (CLUB_NAME, INTRO, CONTENT, EMAIL, CLUB_NUM, TIME, RECOMMEND) VALUES ('동아리 3', '동아리 인트로 입니다.', '저희 동아리는 동아리  3입니다.', 'cofls749@naver.com', 3, NOW(), 0);
+INSERT INTO CLUB (CLUB_NAME, INTRO, CONTENT, EMAIL, CLUB_NUM, TIME, RECOMMEND) VALUES ('동아리 4', '동아리 인트로 입니다.', '저희 동아리는 동아리  4입니다.', 'cofls749@naver.com', 4, NOW(), 0);
+INSERT INTO CLUB (CLUB_NAME, INTRO, CONTENT, EMAIL, CLUB_NUM, TIME, RECOMMEND) VALUES ('동아리 5', '동아리 인트로 입니다.', '저희 동아리는 동아리  5입니다.', 'cofls749@naver.com', 5, NOW(), 0);
 
 INSERT INTO CLUB_AREA(CLUB_NUM, AREA_NUM) VALUES(1, 1);
 INSERT INTO CLUB_AREA(CLUB_NUM, AREA_NUM) VALUES(1, 2);

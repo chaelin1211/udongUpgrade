@@ -17,29 +17,26 @@ public class ClubBean implements Serializable{
     Integer CLUB_NUM;
     String CLUB_NAME;
     String INTRO;
-    Integer AREA_NUM;
     String CONTENT;
     String EMAIL;
     String NICKNAME;
     String TIME;
-    Integer INTEREST_NUM;
     Integer MEMBER_COUNT;
-
+    Integer RECOMMEND;
 
     public ClubBean() {
     }
 
-    public ClubBean(Integer CLUB_NUM, String CLUB_NAME, String INTRO, Integer AREA_NUM, String CONTENT, String EMAIL, String NICKNAME, String TIME, Integer INTEREST_NUM, Integer MEMBER_COUNT) {
+    public ClubBean(Integer CLUB_NUM, String CLUB_NAME, String INTRO, String CONTENT, String EMAIL, String NICKNAME, String TIME, Integer MEMBER_COUNT, Integer RECOMMEND) {
         this.CLUB_NUM = CLUB_NUM;
         this.CLUB_NAME = CLUB_NAME;
         this.INTRO = INTRO;
-        this.AREA_NUM = AREA_NUM;
         this.CONTENT = CONTENT;
         this.EMAIL = EMAIL;
         this.NICKNAME = NICKNAME;
         this.TIME = TIME;
-        this.INTEREST_NUM = INTEREST_NUM;
         this.MEMBER_COUNT = MEMBER_COUNT;
+        this.RECOMMEND = RECOMMEND;
     }
 
     public Integer getCLUB_NUM() {
@@ -64,14 +61,6 @@ public class ClubBean implements Serializable{
 
     public void setINTRO(String INTRO) {
         this.INTRO = INTRO;
-    }
-
-    public Integer getAREA_NUM() {
-        return this.AREA_NUM;
-    }
-
-    public void setAREA_NUM(Integer AREA_NUM) {
-        this.AREA_NUM = AREA_NUM;
     }
 
     public String getCONTENT() {
@@ -106,20 +95,20 @@ public class ClubBean implements Serializable{
         this.TIME = TIME;
     }
 
-    public Integer getINTEREST_NUM() {
-        return this.INTEREST_NUM;
-    }
-
-    public void setINTEREST_NUM(Integer INTEREST_NUM) {
-        this.INTEREST_NUM = INTEREST_NUM;
-    }
-
     public Integer getMEMBER_COUNT() {
         return this.MEMBER_COUNT;
     }
 
     public void setMEMBER_COUNT(Integer MEMBER_COUNT) {
         this.MEMBER_COUNT = MEMBER_COUNT;
+    }
+
+    public Integer getRECOMMEND() {
+        return this.RECOMMEND;
+    }
+
+    public void setRECOMMEND(Integer RECOMMEND) {
+        this.RECOMMEND = RECOMMEND;
     }
 
     public ClubBean CLUB_NUM(Integer CLUB_NUM) {
@@ -134,11 +123,6 @@ public class ClubBean implements Serializable{
 
     public ClubBean INTRO(String INTRO) {
         setINTRO(INTRO);
-        return this;
-    }
-
-    public ClubBean AREA_NUM(Integer AREA_NUM) {
-        setAREA_NUM(AREA_NUM);
         return this;
     }
 
@@ -162,13 +146,13 @@ public class ClubBean implements Serializable{
         return this;
     }
 
-    public ClubBean INTEREST_NUM(Integer INTEREST_NUM) {
-        setINTEREST_NUM(INTEREST_NUM);
+    public ClubBean MEMBER_COUNT(Integer MEMBER_COUNT) {
+        setMEMBER_COUNT(MEMBER_COUNT);
         return this;
     }
 
-    public ClubBean MEMBER_COUNT(Integer MEMBER_COUNT) {
-        setMEMBER_COUNT(MEMBER_COUNT);
+    public ClubBean RECOMMEND(Integer RECOMMEND) {
+        setRECOMMEND(RECOMMEND);
         return this;
     }
 
@@ -180,12 +164,12 @@ public class ClubBean implements Serializable{
             return false;
         }
         ClubBean clubBean = (ClubBean) o;
-        return Objects.equals(CLUB_NUM, clubBean.CLUB_NUM) && Objects.equals(CLUB_NAME, clubBean.CLUB_NAME) && Objects.equals(INTRO, clubBean.INTRO) && Objects.equals(AREA_NUM, clubBean.AREA_NUM) && Objects.equals(CONTENT, clubBean.CONTENT) && Objects.equals(EMAIL, clubBean.EMAIL) && Objects.equals(NICKNAME, clubBean.NICKNAME) && Objects.equals(TIME, clubBean.TIME) && Objects.equals(INTEREST_NUM, clubBean.INTEREST_NUM) && Objects.equals(MEMBER_COUNT, clubBean.MEMBER_COUNT);
+        return Objects.equals(CLUB_NUM, clubBean.CLUB_NUM) && Objects.equals(CLUB_NAME, clubBean.CLUB_NAME) && Objects.equals(INTRO, clubBean.INTRO) && Objects.equals(CONTENT, clubBean.CONTENT) && Objects.equals(EMAIL, clubBean.EMAIL) && Objects.equals(NICKNAME, clubBean.NICKNAME) && Objects.equals(TIME, clubBean.TIME) && Objects.equals(MEMBER_COUNT, clubBean.MEMBER_COUNT) && Objects.equals(RECOMMEND, clubBean.RECOMMEND);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(CLUB_NUM, CLUB_NAME, INTRO, AREA_NUM, CONTENT, EMAIL, NICKNAME, TIME, INTEREST_NUM, MEMBER_COUNT);
+        return Objects.hash(CLUB_NUM, CLUB_NAME, INTRO, CONTENT, EMAIL, NICKNAME, TIME, MEMBER_COUNT, RECOMMEND);
     }
 
     @Override
@@ -194,13 +178,12 @@ public class ClubBean implements Serializable{
             " CLUB_NUM='" + getCLUB_NUM() + "'" +
             ", CLUB_NAME='" + getCLUB_NAME() + "'" +
             ", INTRO='" + getINTRO() + "'" +
-            ", AREA_NUM='" + getAREA_NUM() + "'" +
             ", CONTENT='" + getCONTENT() + "'" +
             ", EMAIL='" + getEMAIL() + "'" +
             ", NICKNAME='" + getNICKNAME() + "'" +
             ", TIME='" + getTIME() + "'" +
-            ", INTEREST_NUM='" + getINTEREST_NUM() + "'" +
             ", MEMBER_COUNT='" + getMEMBER_COUNT() + "'" +
+            ", RECOMMEND='" + getRECOMMEND() + "'" +
             "}";
     }
 }
