@@ -11,32 +11,8 @@
                     <h1>공지사항</h1>
                     <th:block th:replace="fragments/searchBar"></th:block>
                 </div>
-                <!--리스트-->
-                <table class="table table-hover tb text-center">
-                    <thead>
-                        <tr>
-                            <th>글번호</th>
-                            <th>작성자</th>
-                            <th>제목</th>
-                            <th>작성시간</th>
-                            <th>추천</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr th:each="post:${resultList}">
-                            <td class="col-2"><input type="submit" class="btn" name="POSTNUM" th:value="${post.POSTNUM}"
-                                    th:formaction="@{/view}"></td>
-                            <td><input type="submit" class="btn" name="POSTID" th:value="${post.ID}"
-                                    th:formaction="@{/view}"></td>
-                            <td class="col-5 text-left"><button type="submit" class="btn text-left" name="POSTNUM"
-                                    th:value="${post.POSTNUM}" th:formaction="@{/view}"><span
-                                        th:text="${post.TITLE}"></span></button>
-                            </td>
-                            <td class="col-2" th:text="${#strings.substring(post.TIME,0,19)}"></td>
-                            <td class="col-1" th:text="${post.RECOMMEND}"></td>
-                        </tr>
-                    </tbody>
-                </table>
+                <!-- 리스트 -->
+                <th:block th:replace="fragments/postList"></th:block>
             </div>
         </div>
     </th:block>
