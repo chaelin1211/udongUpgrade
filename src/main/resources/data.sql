@@ -20,16 +20,16 @@ INSERT INTO INTEREST_CATEGORY (INTEREST_NUM, INTEREST_NAME) VALUES (8, '코딩')
 INSERT INTO INTEREST_CATEGORY (INTEREST_NUM, INTEREST_NAME) VALUES (9, '공연');
 INSERT INTO INTEREST_CATEGORY (INTEREST_NUM, INTEREST_NAME) VALUES (10,'취업');
 
-INSERT INTO MEMBER_INTEREST (EMAIL, NAME) VALUES ('cofls749@naver.com', 1);
-INSERT INTO MEMBER_INTEREST (EMAIL, NAME) VALUES ('cofls749@naver.com', 2);
-INSERT INTO MEMBER_INTEREST (EMAIL, NAME) VALUES ('cofls749@naver.com', 3);
-INSERT INTO MEMBER_INTEREST (EMAIL, NAME) VALUES ('cofls749@naver.com', 4);
-INSERT INTO MEMBER_INTEREST (EMAIL, NAME) VALUES ('cofls749@naver.com', 5);
-INSERT INTO MEMBER_INTEREST (EMAIL, NAME) VALUES ('cofls749@naver.com', 6);
-INSERT INTO MEMBER_INTEREST (EMAIL, NAME) VALUES ('cofls749@naver.com', 7);
-INSERT INTO MEMBER_INTEREST (EMAIL, NAME) VALUES ('cofls749@naver.com', 8);
-INSERT INTO MEMBER_INTEREST (EMAIL, NAME) VALUES ('cofls749@naver.com', 9);
-INSERT INTO MEMBER_INTEREST (EMAIL, NAME) VALUES ('cofls749@naver.com', 10);
+INSERT INTO MEMBER_INTEREST (EMAIL, INTEREST_NUM) VALUES ('cofls749@naver.com', 1);
+INSERT INTO MEMBER_INTEREST (EMAIL, INTEREST_NUM) VALUES ('cofls749@naver.com', 2);
+INSERT INTO MEMBER_INTEREST (EMAIL, INTEREST_NUM) VALUES ('cofls749@naver.com', 3);
+INSERT INTO MEMBER_INTEREST (EMAIL, INTEREST_NUM) VALUES ('cofls749@naver.com', 4);
+INSERT INTO MEMBER_INTEREST (EMAIL, INTEREST_NUM) VALUES ('cofls749@naver.com', 5);
+INSERT INTO MEMBER_INTEREST (EMAIL, INTEREST_NUM) VALUES ('cofls749@naver.com', 6);
+INSERT INTO MEMBER_INTEREST (EMAIL, INTEREST_NUM) VALUES ('cofls749@naver.com', 7);
+INSERT INTO MEMBER_INTEREST (EMAIL, INTEREST_NUM) VALUES ('cofls749@naver.com', 8);
+INSERT INTO MEMBER_INTEREST (EMAIL, INTEREST_NUM) VALUES ('cofls749@naver.com', 9);
+INSERT INTO MEMBER_INTEREST (EMAIL, INTEREST_NUM) VALUES ('cofls749@naver.com', 10);
 
 INSERT INTO FAQ (TITLE, CONTENT) 
 VALUES ('Q1. 회원가입은 어떻게 하나요?', 
@@ -48,11 +48,11 @@ VALUES ('Q3. 우동은 무엇인가요?', '우동이란 [우리들의 동아리]
 INSERT INTO FAQ (TITLE, CONTENT) 
 VALUES ('Q4. 동아리의 추천수 랭킹을 알고 싶어요', '상단 메뉴바에서 동아리 버튼 클릭 후 랭킹 버튼을 누르면 추천 수 상위 10개의 동아리를 확인할 수 있습니다.');
 
-INSERT INTO CLUB (CLUB_NAME, INTRO, AREA_NUM, CONTENT, EMAIL, INTEREST_NUM) VALUES ('동아리 1', '동아리 인트로 입니다.', 1, '저희 동아리는 동아리 1 입니다.', 'cofls749@naver.com', 1);
-INSERT INTO CLUB (CLUB_NAME, INTRO, AREA_NUM, CONTENT, EMAIL, INTEREST_NUM) VALUES ('동아리 2', '동아리 인트로 입니다.', 2, '저희 동아리는 동아리 1 입니다.', 'cofls749@naver.com', 2);
-INSERT INTO CLUB (CLUB_NAME, INTRO, AREA_NUM, CONTENT, EMAIL, INTEREST_NUM) VALUES ('동아리 3', '동아리 인트로 입니다.', 3, '저희 동아리는 동아리 1 입니다.', 'cofls749@naver.com', 3);
-INSERT INTO CLUB (CLUB_NAME, INTRO, AREA_NUM, CONTENT, EMAIL, INTEREST_NUM) VALUES ('동아리 4', '동아리 인트로 입니다.', 4, '저희 동아리는 동아리 1 입니다.', 'cofls749@naver.com', 4);
-INSERT INTO CLUB (CLUB_NAME, INTRO, AREA_NUM, CONTENT, EMAIL, INTEREST_NUM) VALUES ('동아리 5', '동아리 인트로 입니다.', 5, '저희 동아리는 동아리 1 입니다.', 'cofls749@naver.com', 5);
+INSERT INTO CLUB (CLUB_NAME, INTRO, AREA_NUM, CONTENT, EMAIL, INTEREST_NUM, CLUB_NUM, TIME) VALUES ('동아리 1', '동아리 인트로 입니다.', 1, '저희 동아리는 동아리 1 입니다.', 'cofls749@naver.com', 1, 1, NOW());
+INSERT INTO CLUB (CLUB_NAME, INTRO, AREA_NUM, CONTENT, EMAIL, INTEREST_NUM, CLUB_NUM, TIME) VALUES ('동아리 2', '동아리 인트로 입니다.', 2, '저희 동아리는 동아리 1 입니다.', 'cofls749@naver.com', 2, 2, NOW());
+INSERT INTO CLUB (CLUB_NAME, INTRO, AREA_NUM, CONTENT, EMAIL, INTEREST_NUM, CLUB_NUM, TIME) VALUES ('동아리 3', '동아리 인트로 입니다.', 3, '저희 동아리는 동아리 1 입니다.', 'cofls749@naver.com', 3, 3, NOW());
+INSERT INTO CLUB (CLUB_NAME, INTRO, AREA_NUM, CONTENT, EMAIL, INTEREST_NUM, CLUB_NUM, TIME) VALUES ('동아리 4', '동아리 인트로 입니다.', 4, '저희 동아리는 동아리 1 입니다.', 'cofls749@naver.com', 4, 4, NOW());
+INSERT INTO CLUB (CLUB_NAME, INTRO, AREA_NUM, CONTENT, EMAIL, INTEREST_NUM, CLUB_NUM, TIME) VALUES ('동아리 5', '동아리 인트로 입니다.', 5, '저희 동아리는 동아리 1 입니다.', 'cofls749@naver.com', 5, 5, NOW());
 
 -- INSERT INTO CLUB (CLUB_NAME, INTRO, AREA_NUM, CONTENT, EMAIL, INTEREST_NUM) VALUES ('백종원 제자들', '요리를 사랑하는 사람들의 모임', '서울특별시', '요리', 'pjm93', 01, '요리', 541);
 -- INSERT INTO CLUB (CLUB_NAME, INTRO, AREA_NUM, CONTENT, EMAIL, INTEREST_NUM) VALUES ('도시맘들', '광교맘,판교맘 모든 도시 맘들', '경기도', '친목', 'dal39', 02, '친목', 1003);
@@ -86,14 +86,14 @@ INSERT INTO BOARD (CATEGORY_NUM, TIME, TITLE, CONTENT, EMAIL) VALUES (1, NOW(), 
 INSERT INTO BOARD (CATEGORY_NUM, TIME, TITLE, CONTENT, EMAIL) VALUES (1, NOW(), '코딩 동아리는 어딨져', 'CONTENT 04', 'test@naver.com');
 INSERT INTO BOARD (CATEGORY_NUM, TIME, TITLE, CONTENT, EMAIL) VALUES (2, NOW(), '질문 있습니당', 'CONTENT 05', 'test@naver.com');
 INSERT INTO BOARD (CATEGORY_NUM, TIME, TITLE, CONTENT, EMAIL) VALUES (2, NOW(), '동아리 콘테스트 참가 신청', 'CONTENT 06', 'test@naver.com');
-INSERT INTO BOARD (CATEGORY_NUM, TIME, TITLE, CONTENT, EMAIL) VALUES (3, NOW(), '이벤트가 뭐가 있을까', 'CONTENT 07', 'test@naver.com';
+INSERT INTO BOARD (CATEGORY_NUM, TIME, TITLE, CONTENT, EMAIL) VALUES (3, NOW(), '이벤트가 뭐가 있을까', 'CONTENT 07', 'test@naver.com');
 INSERT INTO BOARD (CATEGORY_NUM, TIME, TITLE, CONTENT, EMAIL) VALUES (4, NOW(), '서버 점검 시간 공지합니다.', '9월 1일 00시 ~ 02시 서버 검점 합니다.', 'test@naver.com');
 INSERT INTO BOARD (CATEGORY_NUM, TIME, TITLE, CONTENT, EMAIL) VALUES (4, NOW(), '두번째 공지사항입니다~', 'CONTENT 09', 'test@naver.com');
 INSERT INTO BOARD (CATEGORY_NUM, TIME, TITLE, CONTENT, EMAIL) VALUES (4, NOW(), '마지막 공지사항이에용', 'CONTENT 10', 'test@naver.com');
 
 INSERT INTO COMMENT(EMAIL, POST_NUM, TIME, CONTENT) VALUES ('test@naver.com', 1, NOW(), '그래용');
 
-INSERT INTO CLUB_MEMBER (CLUB_NUM, EMAIL) VALUES (01, 'test@naver.com');
+-- INSERT INTO CLUB_MEMBER (EMAIL, CLUB_NUM) VALUES ('test@naver.com', 2);
 
 INSERT INTO QNA (TIME, TITLE, CONTENT, EMAIL) VALUES (NOW(), '질문을 했는데 답변이 없습니다.', '질문한지 1년이 지났는데 답이 없습니다. ', 'test@naver.com');
 INSERT INTO QNA (TIME, TITLE, CONTENT, EMAIL) VALUES (NOW(), '랭킹 1위 동아리 상금 있나요?', '랭킹 1위 동아리에 선정되었는데 상금은 없나요?', 'test@naver.com');
