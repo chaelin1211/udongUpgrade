@@ -27,11 +27,10 @@ public class CommunityController {
     public ModelAndView actionMethod(@RequestParam Map<String, Object> paramMap, @PathVariable String action,
             ModelAndView modelandView) {
 
-        Object resultMap = new HashMap<String, Object>();
         Object resultList = new Object();
         Object categoryMap = new HashMap<String, Object>();
 
-        // get Category number - use action(01: free, 02: qna, 03: event, 04: notice)
+        // get Category number - use action(01: free, 02: qna)
         paramMap.put("CATEGORY_NAME", action);
         categoryMap = categoryService.getCategoryNum(paramMap);
         int categoryNum = (int) ((Map<String, Object>) categoryMap).get("CATEGORY_NUM");
@@ -60,7 +59,6 @@ public class CommunityController {
             }
             // 삭제 기능
             else if (submitValue.equals("삭제")) {
-                paramMap.put("CATEGORY", "free");
                 boardservice.deletePost(paramMap);
                 resultList = boardservice.getPost(paramMap);
             }
@@ -72,31 +70,12 @@ public class CommunityController {
         }
         // divided depending on action value
         if ("free".equals(action)) {
-            // free logic
-
         } else if ("qna".equals(action)) {
-            // qna logic
-            // paramMap.put("CATEGORY", "qna");
-            // if (!paramMap.keySet().contains("submit")) {
-            //     // 전체 목록 불러오기
-            //     resultList = boardservice.getPost(paramMap);
-            // } else {
-            //     Object submitValue = paramMap.get("submit");
-            //     if (submitValue.equals("검색")) {
-            //         // 검색 기능
-            //         resultList = boardservice.getSearchPost(paramMap);
-            //     } else if (submitValue.equals("글작성")) {
-            //         boardservice.insertPost(paramMap);
-            //         resultList = boardservice.getPost(paramMap);
-            //     }
-            // }
         }
 
         String viewName = "/community/" + action;
 
         modelandView.setViewName(viewName);
-
-        modelandView.addObject("resultMap", resultMap);
         modelandView.addObject("paramMap", paramMap);
         modelandView.addObject("resultList", resultList);
         modelandView.addObject("userInform", userInform);
