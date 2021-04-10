@@ -8,6 +8,13 @@ import org.springframework.stereotype.Repository;
 public class CommonDao {
     @Autowired
     private SqlSessionTemplate sqlSession;
+	
+    public Object getAll(String sqlMapId) {
+		Object resultObject = sqlSession.selectList(sqlMapId);
+
+		return resultObject;
+    }
+
     public Object getList(String sqlMapId, Object dataMap) {
 		Object resultObject = sqlSession.selectList(sqlMapId, dataMap);
 
