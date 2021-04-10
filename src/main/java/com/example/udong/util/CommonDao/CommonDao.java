@@ -1,11 +1,11 @@
-package com.example.udong.util;
+package com.example.udong.util.CommonDao;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class MemberDao {
+public class CommonDao {
     @Autowired
     private SqlSessionTemplate sqlSession;
     public Object getList(String sqlMapId, Object dataMap) {
