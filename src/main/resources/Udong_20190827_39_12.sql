@@ -3,8 +3,8 @@
 -- INTEREST_CATEGORY Table Create SQL
 CREATE TABLE INTEREST_CATEGORY
 (
-    `INTEREST_NUM`  INT            NULL        COMMENT '분류 번호', 
-    `INTEREST_NAME` VARCHAR(45)    NULL        COMMENT '이름', 
+    `INTEREST_NUM`  INT            NOT NULL        COMMENT '분류 번호', 
+    `INTEREST_NAME` VARCHAR(45)    NOT NULL        COMMENT '이름', 
     PRIMARY KEY (INTEREST_NUM)
 );
 
@@ -13,16 +13,15 @@ ALTER TABLE INTEREST_CATEGORY COMMENT '흥미분야';
 -- CLUB Table Create SQL
 CREATE TABLE CLUB
 (
-    `CLUB_NAME`     VARCHAR(45)     NOT NULL        COMMENT '동아리명', 
-    `INTRO`         VARCHAR         NOT NULL        COMMENT '동아리 소개', 
-    `AREA_NUM`      INT             NOT NULL        COMMENT '활동 지역명', 
-    `CONTENT`       VARCHAR         NOT NULL        COMMENT '활동내용', 
-    `EMAIL`         VARCHAR(45)     NOT NULL        COMMENT '팀장 이메일',
-    `TIME`          TIMESTAMP       NOT NULL        COMMENT '생성일자', 
-    `NICKNAME`      VARCHAR(45)     NULL            COMMENT '팀장 별명',  
-    `CLUB_NUM`      INT             NOT NULL        AUTO_INCREMENT COMMENT '동아리 번호', 
-    `INTEREST_NUM`  INT             NOT NULL        COMMENT '활동 주제', 
-    `MEMBER_COUNT`  INT             NOT NULL    DEFAULT 0 COMMENT '멤버 수'
+    `CLUB_NUM`      INT             NOT NULL    AUTO_INCREMENT  COMMENT '동아리 번호', 
+    `CLUB_NAME`     VARCHAR(45)     NOT NULL    COMMENT '동아리명', 
+    `INTRO`         VARCHAR         NOT NULL    COMMENT '동아리 소개', 
+    `CONTENT`       VARCHAR         NOT NULL    COMMENT '활동내용', 
+    `EMAIL`         VARCHAR(45)     NOT NULL    COMMENT '팀장 이메일',
+    `TIME`          TIMESTAMP       NOT NULL    COMMENT '생성일자', 
+    `NICKNAME`      VARCHAR(45)                 COMMENT '팀장 별명',  
+    `MEMBER_COUNT`  INT             NOT NULL    DEFAULT 0       COMMENT '멤버 수',
+    `RECOMMEND`     INT             NOT NULL    DEFAULT 0       COMMENT '추천',
     PRIMARY KEY (CLUB_NUM)
 );
 
@@ -45,8 +44,8 @@ REFERENCES AREA (AREA_NUM)
 -- AREA Table Create SQL
 CREATE TABLE AREA
 (
-    `AREA_NUM`   INT            NULL        COMMENT '지역 번호', 
-    `AREA_NAME`  VARCHAR(45)    NULL        COMMENT '지역명', 
+    `AREA_NUM`   INT            NOT NULL    COMMENT '지역 번호', 
+    `AREA_NAME`  VARCHAR(45)    NOT NULL    COMMENT '지역명', 
     PRIMARY KEY (AREA_NUM)
 );
 
@@ -56,13 +55,13 @@ ALTER TABLE AREA COMMENT '지역';
 CREATE TABLE MEMBER
 (
     `EMAIL`      VARCHAR(45)    NOT NULL    COMMENT '아이디', 
-    `NAME`       VARCHAR(45)    NULL        COMMENT '이름',  
-    `GENDER`     VARCHAR(45)    NULL        COMMENT '성별',  
-    `BIRTH_YEAR` INT            NULL        COMMENT '출생연도',  
-    `BIRTH_MONTH`INT            NULL        COMMENT '생일-월',  
-    `BIRTH_DAY`  INT            NULL        COMMENT '생일-일',  
-    `NICKNAME`   INT            NULL        COMMENT '별명',
-    `AREA_NUM`   INT            NULL        COMMENT '지역',
+    `NAME`       VARCHAR(45)                COMMENT '이름',  
+    `GENDER`     VARCHAR(45)                COMMENT '성별',  
+    `BIRTH_YEAR` INT                        COMMENT '출생연도',  
+    `BIRTH_MONTH`INT                        COMMENT '생일-월',  
+    `BIRTH_DAY`  INT                        COMMENT '생일-일',  
+    `NICKNAME`   INT                        COMMENT '별명',
+    `AREA_NUM`   INT                        COMMENT '지역',
     PRIMARY KEY(EMAIL)
 );
 
@@ -113,7 +112,7 @@ REFERENCES INTEREST_CATEGORY (INTEREST_NUM);
 CREATE TABLE CATEGORY
 (
     `CATEGORY_NUM`   INT            NOT NULL    COMMENT '카테고리 번호', 
-    `CATEGORY_NAME`  VARCHAR(45)    NULL        COMMENT '카테고리 이름', 
+    `CATEGORY_NAME`  VARCHAR(45)    NOT NULL    COMMENT '카테고리 이름', 
     PRIMARY KEY (CATEGORY_NUM)
 );
 
@@ -122,14 +121,14 @@ ALTER TABLE CATEGORY COMMENT '게시글 카테고리';
 -- BOARD Table Create SQL
 CREATE TABLE BOARD
 (
-    `POSTNUM`       INT            NOT NULL    AUTO_INCREMENT COMMENT '글번호', 
-    `CATEGORY_NUM`  INT            NOT NULL    COMMENT '카테고리', 
-    `TIME`          TIMESTAMP      NOT NULL    COMMENT '작성일자', 
-    `TITLE`         VARCHAR(45)    NOT NULL    COMMENT '제목', 
-    `CONTENT`       VARCHAR        NOT NULL    COMMENT '내용', 
-    `NICKNAME`      VARCHAR(45)    NOT NULL    COMMENT '작성자 별명',
-    `EMAIL`         VARCHAR(45)    NOT NULL    COMMENT '작성자 이메일',
-    `RECOMMEND`     INT            NULL        DEFAULT 0    COMMENT '추천' 
+    `POSTNUM`       INT            NOT NULL     AUTO_INCREMENT  COMMENT '글번호', 
+    `CATEGORY_NUM`  INT            NOT NULL     COMMENT '카테고리', 
+    `TIME`          TIMESTAMP      NOT NULL     COMMENT '작성일자', 
+    `TITLE`         VARCHAR(45)    NOT NULL     COMMENT '제목', 
+    `CONTENT`       VARCHAR        NOT NULL     COMMENT '내용', 
+    `NICKNAME`      VARCHAR(45)                 COMMENT '작성자 별명',
+    `EMAIL`         VARCHAR(45)    NOT NULL     COMMENT '작성자 이메일',
+    `RECOMMEND`     INT            NOT NULL     DEFAULT 0       COMMENT '추천' 
     PRIMARY KEY (POSTNUM)
 );
 
@@ -149,9 +148,9 @@ REFERENCES CATEGORY (CATEGORY_NUM)
 -- FAQ Table Create SQL
 CREATE TABLE FAQ
 (
-    `FAQ_NUM`       INT            NOT NULL    AUTO_INCREMENT COMMENT '글번호', 
-    `TITLE`         VARCHAR(45)    NULL        COMMENT '제목', 
-    `CONTENT`       VARCHAR        NULL        COMMENT '내용', 
+    `FAQ_NUM`       INT            NOT NULL     AUTO_INCREMENT COMMENT '글번호', 
+    `TITLE`         VARCHAR(45)    NOT NULL     COMMENT '제목', 
+    `CONTENT`       VARCHAR        NOT NULL     COMMENT '내용', 
     PRIMARY KEY (FAQ_NUM)
 );
 
@@ -212,3 +211,40 @@ CREATE TABLE RECOMMEND
 );
 
 ALTER TABLE RECOMMEND COMMENT '추천';
+
+-- CLUB_INTEREST Table Create SQL
+CREATE TABLE CLUB_INTEREST
+(
+    `CLUB_NUM`      INT    NOT NULL    COMMENT '클럽 번호',
+    `INTEREST_NUM`  INT    NOT NULL    COMMENT '카테고리 번호'
+    PRIMARY KEY (CLUB_NUM, INTEREST_NUM)
+);
+
+ALTER TABLE CLUB_INTEREST COMMENT '동아리 분류';
+
+ALTER TABLE CLUB_INTEREST
+ADD CONSTRAINT FK_CI_CN_CLUB_CN FOREIGN KEY (CLUB_NUM)
+REFERENCES CLUB (CLUB_NUM);
+
+ALTER TABLE CLUB_INTEREST
+ADD CONSTRAINT FK_CI_IN_IC_IN FOREIGN KEY (INTEREST_NUM)
+REFERENCES INTEREST_CATEGORY (INTEREST_NUM)
+
+
+-- CLUB_AREA Table Create SQL
+CREATE TABLE CLUB_AREA
+(
+    `CLUB_NUM`      INT    NOT NULL    COMMENT '클럽 번호',
+    `AREA_NUM`      INT    NOT NULL    COMMENT '지역 번호'
+    PRIMARY KEY (CLUB_NUM, AREA_NUM)
+);
+
+ALTER TABLE CLUB_INTEREST COMMENT '동아리 지역';
+
+ALTER TABLE CLUB_AREA
+ADD CONSTRAINT FK_CA_CN_CLUB_CN FOREIGN KEY (CLUB_NUM)
+REFERENCES CLUB (CLUB_NUM);
+
+ALTER TABLE CLUB_AREA
+ADD CONSTRAINT FK_CA_AN_AREA_AN FOREIGN KEY (AREA_NUM)
+REFERENCES AREA (AREA_NUM)
