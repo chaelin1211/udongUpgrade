@@ -1,7 +1,7 @@
 package com.example.udong.service;
 
 import com.example.udong.repository.ClubMemberRepository;
-import com.example.udong.util.MemberDao;
+import com.example.udong.util.CommonDao.CommonDao;
 
 import org.springframework.stereotype.Service;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 public class ClubMemberService{
 
     @Autowired
-    private MemberDao dao;
+    private CommonDao dao;
 
     public Object getMember(Object dataMap){
         String sqlMapid = "ClubMember.user";

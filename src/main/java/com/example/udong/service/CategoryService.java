@@ -1,7 +1,7 @@
 package com.example.udong.service;
 
 import com.example.udong.repository.CategoryRepository;
-import com.example.udong.util.MemberDao;
+import com.example.udong.util.CommonDao.CommonDao;
 
 import org.springframework.stereotype.Service;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,11 +13,11 @@ public class CategoryService{
     private CategoryRepository repository;
     
     @Autowired
-    private MemberDao dao;
+    private CommonDao dao;
 
-    public Object getMember(Object dataMap){
-        String sqlMapid = "Category.user";
-        Object resultObject = dao.getObject(sqlMapid,dataMap);
+    public Object getAll(Object dataMap){
+        String sqlMapid = "Category.getAll";
+        Object resultObject = dao.getList(sqlMapid,dataMap);
         return resultObject;
     }
 }

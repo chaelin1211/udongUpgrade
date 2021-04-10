@@ -4,7 +4,7 @@ import java.util.Map;
 import java.util.HashMap;
 
 import com.example.udong.repository.QnaRepository;
-import com.example.udong.util.MemberDao;
+import com.example.udong.util.CommonDao.CommonDao;
 
 import org.springframework.stereotype.Service;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +16,7 @@ public class QnaService{
     private QnaRepository repository;
     
     @Autowired
-    private MemberDao dao;
+    private CommonDao dao;
 
     public Object getList(Object dataMap) {
 

@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import com.example.udong.repository.FaqRepository;
-import com.example.udong.util.MemberDao;
+import com.example.udong.util.CommonDao.CommonDao;
 
 import org.springframework.stereotype.Service;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +17,7 @@ public class FaqService{
     private FaqRepository repository;
     
     @Autowired
-    private MemberDao dao;
+    private CommonDao dao;
 
 
     public Object getList(Object dataMap) {
