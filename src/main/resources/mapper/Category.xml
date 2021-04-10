@@ -9,7 +9,7 @@
 	    select * from CATEGORY;
     </select>
 
-	<select id="getCNum" resultType="Map" parameterType="Map">
+	<select id="getCategoryNum" resultType="Map" parameterType="Map">
 	    select CATEGORY_NUM 
 		from CATEGORY
 		where CATEGORY_NAME = #{CATEGORY_NAME};

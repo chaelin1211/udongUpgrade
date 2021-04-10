@@ -22,7 +22,7 @@ public class CategoryService{
     }
     
     public Object getCategoryNum(Object dataMap){
-        String sqlMapid = "Category.getCNum";
+        String sqlMapid = "Category.getCategoryNum";
         Object resultObject = dao.getObject(sqlMapid, dataMap);
         return resultObject;
     }
