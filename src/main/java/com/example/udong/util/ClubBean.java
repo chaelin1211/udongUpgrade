@@ -22,12 +22,11 @@ public class ClubBean implements Serializable{
     String NICKNAME;
     String TIME;
     Integer MEMBER_COUNT;
-    Integer RECOMMEND;
 
     public ClubBean() {
     }
 
-    public ClubBean(Integer CLUB_NUM, String CLUB_NAME, String INTRO, String CONTENT, String EMAIL, String NICKNAME, String TIME, Integer MEMBER_COUNT, Integer RECOMMEND) {
+    public ClubBean(Integer CLUB_NUM, String CLUB_NAME, String INTRO, String CONTENT, String EMAIL, String NICKNAME, String TIME, Integer MEMBER_COUNT) {
         this.CLUB_NUM = CLUB_NUM;
         this.CLUB_NAME = CLUB_NAME;
         this.INTRO = INTRO;
@@ -36,7 +35,6 @@ public class ClubBean implements Serializable{
         this.NICKNAME = NICKNAME;
         this.TIME = TIME;
         this.MEMBER_COUNT = MEMBER_COUNT;
-        this.RECOMMEND = RECOMMEND;
     }
 
     public Integer getCLUB_NUM() {
@@ -103,14 +101,6 @@ public class ClubBean implements Serializable{
         this.MEMBER_COUNT = MEMBER_COUNT;
     }
 
-    public Integer getRECOMMEND() {
-        return this.RECOMMEND;
-    }
-
-    public void setRECOMMEND(Integer RECOMMEND) {
-        this.RECOMMEND = RECOMMEND;
-    }
-
     public ClubBean CLUB_NUM(Integer CLUB_NUM) {
         setCLUB_NUM(CLUB_NUM);
         return this;
@@ -151,11 +141,6 @@ public class ClubBean implements Serializable{
         return this;
     }
 
-    public ClubBean RECOMMEND(Integer RECOMMEND) {
-        setRECOMMEND(RECOMMEND);
-        return this;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (o == this)
@@ -164,12 +149,12 @@ public class ClubBean implements Serializable{
             return false;
         }
         ClubBean clubBean = (ClubBean) o;
-        return Objects.equals(CLUB_NUM, clubBean.CLUB_NUM) && Objects.equals(CLUB_NAME, clubBean.CLUB_NAME) && Objects.equals(INTRO, clubBean.INTRO) && Objects.equals(CONTENT, clubBean.CONTENT) && Objects.equals(EMAIL, clubBean.EMAIL) && Objects.equals(NICKNAME, clubBean.NICKNAME) && Objects.equals(TIME, clubBean.TIME) && Objects.equals(MEMBER_COUNT, clubBean.MEMBER_COUNT) && Objects.equals(RECOMMEND, clubBean.RECOMMEND);
+        return Objects.equals(CLUB_NUM, clubBean.CLUB_NUM) && Objects.equals(CLUB_NAME, clubBean.CLUB_NAME) && Objects.equals(INTRO, clubBean.INTRO) && Objects.equals(CONTENT, clubBean.CONTENT) && Objects.equals(EMAIL, clubBean.EMAIL) && Objects.equals(NICKNAME, clubBean.NICKNAME) && Objects.equals(TIME, clubBean.TIME) && Objects.equals(MEMBER_COUNT, clubBean.MEMBER_COUNT);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(CLUB_NUM, CLUB_NAME, INTRO, CONTENT, EMAIL, NICKNAME, TIME, MEMBER_COUNT, RECOMMEND);
+        return Objects.hash(CLUB_NUM, CLUB_NAME, INTRO, CONTENT, EMAIL, NICKNAME, TIME, MEMBER_COUNT);
     }
 
     @Override
@@ -183,7 +168,6 @@ public class ClubBean implements Serializable{
             ", NICKNAME='" + getNICKNAME() + "'" +
             ", TIME='" + getTIME() + "'" +
             ", MEMBER_COUNT='" + getMEMBER_COUNT() + "'" +
-            ", RECOMMEND='" + getRECOMMEND() + "'" +
             "}";
     }
 }

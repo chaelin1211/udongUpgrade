@@ -21,7 +21,6 @@ CREATE TABLE CLUB
     `TIME`          TIMESTAMP       NOT NULL    COMMENT '생성일자', 
     `NICKNAME`      VARCHAR(45)                 COMMENT '팀장 별명',  
     `MEMBER_COUNT`  INT             NOT NULL    DEFAULT 0       COMMENT '멤버 수',
-    `RECOMMEND`     INT             NOT NULL    DEFAULT 0       COMMENT '추천',
     PRIMARY KEY (CLUB_NUM)
 );
 
