@@ -4,7 +4,7 @@
 CREATE TABLE INTEREST_CATEGORY
 (
     `INTEREST_NUM`  INT            NULL        COMMENT '분류 번호', 
-    `INTEREST_NAME`          VARCHAR(45)    NULL        COMMENT '이름', 
+    `INTEREST_NAME` VARCHAR(45)    NULL        COMMENT '이름', 
     PRIMARY KEY (INTEREST_NUM)
 );
 
@@ -122,14 +122,14 @@ ALTER TABLE CATEGORY COMMENT '게시글 카테고리';
 -- BOARD Table Create SQL
 CREATE TABLE BOARD
 (
-    `POSTNUM`   INT            NOT NULL    AUTO_INCREMENT COMMENT '글번호', 
-    `CATEGORY`  VARCHAR(45)    NOT NULL    COMMENT '카테고리', 
-    `TIME`      TIMESTAMP      NOT NULL    COMMENT '작성일자', 
-    `TITLE`     VARCHAR(45)    NOT NULL    COMMENT '제목', 
-    `CONTENT`   VARCHAR        NOT NULL    COMMENT '내용', 
-    `NICKNAME`  VARCHAR(45)    NOT NULL    COMMENT '작성자 별명',
-    `EMAIL`     VARCHAR(45)    NOT NULL    COMMENT '작성자 이메일',
-    `RECOMMEND` INT            NULL        DEFAULT 0    COMMENT '추천' 
+    `POSTNUM`       INT            NOT NULL    AUTO_INCREMENT COMMENT '글번호', 
+    `CATEGORY_NUM`  INT            NOT NULL    COMMENT '카테고리', 
+    `TIME`          TIMESTAMP      NOT NULL    COMMENT '작성일자', 
+    `TITLE`         VARCHAR(45)    NOT NULL    COMMENT '제목', 
+    `CONTENT`       VARCHAR        NOT NULL    COMMENT '내용', 
+    `NICKNAME`      VARCHAR(45)    NOT NULL    COMMENT '작성자 별명',
+    `EMAIL`         VARCHAR(45)    NOT NULL    COMMENT '작성자 이메일',
+    `RECOMMEND`     INT            NULL        DEFAULT 0    COMMENT '추천' 
     PRIMARY KEY (POSTNUM)
 );
 
