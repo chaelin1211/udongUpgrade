@@ -15,9 +15,15 @@ public class CategoryService{
     @Autowired
     private CommonDao dao;
 
-    public Object getAll(Object dataMap){
+    public Object getAll(){
         String sqlMapid = "Category.getAll";
-        Object resultObject = dao.getList(sqlMapid,dataMap);
+        Object resultObject = dao.getAll(sqlMapid);
+        return resultObject;
+    }
+    
+    public Object getCategoryNum(Object dataMap){
+        String sqlMapid = "Category.getCNum";
+        Object resultObject = dao.getObject(sqlMapid, dataMap);
         return resultObject;
     }
 }

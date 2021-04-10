@@ -9,6 +9,12 @@
 	    select * from CATEGORY;
     </select>
 
+	<select id="getCNum" resultType="Map" parameterType="Map">
+	    select CATEGORY_NUM 
+		from CATEGORY
+		where CATEGORY_NAME = #{CATEGORY_NAME};
+    </select>
+
 	<insert id="insertCategory" parameterType="Map">
 		insert into CATEGORY (CATEGORY_NUM, CATEGORY_NAME)
 		values(#{CATEGORY_NUM}, #{CATEGORY_NAME});
