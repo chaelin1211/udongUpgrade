@@ -18,9 +18,9 @@ import org.springframework.web.servlet.ModelAndView;
 public class ClubController {
 
     @Autowired
-    private RankingService service;
+    private RankingService rankingService;
     @Autowired
-    private ClubService service2;
+    private ClubService clubService;
 
     // Receive Parameters from Html Using @RequestParam Map with @PathVariable
     @RequestMapping(value = "/club/{action}", method = { RequestMethod.GET, RequestMethod.POST })
@@ -44,7 +44,7 @@ public class ClubController {
             if (paramMap.get("AREA_NAME").equals("모두")) {
                 paramMap.replace("AREA_NAME", "%");
             }
-            resultMap = service2.getlocation(paramMap);
+            resultMap = clubService.getlocation(paramMap);
         } else if ("interest".equals(action)) {
             if (paramMap.get("INTEREST") == null) {
                 paramMap.put("INTEREST", "%");
@@ -52,17 +52,17 @@ public class ClubController {
             if (paramMap.get("INTEREST").equals("모두")) {
                 paramMap.replace("INTEREST", "%");
             }
-            resultMap = service2.getinterest(paramMap);
+            resultMap = clubService.getinterest(paramMap);
             // interest up logic
         } else if ("interest_search".equals(action)) {
-            resultMap = service2.getinterest_search(paramMap);
+            resultMap = clubService.getinterest_search(paramMap);
             // interest up logic
         } else if ("introduce".equals(action)) {
 
         } else if ("clubBoard".equals(action)) {
 
         } else if ("ranking".equals(action)) {
-            resultMap = service.get(paramMap);
+            resultMap = rankingService.get(paramMap);
         }
 
         String viewName = "/club/" + action;
