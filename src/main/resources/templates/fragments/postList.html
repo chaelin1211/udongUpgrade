@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<!--리스트-->
+<!--리스트-->   
 <table class="table table-hover tb text-center col">
     <thead>
         <tr>
@@ -9,21 +9,22 @@
             <th>제목</th>
             <th>작성시간</th>
             <th>추천</th>
-        </tr>
+        </tr> 
     </thead>
     <tbody>
         <tr th:each="post:${resultList}">
             <!-- post number -->
             <td class="col-2">
-                <a th:href="@{/view}" name="POSTNUM" th:text="${post.POSTNUM}"></a>
+                <input type="submit" class="btn" th:formaction="@{'/view/'+${paramMap.CATEGORY_NAME}+'/'+${post.POSTNUM}}" name="POSTNUM" th:value="${post.POSTNUM}">
             </td>
             <!-- writer email -->
             <td>
-                <a th:href="@{/view}" name="EMAIL" th:text="${post.EMAIL}"></a>
+                <input type="submit" class="btn" readonly name="EMAIL" th:value="${post.EMAIL}">
+                <!-- <a th:href="" name="EMAIL" th:text="${post.EMAIL}"></a> -->
             </td>
             <!-- post title -->
             <td class=" text-left">
-                <a th:href="@{/view}" name="TITLE" th:text="${post.TITLE}"></a>
+                <input type="submit" class="btn" th:formaction="@{'/view/'+${paramMap.CATEGORY_NAME}+'/'+${post.POSTNUM}}" name="TITLE" th:value="${post.TITLE}">
             </td>
             <!-- time -->
             <td class="col-2">
