@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<!-- 리스트 -->
+<table class="table table-hover tb text-center">
+    <thead>
+        <tr>
+            <th>번호</th>
+            <th>동아리명</th>
+            <th>팀장아이디</th>
+            <!-- <th>활동주제</th>
+            <th>활동지역명</th> -->
+            <th>멤버 수</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr th:each="resultData: ${resultMap}">
+            <td th:text=${resultData.CLUB_NUM}></td>
+            <td><button type="submit" class="btn p-0 m-0" th:formaction="@{/club/introduce}">
+                    <p class="p-0 m-0" th:text=${resultData.CLUB_NAME}></p>
+                </button></td>
+            <td th:text=${resultData.EMAIL}></td>
+            <!-- <td th:text=${resultData.INTEREST}></td>
+            <td th:text=${resultData.AREA_NAME}></td> -->
+            <td th:text=${resultData.MEMBER_COUNT}></td>
+        </tr>
+    </tbody>
+</table>
+</html>

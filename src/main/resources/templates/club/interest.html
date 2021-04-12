@@ -10,50 +10,23 @@
                     <h1>주제별 동아리</h1>
                     <div class="mt-2">원하시는 활동주제를 선택해주세요.</div>
                     <form name="search1" class="row mt-3" th:action="@{/club/interest}">
-                        <input type="hidden" name="flag" th:value="${flag.flag}">
-                        <input type="hidden" name="userID" th:value="${idMap.ID}">
+                        <input type="hidden" name="userEmail" th:value="${userInform.userEmail}">
 
                         <div class="form-group col-lg-3 col-md-3 col-sm-3">
                             <span class="form-control font-weight-bold text-center">활동주제</span>
                         </div>
                         <div class="form-group col-lg-7 col-md-7 col-sm-7">
-                            <select class="form-control custom-select" name="INTEREST">
-                                <option value="모두">모두</option>
-                                <option value="요리">요리</option>
-                                <option value="친목">친목</option>
-                                <option value="교양">교양</option>
-                                <option value="문화">문화</option>
+                            <select class="form-control custom-select" name="INTEREST_NAME" id="INTEREST_NAME">
+                                <option>모두</option>
+                                <option th:each="sortlist: ${sortList}" th:text=${sortlist.INTEREST_NAME}></option>
                             </select>
                         </div>
                         <div class="form-group col-lg-2 col-md-2 col-sm-2">
                             <button type="submit" class="form-control btn-primary">검색</button>
                         </div>
                     </form>
-                    <!--리스트-->
-                    <table class="table table-hover tb text-center">
-                        <thead>
-                            <tr>
-                                <th>번호</th>
-                                <th>동아리명</th>
-                                <th>팀장아이디</th>
-                                <th>활동주제</th>
-                                <th>활동지역명</th>
-                                <th>추천수</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr th:each="resultData: ${resultMap}">
-                                <td th:text=${resultData.CLUB_NUM}></td>
-                                <td><button type="submit" class="btn p-0 m-0" th:formaction="@{/club/introduce}">
-                                        <p class="p-0 m-0" th:text=${resultData.CLUB_NAME}></p>
-                                    </button></td>
-                                <td th:text=${resultData.ID}></td>
-                                <td th:text=${resultData.INTEREST}></td>
-                                <td th:text=${resultData.AREA_NAME}></td>
-                                <td th:text=${resultData.RECOMMEND}></td>
-                            </tr>
-                        </tbody>
-                    </table>
+                    <!-- 리스트 -->
+                    <th:block th:replace="fragments/clubList"></th:block>
                 </div>
             </div>
         </div>
