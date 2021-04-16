@@ -15,18 +15,19 @@
                     <thead class="thead-dark">
                         <tr>
                             <th>순위</th>
-                            <th>클럽명</th>
-                            <th>지역</th>
-                            <th>분야</th>
-                            <th>추천 수</th>
+                            <th>동아리 이름</th>
+                            <th>소개</th>
+                            <!-- <th>지역</th> -->
+                            <!-- <th>분야</th> -->
+                            <th>멤버 수</th>
                         </tr>
                     <tbody>
-                        <tr th:each="resultData: ${resultMap}">
-                            <td th:text=${resultData.RANK}></td>
+                        <tr th:each="resultData: ${resultMap}" th:if="${resultDataStat.index < 10}">
+                            <td th:text=${resultDataStat.index+1}></td>
                             <td th:text=${resultData.CLUB_NAME}></td>
-                            <td th:text=${resultData.AREA_NAME}></td>
-                            <td th:text=${resultData.CONTENT}></td>
-                            <td th:text=${resultData.RECOMMEND}></td>
+                            <!-- <td th:text=${resultData.AREA_NAME}></td> -->
+                            <td th:text=${resultData.INTRO}></td>
+                            <td th:text=${resultData.MEMBER_COUNT}></td>
                     </tbody>
                 </table>
             </div>
