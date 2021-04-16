@@ -13,7 +13,7 @@
 
 	<select id="postOne" resultType="Map" parameterType="Map">
 	    select * from BOARD
-		where POSTNUM = #{POSTNUM};
+		where POST_NUM = #{POST_NUM};
     </select>
 
 	<select id="searchPost" resultType="Map" parameterType="Map">
@@ -23,7 +23,7 @@
 
 	<select id="getComment" resultType="Map" parameterType="Map">
 	    select * from Comment
-		where POSTNUM=#{POSTNUM};
+		where POST_NUM=#{POST_NUM};
     </select>
 
 	<insert id="insertPost" parameterType="Map">

@@ -15,7 +15,7 @@ public class BoardBean implements Serializable{
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Integer POSTNUM;
+    Integer POST_NUM;
     int CATEGORY_NUM;
     String TIME;
     String TITLE;
@@ -24,13 +24,12 @@ public class BoardBean implements Serializable{
     String EMAIL;
     String NICKNAME;
 
-
     public BoardBean() {
         RECOMMEND=0;
     }
 
-    public BoardBean(Integer POSTNUM, int CATEGORY_NUM, String TIME, String TITLE, String CONTENT, Integer RECOMMEND, String EMAIL, String NICKNAME) {
-        this.POSTNUM = POSTNUM;
+    public BoardBean(Integer POST_NUM, int CATEGORY_NUM, String TIME, String TITLE, String CONTENT, Integer RECOMMEND, String EMAIL, String NICKNAME) {
+        this.POST_NUM = POST_NUM;
         this.CATEGORY_NUM = CATEGORY_NUM;
         this.TIME = TIME;
         this.TITLE = TITLE;
@@ -40,19 +39,19 @@ public class BoardBean implements Serializable{
         this.NICKNAME = NICKNAME;
     }
 
-    public Integer getPOSTNUM() {
-        return this.POSTNUM;
+    public Integer getPOST_NUM() {
+        return this.POST_NUM;
     }
 
-    public void setPOSTNUM(Integer POSTNUM) {
-        this.POSTNUM = POSTNUM;
+    public void setPOST_NUM(Integer POST_NUM) {
+        this.POST_NUM = POST_NUM;
     }
 
-    public int getCATEGORY() {
+    public int getCATEGORY_NUM() {
         return this.CATEGORY_NUM;
     }
 
-    public void setCATEGORY(int CATEGORY_NUM) {
+    public void setCATEGORY_NUM(int CATEGORY_NUM) {
         this.CATEGORY_NUM = CATEGORY_NUM;
     }
 
@@ -104,44 +103,43 @@ public class BoardBean implements Serializable{
         this.NICKNAME = NICKNAME;
     }
 
-    public BoardBean POSTNUM(Integer POSTNUM) {
-        this.POSTNUM = POSTNUM;
+    public BoardBean POST_NUM(Integer POST_NUM) {
+        setPOST_NUM(POST_NUM);
         return this;
     }
-    
 
-    public BoardBean CATEGORY(int CATEGORY_NUM) {
-        this.CATEGORY_NUM = CATEGORY_NUM;
+    public BoardBean CATEGORY_NUM(int CATEGORY_NUM) {
+        setCATEGORY_NUM(CATEGORY_NUM);
         return this;
     }
 
     public BoardBean TIME(String TIME) {
-        this.TIME = TIME;
+        setTIME(TIME);
         return this;
     }
 
     public BoardBean TITLE(String TITLE) {
-        this.TITLE = TITLE;
+        setTITLE(TITLE);
         return this;
     }
 
     public BoardBean CONTENT(String CONTENT) {
-        this.CONTENT = CONTENT;
+        setCONTENT(CONTENT);
         return this;
     }
 
     public BoardBean RECOMMEND(Integer RECOMMEND) {
-        this.RECOMMEND = RECOMMEND;
+        setRECOMMEND(RECOMMEND);
         return this;
     }
 
     public BoardBean EMAIL(String EMAIL) {
-        this.EMAIL = EMAIL;
+        setEMAIL(EMAIL);
         return this;
     }
 
-    public BoardBean NICKNAME(String NICKNAME){
-        this.NICKNAME = NICKNAME;
+    public BoardBean NICKNAME(String NICKNAME) {
+        setNICKNAME(NICKNAME);
         return this;
     }
 
@@ -153,25 +151,25 @@ public class BoardBean implements Serializable{
             return false;
         }
         BoardBean boardBean = (BoardBean) o;
-        return Objects.equals(POSTNUM, boardBean.POSTNUM) && Objects.equals(CATEGORY_NUM, boardBean.CATEGORY_NUM) && Objects.equals(TIME, boardBean.TIME) && Objects.equals(TITLE, boardBean.TITLE) && Objects.equals(CONTENT, boardBean.CONTENT) && Objects.equals(RECOMMEND, boardBean.RECOMMEND) && Objects.equals(EMAIL, boardBean.EMAIL) && Objects.equals(NICKNAME, boardBean.NICKNAME);
+        return Objects.equals(POST_NUM, boardBean.POST_NUM) && CATEGORY_NUM == boardBean.CATEGORY_NUM && Objects.equals(TIME, boardBean.TIME) && Objects.equals(TITLE, boardBean.TITLE) && Objects.equals(CONTENT, boardBean.CONTENT) && Objects.equals(RECOMMEND, boardBean.RECOMMEND) && Objects.equals(EMAIL, boardBean.EMAIL) && Objects.equals(NICKNAME, boardBean.NICKNAME);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(POSTNUM, CATEGORY_NUM, TIME, TITLE, CONTENT, RECOMMEND, EMAIL);
+        return Objects.hash(POST_NUM, CATEGORY_NUM, TIME, TITLE, CONTENT, RECOMMEND, EMAIL, NICKNAME);
     }
 
     @Override
     public String toString() {
         return "{" +
-            " POSTNUM='" + getPOSTNUM() + "'" +
-            ", CATEGORY_NUM='" + getCATEGORY() + "'" +
+            " POST_NUM='" + getPOST_NUM() + "'" +
+            ", CATEGORY_NUM='" + getCATEGORY_NUM() + "'" +
             ", TIME='" + getTIME() + "'" +
             ", TITLE='" + getTITLE() + "'" +
             ", CONTENT='" + getCONTENT() + "'" +
             ", RECOMMEND='" + getRECOMMEND() + "'" +
             ", EMAIL='" + getEMAIL() + "'" +
-            ", NICKNAME='" + getNICKNAME()+"'"+
+            ", NICKNAME='" + getNICKNAME() + "'" +
             "}";
     }
 

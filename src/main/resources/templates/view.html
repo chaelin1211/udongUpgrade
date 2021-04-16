@@ -15,7 +15,7 @@
             <div class="col-lg-9 col-md-12 col-sm-12">
                 <!-- 글 정보 -->
                 <div class="row border rounded p-3 mt-2 mx-0 justify-content-between">
-                    <div class="" th:text="${resultMap.POSTNUM}"></div>
+                    <div class="" th:text="${resultMap.POST_NUM}"></div>
                     <div class="text-left" th:text="${resultMap.EMAIL}"></div>
                     <div class="text-decoration" th:text="${resultMap.TITLE}"></div>
                     <div class="text-right" th:text="${#strings.substring(resultMap.TIME,0,19)}"></div>
@@ -28,7 +28,7 @@
                         <form method="POST">
                             <!-- <form method="POST" onsubmit="return checkUser(this)"> -->
                             <input type="hidden" name="userEmail" th:value="${userInform.userEmail}">
-                            <input type="hidden" name="POSTNUM" th:value="${resultMap.POSTNUM}">
+                            <input type="hidden" name="POST_NUM" th:value="${resultMap.POST_NUM}">
                             <!-- 추천 버튼 -->
                             <div class="mt-5">
                                 <input type="submit" class="btn btn-outline-danger" th:formaction="@{/view}"
@@ -45,18 +45,15 @@
                         <h5>댓글 </h5>
                     </div>
                     <!-- 댓글 목록 -->
-                    <div>
+                    <div id="commentTable">
                         <div class="border-top p-2" th:each="comment:${commentList}">
                             <form method="POST">
-                                <!-- <input type="hidden" name="flag" th:value="${flag.flag}">
-                                <input type="hidden" name="userID" th:value="${idMap.ID}"> -->
-                                <input type="hidden" id="hiddenCommentTime" name="TIME" th:value="${comment.TIME}">
                                 <input type="hidden" id="commentNum" name="CommentNum" th:value="${comment.CO_NUM}">
-                                <input type="hidden" name="POSTNUM" th:value="${resultMap.POSTNUM}">
-
                                 <div>
-                                    <input type="button" class="btn p-0 btn-md" name="commentID" th:value="${comment.EMAIL}"/>
-                                    <small class="text-secondary align-bottom" th:text="${#strings.substring(comment.TIME,0,19)}"></small>
+                                    <input type="button" class="btn p-0 btn-md" name="commentID"
+                                        th:value="${comment.EMAIL}" />
+                                    <small class="text-secondary align-bottom"
+                                        th:text="${#strings.substring(comment.TIME,0,19)}"></small>
                                 </div>
                                 <div th:text="${comment.CONTENT}"></div>
                                 <div class="text-right" th:if="${comment.EMAIL==userInform.userEmail}">
@@ -88,7 +85,7 @@
                         <form method="POST" id="commentForm" class="row justify-content-center">
                             <!-- hidden 영역 -->
                             <input type="hidden" name="EMAIL" th:value="${userInform.userEmail}">
-                            <input type="hidden" name="POST_NUM" th:value="${resultMap.POSTNUM}">
+                            <input type="hidden" name="POST_NUM" th:value="${resultMap.POST_NUM}">
                             <input type="hidden" name="CATEGORY_NAME" th:value="${resultMap.CATEGORY_NAME}">
 
                             <!-- 입력 영역 -->
@@ -107,7 +104,7 @@
                         <input name="submit" type="submit" value="수정" class="btn btn-outline-secondary m-1">
 
                         <!--삭제 버튼-->
-                        <input type="hidden" name="POSTNUM" th:value="${resultMap.POSTNUM}">
+                        <input type="hidden" name="POST_NUM" th:value="${resultMap.POST_NUM}">
                         <input th:if="${resultMap.CATEGORY_NAME=='notice'||resultMap.CATEGORY_NAME=='event'}"
                             th:formaction="${'/news/'+resultMap.CATEGORY_NAME}" type="submit" name="submit" value="삭제"
                             class="btn btn-outline-secondary m-1">

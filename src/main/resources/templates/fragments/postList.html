@@ -15,7 +15,7 @@
         <tr th:each="post:${resultList}">
             <!-- post number -->
             <td class="col-2">
-                <input type="submit" class="btn" th:formaction="@{'/view/'+${paramMap.CATEGORY_NAME}+'/'+${post.POSTNUM}}" name="POSTNUM" th:value="${post.POSTNUM}">
+                <input type="submit" class="btn" formmethod="GET" th:formaction="@{'/view'}" name="POST_NUM" th:value="${post.POST_NUM}">
             </td>
             <!-- writer email -->
             <td>
@@ -24,7 +24,7 @@
             </td>
             <!-- post title -->
             <td class=" text-left">
-                <input type="submit" class="btn" th:formaction="@{'/view/'+${paramMap.CATEGORY_NAME}+'/'+${post.POSTNUM}}" name="TITLE" th:value="${post.TITLE}">
+                <input type="submit" class="btn" formmethod="GET" th:formaction="@{'/view'}" name="TITLE" th:value="${post.TITLE}">
             </td>
             <!-- time -->
             <td class="col-2">
@@ -32,6 +32,9 @@
             </td>
             <!-- recommend -->
             <td class="" th:text="${post.RECOMMEND}"></td>
+            <!-- hidden -->
+            <input type="hidden" name="CATEGORY_NAME" th:value="${paramMap.CATEGORY_NAME}">
+            <input type="hidden" name="POST_NUM" th:value="${post.POST_NUM}">
         </tr>
     </tbody>
 </table>
