@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import com.example.udong.repository.CommentRepository;
+import com.example.udong.util.CommentBean;
 import com.example.udong.util.CommonDao.CommonDao;
 
 import org.springframework.stereotype.Service;
@@ -20,16 +21,21 @@ public class CommentService{
     private CommonDao dao;
     
     public Object getComment(Object dataMap){
-        String sqlMapid = "Comment.getComment";
+      String sqlMapid = "Comment.getComment";
+      Object resultObject = dao.getObject(sqlMapid,dataMap);
+      return resultObject;
+    }
+    public Object getList(Object dataMap){
+        String sqlMapid = "Comment.getList";
         Object resultObject = dao.getList(sqlMapid,dataMap);
         return resultObject;
     }
-    public void insertComment(Object dataMap){
-      String sqlMapid = "Comment.insertComment";
-      dao.getList(sqlMapid,dataMap);
+    public void insert(Object dataMap){
+      String sqlMapid = "Comment.insert";
+      dao.saveObject(sqlMapid,dataMap);
     }
-    public void deleteComment(Object dataMap){
-      String sqlMapid = "Comment.deleteComment";
+    public void delete(Object dataMap){
+      String sqlMapid = "Comment.delete";
       dao.getList(sqlMapid,dataMap);
     }
     
