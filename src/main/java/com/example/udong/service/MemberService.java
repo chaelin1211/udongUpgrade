@@ -16,7 +16,7 @@ public class MemberService{
     private CommonDao dao;
         
     public Object getMember(Object dataMap){
-        String sqlMapid = "Member.user";
+        String sqlMapid = "Member.getMember";
         Object resultObject = dao.getObject(sqlMapid,dataMap);
         return resultObject;
     } 

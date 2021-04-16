@@ -5,23 +5,25 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
     
 <mapper namespace="Member">
-	<select id="user" resultType="Map" parameterType="Map">
-	    select * from MEMBER
-		where EMAIL = #{EMAIL};
+	<select id="getMember" resultType="Map" parameterType="Map">
+	    select * 
+		from MEMBER
+		where email = #{userEmail};
     </select>
+
 	<select id="interest" resultType="Map" parameterType="Map">
 	    select * from INTEREST_CATEGORY;
     </select>
 
 	<insert id="signup" parameterType="Map">
 		insert into MEMBER(EMAIL)
-		values (#{EMAIL})
+		values (#{userEmail})
 	</insert>
 
 	<update id="update" parameterType="Map">
 	</update>
 
 	<delete id="delete" parameterType="Map">
-		DELETE FROM MEMBER WHERE EMAIL = #{EMAIL};
+		DELETE FROM MEMBER WHERE EMAIL = #{userEmail};
 	</delete>
 </mapper>

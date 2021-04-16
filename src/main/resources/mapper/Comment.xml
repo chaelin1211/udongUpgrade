@@ -5,12 +5,12 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="Comment">
-	<select id="get" resultType="Map" parameterType="Map">
-	    select * from COMMENT where POST_NUM = #{POSTNUM};
+	<select id="getList" resultType="Map" parameterType="Map">
+	    select * from COMMENT where POST_NUM = #{POST_NUM};
     </select>
     <insert id="insert" parameterType="Map">
         insert into COMMENT (EMAIL, POST_NUM, CONTENT, TIME)
-        values (#{EMAIL},#{POSTNUM},#{CONTENT},NOW());
+        values (#{EMAIL},#{POST_NUM},#{CONTENT},NOW());
     </insert>
     <delete id="delete" parameterType="Map">
         delete from Comment where CO_NUM=#{CO_NUM};

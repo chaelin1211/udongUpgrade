@@ -17,23 +17,24 @@ public class FaqService{
     private FaqRepository repository;
     
     @Autowired
-    private CommonDao dao;
+    private CommonDao commonDao;
 
 
     public Object getList(Object dataMap) {
 		String sqlMapId = "Faq.list";
 
-		Object resultObject = new HashMap<>();
+    Object resultObject = commonDao.getList(sqlMapId,dataMap);
+		// Object resultObject = new HashMap<>();
 		// ((Map<String, Object>) resultObject).put("resultList", dao.getList(sqlMapId,
 		// dataMap));
-		((Map<String, Object>) resultObject).put("resultList", repository.findAll());
+		// ((Map<String, Object>) resultObject).put("resultList", repository.findAll());
 
 		return resultObject;
     }
     
     public Object getObject(Object dataMap){
         String sqlMapid = "Faq.read";
-        Object resultObject = dao.getObject(sqlMapid,dataMap);
+        Object resultObject = commonDao.getObject(sqlMapid,dataMap);
         return resultObject;
     }
     
