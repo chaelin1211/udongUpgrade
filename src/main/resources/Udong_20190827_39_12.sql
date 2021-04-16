@@ -61,6 +61,7 @@ CREATE TABLE MEMBER
     `BIRTH_DAY`  INT                        COMMENT '생일-일',  
     `NICKNAME`   INT                        COMMENT '별명',
     `AREA_NUM`   INT                        COMMENT '지역',
+    `GRADE`      INT                        COMMENT '등급',
     PRIMARY KEY(EMAIL)
 );
 
