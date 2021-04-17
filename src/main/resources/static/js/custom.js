@@ -82,122 +82,108 @@ function check(form) {
 }
 
 
-function checkUser(form) {
-    var userID = form.userID.value
-    if (userID == "") {
+function checkUser() {
+    var userEmail = $("#commentEmail").val();
+    if (userEmail == "") {
         alert("로그인이 필요합니다.")
         return false
     }
     return true
 }
 
-function checkAdmin(form) {
-    var goodURL = "/admin/answer"  //이곳에 인증이 되었을때 이동할 페이지  입력
-    alert("패스워드를 입력하셔야 합니다.")
+// function checkAdmin(form) {
+//     var goodURL = "/admin/answer"  //이곳에 인증이 되었을때 이동할 페이지  입력
+//     alert("패스워드를 입력하셔야 합니다.")
 
-    var password = prompt("PASSWD 입력", "")
+//     var password = prompt("PASSWD 입력", "")
 
-    if (password == null) {
-        alert("출입금지")
-        location = "/home"         // 실패시 이동 주소       history.back();를 넣어도 됨
-    }
-    else {
-        var combo = password
-        var total = combo.toLowerCase()
+//     if (password == null) {
+//         alert("출입금지")
+//         location = "/home"         // 실패시 이동 주소       history.back();를 넣어도 됨
+//     }
+//     else {
+//         var combo = password
+//         var total = combo.toLowerCase()
 
-        if (total == "1234") {                // 비밀번호
-            alert("안녕하세요...어서오십시요...")
-            location = goodURL
-        }
-        else {
-            alert("출입금지")
-            location = "/home"    // 실패시 이동 주소      history.back();를 넣어도 됨
-        }
-    }
-}
+//         if (total == "1234") {                // 비밀번호
+//             alert("안녕하세요...어서오십시요...")
+//             location = goodURL
+//         }
+//         else {
+//             alert("출입금지")
+//             location = "/home"    // 실패시 이동 주소      history.back();를 넣어도 됨
+//         }
+//     }
+// }
 
-function checkComment(form) {
-    var result = checkUser(form);
+function checkComment() {
+    var result = checkUser();
     if (result == false) return false;
 
-    if (form.CONTENT.value == "") {
+    var content = $("#commentContent").val();
+    if (content == "") {
         alert("내용을 입력하세요")
         return false;
     } else {
+        updateComment();
         return true;
     }
 }
 
-function updateComment(form) {
-    var object = document.form.getElementById("commentContent");
-    object.attr("readonly", false);
-}
+// function updateComment(form) {
+//     var object = document.form.getElementById("commentContent");
+//     object.attr("readonly", false);
+// }
 
-function test() {
-    alert("object")
-    return false
-}
+// $(document).ready(function () {
+//     // reformTime();
+//     commentListLoad();
+// });
 
-$(document).ready(function () {
-    // reformTime();
-    commentListLoad();
-});
+// function reformTime() {
+//     var time = document.getElementById('hiddenCommentTime').value;
+//     var string = "";
 
-function reformTime() {
-    var time = document.getElementById('hiddenCommentTime').value;
-    var string = "";
+//     const nowDate = new Date();
+//     const writeDate = new Date(time);
 
-    const nowDate = new Date();
-    const writeDate = new Date(time);
+//     var year = nowDate.getFullYear() - writeDate.getFullYear();
+//     if (year == 0) {
+//         var month = nowDate.getMonth() - writeDate.getMonth();
+//         if (month == 0) {
+//             var date = nowDate.getDate() - writeDate.getDate();
+//             if (date == 0) {
+//                 var h = nowDate.getHours() - writeDate.getHours();
+//                 if (h != 0) {
+//                     string = string + h + "시간 전";
+//                 } else {
+//                     string = string + "방금 전";
+//                 }
+//             } else {
+//                 string = string + date + "일 전";
+//             }
+//         } else {
+//             string = string + month + "개월 전";
+//         }
+//     } else {
+//         string = string + year + "년 전";
+//     }
+//     var id = document.getElementById('commentNum').value;
+//     document.getElementById(id).innerHTML = string;
+// }
 
-    var year = nowDate.getFullYear() - writeDate.getFullYear();
-    if (year == 0) {
-        var month = nowDate.getMonth() - writeDate.getMonth();
-        if (month == 0) {
-            var date = nowDate.getDate() - writeDate.getDate();
-            if (date == 0) {
-                var h = nowDate.getHours() - writeDate.getHours();
-                if (h != 0) {
-                    string = string + h + "시간 전";
-                } else {
-                    string = string + "방금 전";
-                }
-            } else {
-                string = string + date + "일 전";
-            }
-        } else {
-            string = string + month + "개월 전";
-        }
-    } else {
-        string = string + year + "년 전";
-    }
-    var id = document.getElementById('commentNum').value;
-    document.getElementById(id).innerHTML = string;
-}
-
-function printCommentList(result) {
-    $.each(result, function (index, item) {
-        var str = '<tr><td>' + item.ID + '</td>;';
-        str += '<td>' + item.CONTENT + '</td>;';
-        str += '<td>' + item.TIME + '</td></tr>;';
-
-        $('#commentTable').append(str);
+function updateComment() {
+    var commentBean = {
+        email:$("#commentEmail").val(),
+        content: $("#commentContent").val(),
+        post_num: $("#commentPostNum").val()
+    };
+    $.ajax({
+        url: "/view",
+        type: "POST",
+        data: commentBean,
     })
-}
-
-function commentListLoad() {
-    $('#commentWriteButton').click(function () {
-        $.ajax('commentJSON.jsp', {
-            dataType: 'json',
-            success: function (result) {
-                printCommentList(result);
-            },
-            error: function (request, status, error) {
-                var str = 'code: ' + request.status + '\n';
-                str += 'message: ' + request.responseText + '\n';
-                str += 'error: ' + error;
-                alert(str);
-            }
-        })
-    })
+    .done(function (fragment) {
+        $('#commentTable').replaceWith(fragment);
+    });
 }
