@@ -126,6 +126,7 @@ function checkComment() {
         return false;
     } else {
         updateComment();
+        $("#commentContent").val("");
         return true;
     }
 }
