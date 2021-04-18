@@ -83,7 +83,7 @@ function check(form) {
 
 
 function checkUser() {
-    var userEmail = $("#commentEmail").val();
+    var userEmail = $("#email").val();
     if (userEmail == "") {
         alert("로그인이 필요합니다.")
         return false
@@ -91,6 +91,41 @@ function checkUser() {
     return true
 }
 
+function checkComment() {
+    var result = checkUser();
+    if (result == false) return false;
+
+    var content = $("#content").val();
+    if (content == "") {
+        alert("내용을 입력하세요")
+        return false;
+    } else {
+        updateComment();
+        $("#content").val("");
+        return true;
+    }
+}
+
+function updateComment() {
+    var commentBean = $("#commentForm").serialize();
+    // var commentBean = {
+    //     email:$("#commentEmail").val(),
+    //     content: $("#commentContent").val(),
+    //     post_num: $("#commentPostNum").val()
+    // };
+    $.ajax({
+        url: "/view",
+        type: "POST",
+        data: commentBean,
+    })
+    .done(function (fragment) {
+        $('#commentTable').replaceWith(fragment);
+    });
+}
+
+function deleteComment(){
+
+}
 // function checkAdmin(form) {
 //     var goodURL = "/admin/answer"  //이곳에 인증이 되었을때 이동할 페이지  입력
 //     alert("패스워드를 입력하셔야 합니다.")
@@ -115,21 +150,6 @@ function checkUser() {
 //         }
 //     }
 // }
-
-function checkComment() {
-    var result = checkUser();
-    if (result == false) return false;
-
-    var content = $("#commentContent").val();
-    if (content == "") {
-        alert("내용을 입력하세요")
-        return false;
-    } else {
-        updateComment();
-        $("#commentContent").val("");
-        return true;
-    }
-}
 
 // function updateComment(form) {
 //     var object = document.form.getElementById("commentContent");
@@ -173,18 +193,3 @@ function checkComment() {
 //     document.getElementById(id).innerHTML = string;
 // }
 
-function updateComment() {
-    var commentBean = {
-        email:$("#commentEmail").val(),
-        content: $("#commentContent").val(),
-        post_num: $("#commentPostNum").val()
-    };
-    $.ajax({
-        url: "/view",
-        type: "POST",
-        data: commentBean,
-    })
-    .done(function (fragment) {
-        $('#commentTable').replaceWith(fragment);
-    });
-}
