@@ -95,6 +95,33 @@ public class CommunityController {
         return modelandView;
     }
 
+    @RequestMapping(value = "/view", method = { RequestMethod.POST })
+    public String viewPostMethod(Model model, @RequestParam Map<String, Object> paramMap) {
+
+        CommentBean result = new CommentBean();
+        result.setEMAIL(paramMap.get("EMAIL").toString());
+        result.setPOST_NUM(Integer.parseInt(paramMap.get("POST_NUM").toString()));
+        result.setCONTENT(paramMap.get("CONTENT").toString());
+
+        // DB 댓글 추가
+        commentservice.insert(result);
+
+        // 댓글 리스트 추가
+        model.addAttribute("commentList", commentservice.getList(result));
+
+        // 수정&삭제 버튼 게시를 위한 유저 정보 전달
+        Map<String, Object> userInform = new HashMap<String, Object>();
+        userInform.put("userEmail", paramMap.get("EMAIL"));
+        model.addAttribute("userInform", userInform);
+
+        // 화면 일반화를 위한 정보 전달
+        Map<String, Object> resultMap = new HashMap<String, Object>();
+        resultMap.put("CATEGORY_NAME", paramMap.get("CATEGORY_NAME"));
+        model.addAttribute("resultMap", resultMap);
+
+        return "/view :: #commentTable";
+    }
+
     @RequestMapping(value = "/view", method = { RequestMethod.GET })
     public ModelAndView viewActionMethod(@RequestParam Map<String, Object> paramMap, ModelAndView modelAndView) {
 
