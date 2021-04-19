@@ -118,14 +118,33 @@ function updateComment() {
         type: "POST",
         data: commentBean,
     })
-    .done(function (fragment) {
-        $('#commentTable').replaceWith(fragment);
-    });
+        .done(function (fragment) {
+            $('#commentTable').replaceWith(fragment);
+        });
 }
 
-function deleteComment(){
-
+function deleteComment(form) {
+    var CO_NUM = form.CO_NUM.value;
+    var EMAIL = form.EMAIL.value;
+    var POST_NUM = form.POST_NUM.value;
+    var CATEGORY_NAME = form.CATEGORY_NAME.value;
+    $.ajax({
+        url: "/view/" + CO_NUM,
+        type: "DELETE",
+        data: {
+            CO_NUM: CO_NUM,
+            EMAIL: EMAIL,
+            POST_NUM: POST_NUM,
+            CATEGORY_NAME: CATEGORY_NAME,
+        },
+    })
+        .done(function (fragment) {
+            $('#commentTable').replaceWith(fragment);
+            return true;
+        });
 }
+
+
 // function checkAdmin(form) {
 //     var goodURL = "/admin/answer"  //이곳에 인증이 되었을때 이동할 페이지  입력
 //     alert("패스워드를 입력하셔야 합니다.")
