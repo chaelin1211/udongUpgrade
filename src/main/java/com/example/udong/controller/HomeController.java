@@ -23,26 +23,11 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class HomeController {
 
-    @Autowired
-    private MemberService service;
-
-    @Autowired
-    private InterestCategoryService interestService;
-
-    @Autowired
-    private BoardService boardservice;
+    // @Autowired
+    // private MemberService memberService;
 
     @Autowired
     private ClubService clubService;
-
-    @Autowired
-    private RecommendService recommendservice;
-
-    @Autowired
-    private CommentService commentservice;
-
-    @Autowired
-    private AreaService areaservice;
 
     @RequestMapping(value = "/{action}", method = { RequestMethod.GET, RequestMethod.POST })
     public ModelAndView actionMethod(@RequestParam Map<String, Object> paramMap, @PathVariable String action,
@@ -50,7 +35,7 @@ public class HomeController {
 
         Map<String, Object> resultMap = new HashMap<String, Object>();
         Object resultList = new Object();
-        MemberBean member = new MemberBean();
+        // MemberBean member = new MemberBean();
         String viewName = action;
 
         Map<String, Object> userInform = new HashMap<String, Object>();
@@ -68,14 +53,14 @@ public class HomeController {
         } else if ("callback".equals(action)) {
 
         } else if ("signup".equals(action)) {
-            Object interestList = interestService.getList(paramMap);
-            Object localList = areaservice.getLocal(paramMap);
-            modelAndView.addObject("interestList", interestList);
-            modelAndView.addObject("localList", localList);
-            modelAndView.addObject("resultBean", member);
-            modelAndView.addObject("idCheck", false);
+            // Object interestList = interestService.getList(paramMap);
+            // Object localList = areaservice.getLocal(paramMap);
+            // modelAndView.addObject("interestList", interestList);
+            // modelAndView.addObject("localList", localList);
+            // modelAndView.addObject("resultBean", member);
+            // modelAndView.addObject("idCheck", false);
         } else if ("home".equals(action) || viewName.equals("/home")) {
-            resultList = clubService.getNewlylist(paramMap);
+            resultList = clubService.getNewlylist();
 
             // home으로 가려할 때
             if (paramMap.keySet().contains("submit")) {
@@ -90,20 +75,20 @@ public class HomeController {
                 if (submitValue.equals("로그아웃")) {
                     userInform.put("userEmail", "");
                 } else if (submitValue.equals("회원가입")) {
-                    Object interestList = interestService.getList(paramMap);
-                    Object localList = areaservice.getLocal(paramMap);
-                    modelAndView.addObject("interestList", interestList);
-                    modelAndView.addObject("localList", localList);
-                    resultMap = (Map) service.getMember(paramMap);
-                    if (resultMap == null) {
-                        modelAndView.addObject("idCheck", false);
-                        service.setMember(paramMap);
-                        viewName = "/home";
-                    } else {
-                        modelAndView.addObject("idCheck", true);
-                        viewName = "/signup";
-                    }
-                    modelAndView.addObject("resultBean", paramMap);
+                    // Object interestList = interestService.getList(paramMap);
+                    // Object localList = areaservice.getLocal(paramMap);
+                    // modelAndView.addObject("interestList", interestList);
+                    // modelAndView.addObject("localList", localList);
+                    // resultMap = (Map) service.getMember(paramMap);
+                    // if (resultMap == null) {
+                    // modelAndView.addObject("idCheck", false);
+                    // service.setMember(paramMap);
+                    // viewName = "/home";
+                    // } else {
+                    // modelAndView.addObject("idCheck", true);
+                    // viewName = "/signup";
+                    // }
+                    // modelAndView.addObject("resultBean", paramMap);
                 } else if (submitValue.equals("회원탈퇴")) {
                     // service.deleteMember(idMap);
                     // flagMap.put("flag", false);
@@ -111,44 +96,7 @@ public class HomeController {
                 }
             }
         } else if ("post".equals(action)) {
-        } else if ("view".equals(action)) {
-            Map<String, Object> postNumMap = new HashMap<String, Object>();
-            if (paramMap.get("POSTNUM") != null) {
-                String postNumString = (String) paramMap.get("POSTNUM");
-                postNumString = postNumString.split(" ")[0];
-                postNumMap.put("POSTNUM", postNumString);
-                paramMap.put("POSTNUM", postNumString);
-            }
-            if (!paramMap.keySet().contains("submit")) {// view로 가려할 때
-                resultMap = (Map) boardservice.getPostOne(postNumMap);
-            } else {
-                Object submitValue = paramMap.get("submit");
-                if (submitValue.equals("댓글작성")) { // 댓글작성시
-                    commentservice.insertComment(paramMap);
-                } else if (submitValue.equals("추천")) {
-                    Map x = (Map) recommendservice.isRecommend(paramMap);
-                    if (x == null) {
-                        recommendservice.addRecommend(paramMap);
-                        Integer y = recommendservice.countRecommend(paramMap);
-                        paramMap.put("RECOMMEND", y);
-                        boardservice.addRecommend(paramMap);
-                    } else {
-                        recommendservice.subRecommend(paramMap);
-                        Integer y = recommendservice.countRecommend(paramMap);
-                        paramMap.put("RECOMMEND", y);
-                        boardservice.subRecommend(paramMap);
-                    }
-                } else if (submitValue.equals("delete")) {
-                    commentservice.deleteComment(paramMap);
-                }
-                resultMap = (Map) boardservice.getPostOne(postNumMap);
-            }
-
-            // 댓글 목록 불러오기
-            Object CommentList = commentservice.getComment(postNumMap);
-            modelAndView.addObject("commentList", CommentList);
         }
-
         if ("/club/introduce".equals(action)) {
         }
 
