@@ -16,7 +16,7 @@ public class CommentBean implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Integer CO_NUM;
-    String POST_NUM;
+    Integer POST_NUM;
     String EMAIL;
     String NICKNAME;
     String CONTENT;
@@ -25,7 +25,7 @@ public class CommentBean implements Serializable{
     public CommentBean() {
     }
 
-    public CommentBean(Integer CO_NUM, String POST_NUM, String EMAIL, String NICKNAME, String CONTENT, String TIME) {
+    public CommentBean(Integer CO_NUM, Integer POST_NUM, String EMAIL, String NICKNAME, String CONTENT, String TIME) {
         this.CO_NUM = CO_NUM;
         this.POST_NUM = POST_NUM;
         this.EMAIL = EMAIL;
@@ -42,11 +42,11 @@ public class CommentBean implements Serializable{
         this.CO_NUM = CO_NUM;
     }
 
-    public String getPOST_NUM() {
+    public Integer getPOST_NUM() {
         return this.POST_NUM;
     }
 
-    public void setPOST_NUM(String POST_NUM) {
+    public void setPOST_NUM(Integer POST_NUM) {
         this.POST_NUM = POST_NUM;
     }
 
@@ -87,7 +87,7 @@ public class CommentBean implements Serializable{
         return this;
     }
 
-    public CommentBean POST_NUM(String POST_NUM) {
+    public CommentBean POST_NUM(Integer POST_NUM) {
         setPOST_NUM(POST_NUM);
         return this;
     }
@@ -139,4 +139,5 @@ public class CommentBean implements Serializable{
             ", TIME='" + getTIME() + "'" +
             "}";
     }
+
 }
