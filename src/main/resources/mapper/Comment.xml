@@ -5,6 +5,9 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="Comment">
+	<select id="getComment" resultType="Map" parameterType="Map">
+	    select * from COMMENT where CO_NUM = #{CO_NUM};
+    </select>
 	<select id="getList" resultType="Map" parameterType="Map">
 	    select * from COMMENT where POST_NUM = #{POST_NUM};
     </select>
@@ -15,4 +18,9 @@
     <delete id="delete" parameterType="Map">
         delete from Comment where CO_NUM=#{CO_NUM};
     </delete>
+    <update id="update" parameterType="Map">
+        update COMMENT 
+        SET CONTENT = #{CONTENT}, TIME = NOW()
+        where CO_NUM=#{CO_NUM};
+    </update>
 </mapper>
