@@ -100,13 +100,13 @@ function checkComment() {
         alert("내용을 입력하세요")
         return false;
     } else {
-        updateComment();
+        insertComment();
         $("#content").val("");
         return true;
     }
 }
 
-function updateComment() {
+function insertComment() {
     var commentBean = $("#commentForm").serialize();
     // var commentBean = {
     //     email:$("#commentEmail").val(),
@@ -137,11 +137,10 @@ function deleteComment(form) {
             POST_NUM: POST_NUM,
             CATEGORY_NAME: CATEGORY_NAME,
         },
-    })
-        .done(function (fragment) {
-            $('#commentTable').replaceWith(fragment);
-            return true;
-        });
+    }).done(function (fragment) {
+        $('#commentTable').replaceWith(fragment);
+        return true;
+    });
 }
 
 
