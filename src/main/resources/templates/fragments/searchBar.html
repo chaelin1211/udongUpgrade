@@ -3,8 +3,13 @@
 <div class="col row my-3">
     <input type="hidden" name="CATEGORY_NAME" th:value="${paramMap.CATEGORY_NAME}">
     <input type="hidden" name="CATEGORY_NUM" th:value="${paramMap.CATEGORY_NUM}">
-    <input type="text" name="search" th:value="${paramMap.search}" class="form-control col">
-    <input type="submit" name="submit" value="검색" class="btn px-2 mx-2 col-2 btn-outline-dark">
-    <input type="submit" name="submit" th:if="${userInform.userEmail!=''}"value="글쓰기" th:formaction="@{/post}" class="btn px-2 col-2 btn-secondary">
+    <input type="text" name="search" th:value="${paramMap.search}" class="form-control col mr-1">
+    <input type="submit" name="submit" value="검색" class="btn col-2 mx-1 btn-outline-dark">
+
+    <input type="submit" th:if="${paramMap.CATEGORY_NUM < 3 && userInform.userEmail!=''}" name="submit" value="글쓰기"
+        th:formaction="@{/post}" class="btn col-2 mx-1 btn-secondary">
+    <input type="submit" th:if="${paramMap.CATEGORY_NUM >2 && userInform.userEmail!='' && userInform.userGrade == 1}"
+        name="submit" value="글쓰기" th:formaction="@{/post}" class="btn mx-1 col-1btn-secondary">
 </div>
+
 </html>
