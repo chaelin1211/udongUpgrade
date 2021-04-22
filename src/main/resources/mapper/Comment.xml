@@ -9,7 +9,10 @@
 	    select * from COMMENT where CO_NUM = #{CO_NUM};
     </select>
 	<select id="getList" resultType="Map" parameterType="Map">
-	    select * from COMMENT where POST_NUM = #{POST_NUM};
+	    select * 
+        from COMMENT 
+        where POST_NUM = #{POST_NUM}
+        order by TIME asc;
     </select>
     <insert id="insert" parameterType="Map">
         insert into COMMENT (EMAIL, POST_NUM, CONTENT, TIME)
