@@ -144,6 +144,47 @@ function deleteComment(form) {
 }
 
 
+function editFunction(form, event) {
+    event.preventDefault();
+    updateComment(form);
+    // var eventName = e.target.getAttribute('name');
+    // if (eventName == 'editRequest') {
+    //     editCommentButton(form);
+    //     return false;
+    // } else {
+    //     return true;
+    // }
+}
+
+// function editCommentButton(form) {
+//     form.editRequest.value = false;
+//     form.editRequest.value = true;
+//     form.CONTENT.readOnly = false;
+//     form.CONTENT.focus();
+// }
+
+function updateComment(form) {
+    // form.editComplete.style.display = "none";
+    // form.editRequest.style.display = "inline";
+    // form.CONTENT.readOnly = true;
+    var CO_NUM = form.CO_NUM.value;
+    var updateData = {
+        CO_NUM: CO_NUM,
+        EMAIL: form.EMAIL.value,
+        POST_NUM: form.POST_NUM.value,
+        CATEGORY_NAME: form.CATEGORY_NAME.value,
+        CONTENT: form.CONTENT.value
+    }
+
+    $.ajax({
+        url: "/view/"+CO_NUM,
+        type: "PUT",
+        data: updateData,
+    }).done(function (fragment) {
+        $('#commentTable').replaceWith(fragment);
+    });
+}
+
 // function checkAdmin(form) {
 //     var goodURL = "/admin/answer"  //이곳에 인증이 되었을때 이동할 페이지  입력
 //     alert("패스워드를 입력하셔야 합니다.")
