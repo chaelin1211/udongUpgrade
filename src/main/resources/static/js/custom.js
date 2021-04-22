@@ -91,7 +91,8 @@ function checkUser() {
     return true
 }
 
-function checkComment() {
+function checkComment(event) {
+    event.preventDefault();
     var result = checkUser();
     if (result == false) return false;
 
