@@ -36,7 +36,11 @@ public class CommentService{
     }
     public void delete(Object dataMap){
       String sqlMapid = "Comment.delete";
-      dao.getList(sqlMapid,dataMap);
+      dao.deleteObject(sqlMapid,dataMap);
+    }
+    public void update(Object dataMap){
+      String sqlMapid = "Comment.update";
+      dao.updateObject(sqlMapid,dataMap);
     }
     
 }
