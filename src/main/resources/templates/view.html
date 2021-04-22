@@ -47,51 +47,67 @@
                     <!-- 댓글 목록 -->
                     <div id="commentTable">
                         <div class="border-top p-2" th:each="comment:${commentList}">
-                            <form method="POST">
-                                <input type="hidden" id="commentNum" name="CommentNum" th:value="${comment.CO_NUM}">
+                            <!-- 출력 -->
+                            <div class="row px-3 justify-content-between">
                                 <div>
-                                    <input type="button" class="btn p-0 btn-md" name="commentID"
-                                        th:value="${comment.EMAIL}" />
+                                    <!-- Email -->
+                                    <input type="button" class="btn p-0 btn-md" th:value="${comment.EMAIL}" />
+                                    <!-- Time -->
                                     <small class="text-secondary align-bottom"
                                         th:text="${#strings.substring(comment.TIME,0,19)}"></small>
                                 </div>
-                                <div th:text="${comment.CONTENT}"></div>
-                                <div class="text-right" th:if="${comment.EMAIL==userInform.userEmail}">
-                                    <span><button type="submit" class="btn btn-outline-secondary btn-sm" name="submit"
-                                            value="update">수정</button></span>
-                                    <span><button type="submit" class="btn btn-outline-secondary btn-sm" name="submit"
-                                            value="delete">삭제</button></span>
+                                <!-- 댓글 삭제 버튼 -->
+                                <div class="deleteButton" th:if="${comment.EMAIL==userInform.userEmail}">
+                                    <form onclick="return deleteComment(this)">
+                                        <!-- hidden 영역 -->
+                                        <input type="hidden" name="CO_NUM" th:value="${comment.CO_NUM}">
+                                        <input type="hidden" name="EMAIL" th:value="${comment.EMAIL}">
+                                        <input type="hidden" name="POST_NUM" th:value="${comment.POST_NUM}">
+                                        <input type="hidden" name="userEmail" th:value="${userInform.userEmail}">
+                                        <input type="hidden" name="CATEGORY_NAME" th:value="${resultMap.CATEGORY_NAME}">
+                                        <!-- 삭제 -->
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18"
+                                            fill="currentColor" class="bi bi-x" viewBox="0 0 16 16">
+                                            <path
+                                                d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z" />
+                                        </svg>
+                                    </form>
                                 </div>
+                            </div>
+                            <form onsubmit="return editFunction(this, event)"
+                                onfocusout="return editFunction(this, event)">
+                                <!-- 댓글 내용 -->
+                                <div th:if="${comment.EMAIL==userInform.userEmail}">
+                                    <input type="text" class="commentContent col" name="CONTENT"
+                                        th:value="${comment.CONTENT}" />
+                                </div>
+                                <div th:if="${comment.EMAIL!=userInform.userEmail}">
+                                    <input type="text" class="commentReadOnly col" name="CONTENT" readonly
+                                        th:value="${comment.CONTENT}" />
+                                </div>
+                                <!-- hidden 영역 -->
+                                <input type="hidden" name="CO_NUM" th:value="${comment.CO_NUM}">
+                                <input type="hidden" name="EMAIL" th:value="${comment.EMAIL}">
+                                <input type="hidden" name="POST_NUM" th:value="${comment.POST_NUM}">
+                                <input type="hidden" name="userEmail" th:value="${userInform.userEmail}">
+                                <input type="hidden" name="CATEGORY_NAME" th:value="${resultMap.CATEGORY_NAME}">
                             </form>
                         </div>
                     </div>
-                    <!-- <div class="form-row">
-                        <table class="table" id="commentTable">
-                            <tr>
-                                <th class="col-2">작성자</th>
-                                <th class="col-4">내용</th>
-                                <th class="col-3">시간</th>
-                                <th class="col-1"></th>
-                                <th class="col-1"></th>
-                            </tr>
-                            <tr>
-
-                            </tr>
-                        </table>
-                    </div> -->
 
                     <!-- 작성란&버튼 -->
                     <div class="col justify-content-center my-1 mx-0">
-                        <form method="POST" id="commentForm" class="row justify-content-center">
+                        <form method="POST" onsubmit="return checkComment(event)" id="commentForm"
+                            class="row justify-content-center">
                             <!-- hidden 영역 -->
                             <input type="hidden" name="EMAIL" th:value="${userInform.userEmail}">
                             <input type="hidden" name="POST_NUM" th:value="${resultMap.POST_NUM}">
                             <input type="hidden" name="CATEGORY_NAME" th:value="${resultMap.CATEGORY_NAME}">
 
                             <!-- 입력 영역 -->
-                            <input type="text" name="CONTENT" class="col form-control">
-                            <input type="button" onclick="return checkComment(this)"
-                                class="btn btn-secondary p-1 ml-2 col-2" id="commentWriteButton" value="댓글작성">
+                            <input type="text" id="content" name="CONTENT" class="col form-control">
+                            <input type="button" onclick="return checkComment(event)"
+                                class="btn btn-secondary p-1 ml-2 col-2" value="댓글작성">
                         </form>
                     </div>
                 </div>
@@ -122,6 +138,5 @@
                 </div>
             </div>
         </div>
-</div>
-</th:block>
+    </th:block>
 </div>
