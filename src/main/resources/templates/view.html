@@ -89,8 +89,8 @@
                                 <!-- 현재 사용자 = 댓글 작성자 -->
                                 <div th:if="${comment.EMAIL==userInform.userEmail}">
                                     <!-- 댓글 출력 -->
-                                    <p class="comment col" th:text="${comment.CONTENT}">
-                                    </p>
+                                    <pre class="comment col" th:text="${comment.CONTENT}">
+                                    </pre>
                                     <!-- 댓글 수정을 위한 필드 -->
                                     <textarea style="display: none" class="editCommentContent col" name="CONTENT"
                                         th:text="${comment.CONTENT}">
@@ -98,7 +98,7 @@
                                 </div>
                                 <!-- 현재 사용자 =/= 댓글 작성자 -->
                                 <div th:if="${comment.EMAIL!=userInform.userEmail}">
-                                    <p class="comment col" th:text="${comment.CONTENT}"></p>
+                                    <pre class="comment col" th:text="${comment.CONTENT}"></pre>
                                 </div>
                                 <!-- hidden 영역 -->
                                 <input type="hidden" name="CO_NUM" th:value="${comment.CO_NUM}">
@@ -106,6 +106,7 @@
                                 <input type="hidden" name="POST_NUM" th:value="${comment.POST_NUM}">
                                 <input type="hidden" name="userEmail" th:value="${userInform.userEmail}">
                                 <input type="hidden" name="CATEGORY_NAME" th:value="${resultMap.CATEGORY_NAME}">
+                                <input type="hidden" name="ORIGIN_CONTENT" th:value="${comment.CONTENT}">
                                 <div class="text-right" th:if="${comment.EMAIL==userInform.userEmail}">
                                     <input type="submit" value="수정" name="editButton"
                                         class="btn btn-sm btn-outline-secondary editButton" />
