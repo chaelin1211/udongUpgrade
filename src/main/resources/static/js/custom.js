@@ -147,14 +147,27 @@ function deleteComment(form) {
 
 function editFunction(form, event) {
     event.preventDefault();
-    updateComment(form);
-    // var eventName = e.target.getAttribute('name');
-    // if (eventName == 'editRequest') {
-    //     editCommentButton(form);
-    //     return false;
-    // } else {
-    //     return true;
-    // }
+
+    var content = form.CONTENT;
+    var originContent = form.ORIGIN_CONTENT;
+    var eventButton = event.submitter;
+    var deleteButton = form.cancelButton;
+    var editButton = form.editButton;
+
+    if (eventButton.value == "수정") {
+        eventButton.value = "확인";
+        deleteButton.style.display = "inline";
+        content.style.display = "inline";
+    }
+    else {
+        editButton.value = "수정";
+        deleteButton.style.display = "none";
+        content.style.display = "none";
+        if (content.value != "" && content.value != originContent.value) {
+            updateComment(form);
+        }
+    }
+    content.value = originContent.value;
 }
 
 // function editCommentButton(form) {
@@ -178,7 +191,7 @@ function updateComment(form) {
     }
 
     $.ajax({
-        url: "/view/"+CO_NUM,
+        url: "/view/" + CO_NUM,
         type: "PUT",
         data: updateData,
     }).done(function (fragment) {
