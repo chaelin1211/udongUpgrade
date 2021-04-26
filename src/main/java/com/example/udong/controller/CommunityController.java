@@ -6,7 +6,9 @@ import java.util.Map;
 import com.example.udong.service.BoardService;
 import com.example.udong.service.CategoryService;
 import com.example.udong.service.RecommendService;
+import com.example.udong.util.BoardBean;
 import com.example.udong.util.CommentBean;
+import com.example.udong.util.RecommendBean;
 import com.example.udong.service.CommentService;
 
 import org.apache.tomcat.util.digester.RuleSet;
@@ -25,13 +27,13 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class CommunityController {
     @Autowired
-    private BoardService boardservice;
+    private BoardService boardService;
 
     @Autowired
-    private RecommendService recommendservice;
+    private RecommendService recommendService;
 
     @Autowired
-    private CommentService commentservice;
+    private CommentService commentService;
 
     @Autowired
     private CategoryService categoryService;
@@ -63,22 +65,22 @@ public class CommunityController {
         // 페이지 공통 로직
         // 전체 목록 불러오기
         if (!paramMap.keySet().contains("submit")) {
-            resultList = boardservice.getPost(paramMap);
+            resultList = boardService.getPost(paramMap);
         } else {
             Object submitValue = paramMap.get("submit");
             // 검색 기능
             if (submitValue.equals("검색")) {
-                resultList = boardservice.getSearchPost(paramMap);
+                resultList = boardService.getSearchPost(paramMap);
             }
             // 삭제 기능
             else if (submitValue.equals("삭제")) {
-                boardservice.deletePost(paramMap);
-                resultList = boardservice.getPost(paramMap);
+                boardService.deletePost(paramMap);
+                resultList = boardService.getPost(paramMap);
             }
             // 글 작성
             else if (submitValue.equals("글작성")) {
-                boardservice.insertPost(paramMap);
-                resultList = boardservice.getPost(paramMap);
+                boardService.insertPost(paramMap);
+                resultList = boardService.getPost(paramMap);
             }
         }
         // divided depending on action value
@@ -104,10 +106,10 @@ public class CommunityController {
         result.setCONTENT(paramMap.get("CONTENT").toString());
 
         // DB 댓글 추가
-        commentservice.insert(result);
+        commentService.insert(result);
 
         // 댓글 리스트 추가
-        model.addAttribute("commentList", commentservice.getList(result));
+        model.addAttribute("commentList", commentService.getList(result));
 
         // 수정&삭제 버튼 게시를 위한 유저 정보 전달
         Map<String, Object> userInform = new HashMap<String, Object>();
@@ -131,10 +133,10 @@ public class CommunityController {
         result.setPOST_NUM(Integer.parseInt(paramMap.get("POST_NUM").toString()));
 
         // DB 댓글 삭제
-        commentservice.delete(result);
+        commentService.delete(result);
 
         // 댓글 리스트 추가
-        model.addAttribute("commentList", commentservice.getList(result));
+        model.addAttribute("commentList", commentService.getList(result));
 
         // 수정&삭제 버튼 게시를 위한 유저 정보 전달
         Map<String, Object> userInform = new HashMap<String, Object>();
@@ -158,10 +160,10 @@ public class CommunityController {
         result.setCONTENT(paramMap.get("CONTENT").toString());
 
         // DB 댓글 수정
-        commentservice.update(result);
+        commentService.update(result);
 
         // 댓글 리스트 추가
-        model.addAttribute("commentList", commentservice.getList(result));
+        model.addAttribute("commentList", commentService.getList(result));
 
         // 수정&삭제 버튼 게시를 위한 유저 정보 전달
         Map<String, Object> userInform = new HashMap<String, Object>();
@@ -177,45 +179,27 @@ public class CommunityController {
 
     @RequestMapping(value = "/view", method = { RequestMethod.GET })
     public ModelAndView viewActionMethod(@RequestParam Map<String, Object> paramMap, ModelAndView modelAndView) {
-
         Map<String, Object> resultMap = new HashMap<String, Object>();
-
         Map<String, Object> userInform = new HashMap<String, Object>();
+
         if (paramMap.get("userEmail") == null)
             userInform.put("userEmail", "");
-        else
+        else {
             userInform.put("userEmail", paramMap.get("userEmail"));
+            paramMap.put("EMAIL", paramMap.get("userEmail"));
+        }
+        resultMap = (Map) boardService.getPostOne(paramMap);
+        resultMap.put("CATEGORY_NAME", paramMap.get("CATEGORY_NAME"));
 
-        paramMap.put("POST_NUM", paramMap.get("POST_NUM"));
-        if (!paramMap.keySet().contains("submit")) {
-            resultMap = (Map) boardservice.getPostOne(paramMap);
-            resultMap.put("CATEGORY_NAME", paramMap.get("CATEGORY_NAME"));
+        if (paramMap.get("EMAIL") != null) {
+            resultMap.put("isRecommend", recommendService.isRecommend(paramMap));
         }
 
-        // else {
-        // Object submitValue = paramMap.get("submit");
-        // if (submitValue.equals("댓글작성")) { // 댓글작성시
-        // commentservice.insert(paramMap);
-        // } else if (submitValue.equals("추천")) {
-        // Map x = (Map) recommendservice.isRecommend(paramMap);
-        // if (x == null) {
-        // recommendservice.addRecommend(paramMap);
-        // Integer y = recommendservice.countRecommend(paramMap);
-        // paramMap.put("RECOMMEND", y);
-        // boardservice.addRecommend(paramMap);
-        // } else {
-        // recommendservice.subRecommend(paramMap);
-        // Integer y = recommendservice.countRecommend(paramMap);
-        // paramMap.put("RECOMMEND", y);
-        // boardservice.subRecommend(paramMap);
-        // }
-        // } else if (submitValue.equals("delete")) {
-        // commentservice.delete(paramMap);
-        // }
-        // resultMap = (Map) boardservice.getPostOne(paramMap);
-        // }
         // 댓글 목록 불러오기
-        Object CommentList = commentservice.getList(paramMap);
+        Object CommentList = commentService.getList(paramMap);
+
+        // 추천 수 받아오기
+        resultMap.put("recommend",getNumberOfRecommend(paramMap));
 
         modelAndView.setViewName("view");
         modelAndView.addObject("commentList", CommentList);
@@ -223,5 +207,52 @@ public class CommunityController {
         modelAndView.addObject("resultMap", resultMap);
         modelAndView.addObject("userInform", userInform);
         return modelAndView;
+    }
+
+    @RequestMapping(value = "/view/recommend/{action}", method = { RequestMethod.PUT, RequestMethod.DELETE })
+    public String recommendUpdateMethod(Model model, @PathVariable String action,
+            @RequestParam Map<String, Object> paramMap) {
+
+        RecommendBean result = new RecommendBean();
+        result.setEMAIL(paramMap.get("EMAIL").toString());
+        result.setPOST_NUM(Integer.parseInt(paramMap.get("POST_NUM").toString()));
+
+        Map<String, Object> resultMap = new HashMap<String, Object>();
+        // 추천 추가
+        if (action.equals("PUT")) {
+            Integer resultRow = (Integer) recommendService.addRecommend(result);
+            if(resultRow == 1){
+                int nowRecommend = Integer.parseInt(paramMap.get("RECOMMEND").toString());
+                resultMap.put("recommend", nowRecommend+1);
+                resultMap.put("isRecommend", 1);
+            }
+        }
+        // 추천 삭제
+        else if (action.equals("DELETE")) {
+            Integer resultRow = (Integer) recommendService.deleteRecommend(result);
+            if(resultRow == 1){
+                int nowRecommend = Integer.parseInt(paramMap.get("RECOMMEND").toString());
+                resultMap.put("recommend", nowRecommend-1);
+                resultMap.put("isRecommend", 0);
+            }
+        }
+
+        // 수정&삭제 버튼 게시를 위한 유저 정보 전달
+        Map<String, Object> userInform = new HashMap<String, Object>();
+        userInform.put("userEmail", paramMap.get("EMAIL"));
+        model.addAttribute("userInform", userInform);
+
+        // 화면 일반화를 위한 정보 전달
+        resultMap.put("POST_NUM", paramMap.get("POST_NUM"));
+        model.addAttribute("resultMap", resultMap);
+        return "/view :: #recommendField";
+    }
+
+    private int getNumberOfRecommend(Map<String, Object> paramMap){
+        Integer num = recommendService.countRecommend(paramMap);
+        if(num == null){
+            return 0;
+        }
+        return num;
     }
 }
