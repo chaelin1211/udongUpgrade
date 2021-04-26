@@ -17,13 +17,15 @@ public class RecommendService {
     Object resultObject = dao.getObject(sqlMapid, dataMap);
     return resultObject;
   }
-  public void subRecommend(Object dataMap){
+  public Object deleteRecommend(Object dataMap){
     String sqlMapid = "Recommend.deleteRecommend";
-    dao.updateObject(sqlMapid, dataMap);
+    Object resultObject = dao.deleteObject(sqlMapid, dataMap);
+    return resultObject;
   }
-  public void addRecommend(Object dataMap){
+  public Object addRecommend(Object dataMap){
     String sqlMapid = "Recommend.insertRecommend";
-    dao.updateObject(sqlMapid, dataMap);
+    Object resultObject = dao.updateObject(sqlMapid, dataMap);
+    return resultObject;
   }
   public int countRecommend(Object dataMap){
     String sqlMapid = "Recommend.countRecommend";
