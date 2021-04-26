@@ -14,22 +14,22 @@ public class RecommendBean implements Serializable{
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue
-    String POST_NUM;
+    Integer POST_NUM;
     String EMAIL;
 
     public RecommendBean() {
     }
 
-    public RecommendBean(String POST_NUM, String EMAIL) {
+    public RecommendBean(Integer POST_NUM, String EMAIL) {
         this.POST_NUM = POST_NUM;
         this.EMAIL = EMAIL;
     }
 
-    public String getPOST_NUM() {
+    public Integer getPOST_NUM() {
         return this.POST_NUM;
     }
 
-    public void setPOST_NUM(String POST_NUM) {
+    public void setPOST_NUM(Integer POST_NUM) {
         this.POST_NUM = POST_NUM;
     }
 
@@ -41,7 +41,7 @@ public class RecommendBean implements Serializable{
         this.EMAIL = EMAIL;
     }
 
-    public RecommendBean POST_NUM(String POST_NUM) {
+    public RecommendBean POST_NUM(Integer POST_NUM) {
         setPOST_NUM(POST_NUM);
         return this;
     }
@@ -74,6 +74,5 @@ public class RecommendBean implements Serializable{
             ", EMAIL='" + getEMAIL() + "'" +
             "}";
     }
-    
 
 }
