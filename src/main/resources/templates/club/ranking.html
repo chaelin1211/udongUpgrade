@@ -22,7 +22,7 @@
                             <th>멤버 수</th>
                         </tr>
                     <tbody>
-                        <tr th:each="resultData: ${resultMap}" th:if="${resultDataStat.index < 10}">
+                        <tr th:each="resultData: ${resultList}" th:if="${resultDataStat.index < 10}">
                             <td th:text=${resultDataStat.index+1}></td>
                             <td th:text=${resultData.CLUB_NAME}></td>
                             <!-- <td th:text=${resultData.AREA_NAME}></td> -->
