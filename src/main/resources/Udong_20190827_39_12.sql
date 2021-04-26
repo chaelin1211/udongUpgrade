@@ -121,14 +121,13 @@ ALTER TABLE CATEGORY COMMENT '게시글 카테고리';
 -- BOARD Table Create SQL
 CREATE TABLE BOARD
 (
-    `POST_NUM`       INT            NOT NULL     AUTO_INCREMENT  COMMENT '글번호', 
+    `POST_NUM`      INT            NOT NULL     AUTO_INCREMENT  COMMENT '글번호', 
     `CATEGORY_NUM`  INT            NOT NULL     COMMENT '카테고리', 
     `TIME`          TIMESTAMP      NOT NULL     COMMENT '작성일자', 
     `TITLE`         VARCHAR(45)    NOT NULL     COMMENT '제목', 
     `CONTENT`       VARCHAR        NOT NULL     COMMENT '내용', 
     `NICKNAME`      VARCHAR(45)                 COMMENT '작성자 별명',
     `EMAIL`         VARCHAR(45)    NOT NULL     COMMENT '작성자 이메일',
-    `RECOMMEND`     INT            NOT NULL     DEFAULT 0       COMMENT '추천' 
     PRIMARY KEY (POST_NUM)
 );
 
