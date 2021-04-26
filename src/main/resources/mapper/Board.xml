@@ -6,9 +6,16 @@
 
 <mapper namespace="Board">
 	<select id="post" resultType="Map" parameterType="Map">
-	    select * from BOARD
-		where CATEGORY_NUM = #{CATEGORY_NUM}
-		Order by TIME;
+		SELECT BOARD.*, NVL(RECOMMEND, 0) as RECOMMEND
+		FROM BOARD
+		LEFT OUTER JOIN(
+			SELECT POST_NUM, COUNT(*) AS RECOMMEND
+			FROM RECOMMEND
+			GROUP BY POST_NUM
+		)  RECOMMEND
+		ON BOARD.POST_NUM = RECOMMEND.POST_NUM
+		WHERE CATEGORY_NUM = #{CATEGORY_NUM}
+		ORDER BY TIME;
     </select>
 
 	<select id="postOne" resultType="Map" parameterType="Map">
@@ -28,17 +35,17 @@
 
 	<insert id="insertPost" parameterType="Map">
 		insert into BOARD (CATEGORY_NUM, TIME, TITLE, CONTENT, EMAIL, NICKNAME)
-		values(#{CATEGORY_NUM}, NOW(), #{TITLE}, #{CONTENT}, #{EMAIL}, #{NICKNAME});
+		values(#{CATEGORY_NUM}, NOW(), #{TITLE}, #{CONTENT}, #{userEmail}, #{NICKNAME});
 	</insert>
 
 	<!-- 추천을 했을 때 추천 수 추가 및 감소 -->
-	<update id="addRecommend" parameterType="Map">
+	<!-- <update id="addRecommend" parameterType="Map">
 		update BOARD SET RECOMMEND = (RECOMMEND + 1) where POSTNUM=#{POSTNUM};
 	</update>
 
 	<update id="subRecommend" parameterType="Map">
 		update BOARD SET RECOMMEND = (RECOMMEND - 1) where POSTNUM=#{POSTNUM};
-	</update>
+	</update> -->
 
 	<delete id="deletePost" parameterType="Map">
 		delete from BOARD
