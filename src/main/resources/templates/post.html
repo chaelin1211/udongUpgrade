@@ -1,24 +1,23 @@
 <div xmlns:th="http://www.thymeleaf.org" layout:decorator="layout/defaultLayout">
     <th:block layout:fragment="layout.content">
         <!--글 쓰기 페이지-->
-        <h2></h2>
+        <h1 class="text-uppercase" th:text="${paramMap.CATEGORY_NAME + ' Board'}"></h1>
         <div>
             <input type="text" class="form-control" name="TITLE" placeholder="제목을 입력하세요">
-            <textarea class="board col border rounded mt-4 p-4" rows="10" name="CONTENT">
-        </textarea>
-        </div>
-        <div class="row m-3 justify-content-end">
-            <div th:if="${paramMap.CATEGORY_NUM=='1'||paramMap.CATEGORY_NUM=='2'}">
-                <input th:formaction="${'/community/'+paramMap.CATEGORY_NAME}" type="submit"
-                    class="btn m-2 btn-outline-secondary" name="submit" value="글작성">
-                <input th:formaction="${'/community/'+paramMap.CATEGORY_NAME}" type="submit"
-                    class="btn btn-secondary m-2" value="목록으로">
-            </div>
-            <div th:if="${paramMap.CATEGORY_NUM=='3'||paramMap.CATEGORY_NUM=='4'}">
-                <input th:formaction="${'/news/'+paramMap.CATEGORY_NAME}" type="submit"
-                    class="btn m-2 btn-outline-secondary" name="submit" value="글작성">
-                <input th:formaction="${'/news/'+paramMap.CATEGORY_NAME}" type="submit"
-                    class="btn btn-secondary m-2" value="목록으로">
+            <textarea class="board" rows="10" name="CONTENT"></textarea>
+            <div class="row my-3 justify-content-end">
+                <div th:if="${paramMap.CATEGORY_NUM=='1'||paramMap.CATEGORY_NUM=='2'}">
+                    <input th:formaction="${'/community/'+paramMap.CATEGORY_NAME}" type="submit"
+                        class="btn m-2 btn-outline-secondary" name="submit" value="글작성">
+                    <input th:formaction="${'/community/'+paramMap.CATEGORY_NAME}" type="submit"
+                        class="btn btn-secondary m-2" value="목록으로">
+                </div>
+                <div th:if="${paramMap.CATEGORY_NUM=='3'||paramMap.CATEGORY_NUM=='4'}">
+                    <input th:formaction="${'/news/'+paramMap.CATEGORY_NAME}" type="submit"
+                        class="btn m-2 btn-outline-secondary" name="submit" value="글작성">
+                    <input th:formaction="${'/news/'+paramMap.CATEGORY_NAME}" type="submit"
+                        class="btn btn-secondary m-2" value="목록으로">
+                </div>
             </div>
         </div>
     </th:block>
