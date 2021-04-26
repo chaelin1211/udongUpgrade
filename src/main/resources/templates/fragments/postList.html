@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<!--리스트-->   
+<!--리스트-->
 <table class="table table-hover tb text-center col">
     <thead>
         <tr>
@@ -9,32 +9,37 @@
             <th>제목</th>
             <th>작성시간</th>
             <th>추천</th>
-        </tr> 
+        </tr>
     </thead>
     <tbody>
         <tr th:each="post:${resultList}">
-            <!-- post number -->
-            <td class="col-2">
-                <input type="submit" class="btn" formmethod="GET" th:formaction="@{'/view'}" name="POST_NUM" th:value="${post.POST_NUM}">
-            </td>
-            <!-- writer email -->
-            <td>
-                <input type="submit" class="btn" readonly name="EMAIL" th:value="${post.EMAIL}">
-                <!-- <a th:href="" name="EMAIL" th:text="${post.EMAIL}"></a> -->
-            </td>
-            <!-- post title -->
-            <td class=" text-left">
-                <input type="submit" class="btn" formmethod="GET" th:formaction="@{'/view'}" name="TITLE" th:value="${post.TITLE}">
-            </td>
-            <!-- time -->
-            <td class="col-2">
-                <small th:text="${#strings.substring(post.TIME,0,16)}"></small>
-            </td>
-            <!-- recommend -->
-            <td class="" th:text="${post.RECOMMEND}"></td>
-            <!-- hidden -->
-            <input type="hidden" name="CATEGORY_NAME" th:value="${paramMap.CATEGORY_NAME}">
-            <input type="hidden" name="POST_NUM" th:value="${post.POST_NUM}">
+            <form>
+                <!-- post number -->
+                <td class="col-2">
+                    <input type="submit" class="btn" formmethod="GET" th:formaction="@{'/view'}" name="POST_NUM"
+                        th:value="${post.POST_NUM}">
+                </td>
+                <!-- writer email -->
+                <td>
+                    <input type="submit" class="btn" readonly name="EMAIL" th:value="${post.EMAIL}">
+                    <!-- <a th:href="" name="EMAIL" th:text="${post.EMAIL}"></a> -->
+                </td>
+                <!-- post title -->
+                <td class=" text-left">
+                    <input type="submit" class="btn" formmethod="GET" th:formaction="@{'/view'}" name="TITLE"
+                        th:value="${post.TITLE}">
+                </td>
+                <!-- time -->
+                <td class="col-2">
+                    <small th:text="${#strings.substring(post.TIME,0,16)}"></small>
+                </td>
+                <!-- recommend -->
+                <td class="" th:text="${post.RECOMMEND}"></td>
+                <!-- hidden -->
+                <input type="hidden" name="CATEGORY_NAME" th:value="${paramMap.CATEGORY_NAME}">
+                <input type="hidden" name="POST_NUM" th:value="${post.POST_NUM}">
+                <input type="hidden" name="userEmail" th:value="${userInform.userEmail}">
+            </form>
         </tr>
     </tbody>
 </table>
