@@ -16,25 +16,22 @@ public class BoardBean implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Integer POST_NUM;
-    int CATEGORY_NUM;
+    Integer CATEGORY_NUM;
     String TIME;
     String TITLE;
     String CONTENT;
-    Integer RECOMMEND;
     String EMAIL;
     String NICKNAME;
 
     public BoardBean() {
-        RECOMMEND=0;
     }
 
-    public BoardBean(Integer POST_NUM, int CATEGORY_NUM, String TIME, String TITLE, String CONTENT, Integer RECOMMEND, String EMAIL, String NICKNAME) {
+    public BoardBean(Integer POST_NUM, Integer CATEGORY_NUM, String TIME, String TITLE, String CONTENT, String EMAIL, String NICKNAME) {
         this.POST_NUM = POST_NUM;
         this.CATEGORY_NUM = CATEGORY_NUM;
         this.TIME = TIME;
         this.TITLE = TITLE;
         this.CONTENT = CONTENT;
-        this.RECOMMEND = RECOMMEND;
         this.EMAIL = EMAIL;
         this.NICKNAME = NICKNAME;
     }
@@ -47,11 +44,11 @@ public class BoardBean implements Serializable{
         this.POST_NUM = POST_NUM;
     }
 
-    public int getCATEGORY_NUM() {
+    public Integer getCATEGORY_NUM() {
         return this.CATEGORY_NUM;
     }
 
-    public void setCATEGORY_NUM(int CATEGORY_NUM) {
+    public void setCATEGORY_NUM(Integer CATEGORY_NUM) {
         this.CATEGORY_NUM = CATEGORY_NUM;
     }
 
@@ -79,14 +76,6 @@ public class BoardBean implements Serializable{
         this.CONTENT = CONTENT;
     }
 
-    public Integer getRECOMMEND() {
-        return this.RECOMMEND;
-    }
-
-    public void setRECOMMEND(Integer RECOMMEND) {
-        this.RECOMMEND = RECOMMEND;
-    }
-
     public String getEMAIL() {
         return this.EMAIL;
     }
@@ -108,7 +97,7 @@ public class BoardBean implements Serializable{
         return this;
     }
 
-    public BoardBean CATEGORY_NUM(int CATEGORY_NUM) {
+    public BoardBean CATEGORY_NUM(Integer CATEGORY_NUM) {
         setCATEGORY_NUM(CATEGORY_NUM);
         return this;
     }
@@ -125,11 +114,6 @@ public class BoardBean implements Serializable{
 
     public BoardBean CONTENT(String CONTENT) {
         setCONTENT(CONTENT);
-        return this;
-    }
-
-    public BoardBean RECOMMEND(Integer RECOMMEND) {
-        setRECOMMEND(RECOMMEND);
         return this;
     }
 
@@ -151,12 +135,12 @@ public class BoardBean implements Serializable{
             return false;
         }
         BoardBean boardBean = (BoardBean) o;
-        return Objects.equals(POST_NUM, boardBean.POST_NUM) && CATEGORY_NUM == boardBean.CATEGORY_NUM && Objects.equals(TIME, boardBean.TIME) && Objects.equals(TITLE, boardBean.TITLE) && Objects.equals(CONTENT, boardBean.CONTENT) && Objects.equals(RECOMMEND, boardBean.RECOMMEND) && Objects.equals(EMAIL, boardBean.EMAIL) && Objects.equals(NICKNAME, boardBean.NICKNAME);
+        return Objects.equals(POST_NUM, boardBean.POST_NUM) && Objects.equals(CATEGORY_NUM, boardBean.CATEGORY_NUM) && Objects.equals(TIME, boardBean.TIME) && Objects.equals(TITLE, boardBean.TITLE) && Objects.equals(CONTENT, boardBean.CONTENT) && Objects.equals(EMAIL, boardBean.EMAIL) && Objects.equals(NICKNAME, boardBean.NICKNAME);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(POST_NUM, CATEGORY_NUM, TIME, TITLE, CONTENT, RECOMMEND, EMAIL, NICKNAME);
+        return Objects.hash(POST_NUM, CATEGORY_NUM, TIME, TITLE, CONTENT, EMAIL, NICKNAME);
     }
 
     @Override
@@ -167,7 +151,6 @@ public class BoardBean implements Serializable{
             ", TIME='" + getTIME() + "'" +
             ", TITLE='" + getTITLE() + "'" +
             ", CONTENT='" + getCONTENT() + "'" +
-            ", RECOMMEND='" + getRECOMMEND() + "'" +
             ", EMAIL='" + getEMAIL() + "'" +
             ", NICKNAME='" + getNICKNAME() + "'" +
             "}";
