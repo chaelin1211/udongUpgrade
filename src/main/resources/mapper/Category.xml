@@ -9,6 +9,12 @@
 	    select * from CATEGORY;
     </select>
 
+	<select id="getCategoryName" resultType="Map" parameterType="Map">
+	    select CATEGORY_NAME 
+		from CATEGORY
+		where CATEGORY_NUM = #{CATEGORY_NUM};
+    </select>
+
 	<select id="getCategoryNum" resultType="Map" parameterType="Map">
 	    select CATEGORY_NUM 
 		from CATEGORY
