@@ -128,17 +128,15 @@
 
                     <!-- 작성란&버튼 -->
                     <div class="col justify-content-center my-1 mx-0">
-                        <form method="POST" onsubmit="return checkComment(event)" id="commentForm"
-                            class="row justify-content-center">
+                        <form method="POST" onsubmit="checkComment(event, this)" class="row justify-content-center">
                             <!-- hidden 영역 -->
                             <input type="hidden" name="EMAIL" th:value="${userInform.userEmail}">
                             <input type="hidden" name="POST_NUM" th:value="${resultMap.POST_NUM}">
                             <input type="hidden" name="CATEGORY_NAME" th:value="${resultMap.CATEGORY_NAME}">
 
                             <!-- 입력 영역 -->
-                            <input type="text" id="content" name="CONTENT" class="col form-control">
-                            <input type="button" onclick="return checkComment(event)"
-                                class="btn btn-secondary p-1 ml-2 col-2" value="댓글작성">
+                            <input type="text" name="CONTENT" class="col form-control">
+                            <input type="submit" class="btn btn-secondary p-1 ml-2 col-2" value="댓글작성">
                         </form>
                     </div>
                 </div>

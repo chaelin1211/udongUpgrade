@@ -82,8 +82,7 @@ function check(form) {
 }
 
 
-function checkUser() {
-    var userEmail = $("#email").val();
+function checkUser(userEmail) {
     if (userEmail == "") {
         alert("로그인이 필요합니다.")
         return false

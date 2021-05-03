@@ -1,28 +1,39 @@
 // 댓글 체크
 // 댓글 내용 체크 + 로그인 확인
-function checkComment(event) {
+function checkComment(event, form) {
     event.preventDefault();
-    var result = checkUser();
+
+    var content = form.CONTENT;
+    var email = form.EMAIL;
+
+    var result = checkUser(email.value);
     if (result == false) return false;
 
-    var content = $("#content").val();
-    if (content == "") {
+    if (content.value == "") {
         alert("내용을 입력하세요")
         return false;
     } else {
-        insertComment();
-        $("#content").val("");
+        insertComment(form);
+        form
         return true;
     }
 }
 
 // 댓글 삽입
-function insertComment() {
-    var commentBean = $("#commentForm").serialize();
+function insertComment(form) {
+    var EMAIL = form.EMAIL.value;
+    var CONTENT = form.CONTENT.value;
+    var POST_NUM = form.POST_NUM.value;
+    // var CATEGORY_NAME = form.CATEGORY_NAME.value;
     $.ajax({
         url: "/view",
         type: "POST",
-        data: commentBean,
+        data: {
+            EMAIL: EMAIL,
+            CONTENT: CONTENT,
+            POST_NUM: POST_NUM,
+            // CATEGORY_NAME: CATEGORY_NAME,
+        },
     })
         .done(function (fragment) {
             $('#commentTable').replaceWith(fragment);
@@ -95,3 +106,4 @@ function updateComment(form) {
         $('#commentTable').replaceWith(fragment);
     });
 }
+
