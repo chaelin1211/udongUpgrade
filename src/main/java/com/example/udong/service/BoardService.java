@@ -14,6 +14,11 @@ public class BoardService{
     
     @Autowired
     private CommonDao dao;
+    public Object getPostList(){
+        String sqlMapid = "Board.communityPost";
+        Object resultObject = dao.getAll(sqlMapid);
+        return resultObject;
+    }
 
     public Object getPost(Object dataMap){
         String sqlMapid = "Board.post";

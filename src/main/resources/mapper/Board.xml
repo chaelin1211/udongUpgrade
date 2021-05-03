@@ -5,6 +5,19 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="Board">
+	<select id="communityPost" resultType="Map" parameterType="Map">
+		SELECT TOP 5 BOARD.*, NVL(RECOMMEND, 0) as RECOMMEND
+		FROM BOARD
+		LEFT OUTER JOIN(
+			SELECT POST_NUM, COUNT(*) AS RECOMMEND
+			FROM RECOMMEND
+			GROUP BY POST_NUM
+		)  RECOMMEND
+		ON BOARD.POST_NUM = RECOMMEND.POST_NUM
+		WHERE CATEGORY_NUM IN (1, 2)
+		ORDER BY TIME DESC;
+    </select>
+
 	<select id="post" resultType="Map" parameterType="Map">
 		SELECT BOARD.*, NVL(RECOMMEND, 0) as RECOMMEND
 		FROM BOARD
@@ -15,7 +28,7 @@
 		)  RECOMMEND
 		ON BOARD.POST_NUM = RECOMMEND.POST_NUM
 		WHERE CATEGORY_NUM = #{CATEGORY_NUM}
-		ORDER BY TIME;
+		ORDER BY TIME DESC;
     </select>
 
 	<select id="postOne" resultType="Map" parameterType="Map">
