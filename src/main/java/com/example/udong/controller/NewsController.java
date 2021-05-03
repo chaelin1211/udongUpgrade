@@ -5,6 +5,7 @@ import java.util.Map;
 
 import com.example.udong.service.BoardService;
 import com.example.udong.service.CategoryService;
+import com.example.udong.service.MemberService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,6 +19,9 @@ import org.springframework.web.servlet.ModelAndView;
 public class NewsController {
     @Autowired
     BoardService boardservice;
+
+    @Autowired
+    MemberService memberService;
     
     @Autowired
     CategoryService categoryService;
@@ -39,11 +43,12 @@ public class NewsController {
         // set userInform
         Map<String, Object> userInform = new HashMap<String, Object>();
 
-        if (paramMap.get("userEmail") == null)
+        if (paramMap.get("userEmail") == "" || paramMap.get("userEmail") == null)
             userInform.put("userEmail", "");
-        else
+        else{
             userInform.put("userEmail", paramMap.get("userEmail"));
-
+            userInform.put("userGrade", ((Map<String, Object>) memberService.getMember(userInform)).get("GRADE"));
+        }
         paramMap.put("search", "");
 
         
