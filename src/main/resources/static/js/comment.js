@@ -14,7 +14,7 @@ function checkComment(event, form) {
         return false;
     } else {
         insertComment(form);
-        form
+        content.value="";
         return true;
     }
 }
