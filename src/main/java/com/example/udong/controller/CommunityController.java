@@ -189,7 +189,13 @@ public class CommunityController {
             paramMap.put("EMAIL", paramMap.get("userEmail"));
         }
         resultMap = (Map) boardService.getPostOne(paramMap);
-        resultMap.put("CATEGORY_NAME", paramMap.get("CATEGORY_NAME"));
+        if (paramMap.get("CATEGORY_NAME") == null) {
+            // get Category Name
+            resultMap.put("CATEGORY_NAME",
+                    ((Map<String, Object>) categoryService.getCategoryName(paramMap)).get("CATEGORY_NAME"));
+        } else {
+            resultMap.put("CATEGORY_NAME", paramMap.get("CATEGORY_NAME"));
+        }
 
         if (paramMap.get("EMAIL") != null) {
             resultMap.put("isRecommend", recommendService.isRecommend(paramMap));
@@ -199,7 +205,7 @@ public class CommunityController {
         Object CommentList = commentService.getList(paramMap);
 
         // 추천 수 받아오기
-        resultMap.put("recommend",getNumberOfRecommend(paramMap));
+        resultMap.put("recommend", getNumberOfRecommend(paramMap));
 
         modelAndView.setViewName("view");
         modelAndView.addObject("commentList", CommentList);
@@ -221,18 +227,18 @@ public class CommunityController {
         // 추천 추가
         if (action.equals("PUT")) {
             Integer resultRow = (Integer) recommendService.addRecommend(result);
-            if(resultRow == 1){
+            if (resultRow == 1) {
                 int nowRecommend = Integer.parseInt(paramMap.get("RECOMMEND").toString());
-                resultMap.put("recommend", nowRecommend+1);
+                resultMap.put("recommend", nowRecommend + 1);
                 resultMap.put("isRecommend", 1);
             }
         }
         // 추천 삭제
         else if (action.equals("DELETE")) {
             Integer resultRow = (Integer) recommendService.deleteRecommend(result);
-            if(resultRow == 1){
+            if (resultRow == 1) {
                 int nowRecommend = Integer.parseInt(paramMap.get("RECOMMEND").toString());
-                resultMap.put("recommend", nowRecommend-1);
+                resultMap.put("recommend", nowRecommend - 1);
                 resultMap.put("isRecommend", 0);
             }
         }
@@ -248,9 +254,9 @@ public class CommunityController {
         return "/view :: #recommendField";
     }
 
-    private int getNumberOfRecommend(Map<String, Object> paramMap){
+    private int getNumberOfRecommend(Map<String, Object> paramMap) {
         Integer num = recommendService.countRecommend(paramMap);
-        if(num == null){
+        if (num == null) {
             return 0;
         }
         return num;
