@@ -36,7 +36,8 @@
                 <!-- recommend -->
                 <td class="" th:text="${post.RECOMMEND}"></td>
                 <!-- hidden -->
-                <input type="hidden" name="CATEGORY_NAME" th:value="${paramMap.CATEGORY_NAME}">
+                <!-- <input type="hidden" name="CATEGORY_NAME" th:if="${paramMap.CATEGORY_NAME != null}" th:value="${paramMap.CATEGORY_NAME}"> -->
+                <input type="hidden" name="CATEGORY_NUM" th:value="${post.CATEGORY_NUM}">
                 <input type="hidden" name="POST_NUM" th:value="${post.POST_NUM}">
                 <input type="hidden" name="userEmail" th:value="${userInform.userEmail}">
             </form>

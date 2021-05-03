@@ -25,6 +25,8 @@ public class HomeController {
 
     // @Autowired
     // private MemberService memberService;
+    @Autowired
+    private BoardService boardService;
 
     @Autowired
     private ClubService clubService;
@@ -48,11 +50,9 @@ public class HomeController {
         if ("login".equals(action) && userInform.get("userEmail") != "") {
             viewName = "/home";
         }
-        // divided depending on action value
-        if ("login".equals(action) && !viewName.equals("/home")) {
-        } else if ("callback".equals(action)) {
 
-        } else if ("signup".equals(action)) {
+        // divided depending on action value
+        if ("signup".equals(action)) {
             // Object interestList = interestService.getList(paramMap);
             // Object localList = areaservice.getLocal(paramMap);
             // modelAndView.addObject("interestList", interestList);
@@ -60,8 +60,9 @@ public class HomeController {
             // modelAndView.addObject("resultBean", member);
             // modelAndView.addObject("idCheck", false);
         } else if ("home".equals(action) || viewName.equals("/home")) {
-            resultList = clubService.getNewlylist();
-
+            Object clubList = clubService.getNewlylist();
+            resultList = boardService.getPostList();
+            modelAndView.addObject("clubList", clubList);
             // home으로 가려할 때
             if (paramMap.keySet().contains("submit")) {
                 Object submitValue = paramMap.get("submit");
@@ -95,10 +96,7 @@ public class HomeController {
                     // idMap.put("ID", "");
                 }
             }
-        } else if ("post".equals(action)) {
-        }
-        if ("/club/introduce".equals(action)) {
-        }
+        } 
 
         modelAndView.setViewName(viewName);
         modelAndView.addObject("paramMap", paramMap);

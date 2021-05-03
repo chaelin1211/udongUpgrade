@@ -84,55 +84,25 @@
                 </div>
             </form> -->
             <div class="card-deck">
-                <div class="col-lg-3 col-sm-12" th:each="resultData: ${resultList}" th:if="${resultDataStat.index < 4}">
-                        <div class="card border-secondary mb-3">
-                            <h5 class="card-header cs-logo" th:text=${resultData.CLUB_NAME}></h5>
-                            <div class="card-body cs-logo">
-                                <p class="card-text" th:text=${resultData.INTRO}></p>
-                                <a th:href="@{/club/introduce}" class="btn btn-secondary">상세 페이지</a>
-                            </div>
-                            <!-- <div class="card-footer text-muted" th:text=${resultData.AREA_NAME}></div> -->
+                <div class="col-lg-3 col-sm-12" th:each="resultData: ${clubList}" th:if="${resultDataStat.index < 4}">
+                    <div class="card border-secondary mb-3">
+                        <h5 class="card-header cs-logo" th:text=${resultData.CLUB_NAME}></h5>
+                        <div class="card-body cs-logo">
+                            <p class="card-text" th:text=${resultData.INTRO}></p>
+                            <a th:href="@{/club/introduce}" class="btn btn-secondary">상세 페이지</a>
                         </div>
+                        <!-- <div class="card-footer text-muted" th:text=${resultData.AREA_NAME}></div> -->
+                    </div>
                 </div>
             </div>
-        </div>
-
-        <!-- 커뮤니티,뉴스 헤드 -->
-        <div class="row mt-3">
-            <div class="col-6">
+            <!-- 커뮤니티,뉴스 헤드 -->
+            <div class="">
                 <h2 class="cs-logo m-4">커뮤니티 최신</h1>
-                    <table class="table tb">
-                        <tr>
-                            <td>첫번째 커뮤니티</td>
-                            <td>11:51</td>
-                        </tr>
-                        <tr>
-                            <td>두번째 커뮤니티</td>
-                            <td>11:00</td>
-
-                        </tr>
-                        <tr>
-                            <td>세번째 커뮤니티</td>
-                            <td>10:51
-                            </td>
-
-                        </tr>
-                        <tr>
-                            <td>네번째 커뮤니티</td>
-                            <td>09:01</td>
-
-                        </tr>
-                        <tr>
-                            <td>다섯번째 커뮤니티</td>
-                            <td>08:53</td>
-
-                        </tr>
-                        <tr>
-                            <td>여섯번째 커뮤니티</td>
-                            <td>08:11</td>
-                        </tr>
-                    </table>
+                    <!--리스트-->
+                    <th:block th:replace="fragments/postList"></th:block>
             </div>
+        </div>
+        <!-- <div class="row mt-3">
 
 
             <div class="col-6">
@@ -169,7 +139,7 @@
 
                         </tr>
                     </table>
-            </div>
+            </div> -->
         </div>
     </th:block>
 </div>
