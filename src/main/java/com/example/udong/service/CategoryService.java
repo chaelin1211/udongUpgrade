@@ -26,4 +26,11 @@ public class CategoryService{
         Object resultObject = dao.getObject(sqlMapid, dataMap);
         return resultObject;
     }
+
+    
+    public Object getCategoryName(Object dataMap){
+        String sqlMapid = "Category.getCategoryName";
+        Object resultObject = dao.getObject(sqlMapid, dataMap);
+        return resultObject;
+    }
 }
