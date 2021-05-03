@@ -6,15 +6,9 @@
 
 <mapper namespace="Faq">
 	<select id="getAll" resultType="Map" parameterType="Map">
-	    select TITLE, CONTENT, NUM
+	    select *
 		from FAQ
     </select>
-
-	<select id="get" resultType="Map" parameterType="Map">
-		<!-- select TITLE, CONTENT
-		from FAQ
-		where NUM = #{NUM} -->
-	</select>
 
 	<insert id="insert" parameterType="Map">
 	</insert>
