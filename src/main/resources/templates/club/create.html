@@ -1,0 +1,43 @@
+<div xmlns:th="http://www.thymeleaf.org" layout:decorator="layout/defaultLayout">
+    <th:block layout:fragment="layout.content">
+        <div class="row">
+            <!--사이드바-->
+            <div class="col-lg-2 col-md-12 col-sm-12">
+                <th:block th:replace="fragments/clubNav"></th:block>
+            </div>
+            <div class="col-lg-8 col-md-12 col-sm-12 my-2 p-2">
+                <div class="col">
+                    <h1>동아리 만들기</h1>
+                    <form>
+                        <!-- 선택 리스트 - 주제-->
+                        <div class="mt-2">원하시는 활동주제를 선택해주세요.</div>
+                        <select class="form-control custom-select" name="INTEREST_NAME" id="INTEREST_NAME">
+                            <option>모두</option>
+                            <option th:each="sortlist: ${interestList}" th:text=${sortlist.INTEREST_NAME}></option>
+                        </select>
+                        <!-- 선택 리스트 - 지역-->
+                        <div class="mt-2">원하시는 지역을 설정해주세요.</div>
+                        <select class="form-control custom-select" name="AREA_NAME" id="AREA_NAME">
+                            <option>모두</option>
+                            <option th:each="sortlist: ${locationList}" th:text=${sortlist.AREA_NAME}></option>
+                        </select>
+                        <!-- 동아리 이름 -->
+                        <div class="mt-2">동아리 이름을 입력하세요.</div>
+                        <input type="text" class="form-control" name="TITLE">
+                        <!-- 동아리 간단 소개 -->
+                        <div class="mt-2">동아리 간단 소개를 입력하세요.</div>
+                        <textarea class="board" rows="2" name="CONTENT"></textarea>
+                        <!-- 상세 활동 내용 -->
+                        <div class="mt-2">동아리 상세한 활동 내용를 입력하세요.</div>
+                        <textarea class="board" rows="8" name="CONTENT"></textarea>
+                        <!-- 확인 버튼 -->
+                        <div class="row mt-3 justify-content-end">
+                            <input type="submit" class="btn m-2 btn-secondary" name="submit" value="동아리 만들기!">
+                            <input type="submit" class="btn m-2 btn-outline-secondary" name="submit" value="취소">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </th:block>
+</div>
