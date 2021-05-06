@@ -62,6 +62,6 @@
 
 	<delete id="deletePost" parameterType="Map">
 		delete from BOARD
-		where POSTNUM=#{POSTNUM};
+		where POST_NUM=#{POST_NUM};
 	</delete>
 </mapper>
