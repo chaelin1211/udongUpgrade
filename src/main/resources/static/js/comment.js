@@ -26,7 +26,7 @@ function insertComment(form) {
     var POST_NUM = form.POST_NUM.value;
     // var CATEGORY_NAME = form.CATEGORY_NAME.value;
     $.ajax({
-        url: "/view",
+        url: "/view/create",
         type: "POST",
         data: {
             EMAIL: EMAIL,
@@ -47,7 +47,7 @@ function deleteComment(form) {
     var POST_NUM = form.POST_NUM.value;
     var CATEGORY_NAME = form.CATEGORY_NAME.value;
     $.ajax({
-        url: "/view/" + CO_NUM,
+        url: "/view/delete",
         type: "DELETE",
         data: {
             CO_NUM: CO_NUM,
@@ -99,7 +99,7 @@ function updateComment(form) {
     }
 
     $.ajax({
-        url: "/view/" + CO_NUM,
+        url: "/view/update",
         type: "PUT",
         data: updateData,
     }).done(function (fragment) {
