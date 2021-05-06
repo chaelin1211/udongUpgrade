@@ -62,9 +62,9 @@ public class CommunityController {
         if (paramMap.get("search") == null)
             paramMap.put("search", "");
 
-        // 페이지 공통 로직
-        // 전체 목록 불러오기
         if (!paramMap.keySet().contains("submit")) {
+            // 페이지 공통 로직
+            // 전체 목록 불러오기
             resultList = boardService.getPost(paramMap);
         } else {
             Object submitValue = paramMap.get("submit");
@@ -97,43 +97,29 @@ public class CommunityController {
         return modelandView;
     }
 
-    @RequestMapping(value = "/view", method = { RequestMethod.POST })
-    public String viewPostMethod(Model model, @RequestParam Map<String, Object> paramMap) {
-
-        CommentBean result = new CommentBean();
-        result.setEMAIL(paramMap.get("EMAIL").toString());
-        result.setPOST_NUM(Integer.parseInt(paramMap.get("POST_NUM").toString()));
-        result.setCONTENT(paramMap.get("CONTENT").toString());
-
-        // DB 댓글 추가
-        commentService.insert(result);
-
-        // 댓글 리스트 추가
-        model.addAttribute("commentList", commentService.getList(result));
-
-        // 수정&삭제 버튼 게시를 위한 유저 정보 전달
-        Map<String, Object> userInform = new HashMap<String, Object>();
-        userInform.put("userEmail", paramMap.get("EMAIL"));
-        model.addAttribute("userInform", userInform);
-
-        // 화면 일반화를 위한 정보 전달
-        Map<String, Object> resultMap = new HashMap<String, Object>();
-        resultMap.put("CATEGORY_NAME", paramMap.get("CATEGORY_NAME"));
-        model.addAttribute("resultMap", resultMap);
-
-        return "/view :: #commentTable";
-    }
-
-    @RequestMapping(value = "/view/{action}", method = { RequestMethod.DELETE })
+    // 댓글 추가/삭제/수정
+    @RequestMapping(value = "/view/{action}", method = { RequestMethod.POST, RequestMethod.DELETE, RequestMethod.PUT })
     public String viewDeleteMethod(Model model, @PathVariable String action,
             @RequestParam Map<String, Object> paramMap) {
 
         CommentBean result = new CommentBean();
-        result.setCO_NUM(Integer.parseInt(paramMap.get("CO_NUM").toString()));
         result.setPOST_NUM(Integer.parseInt(paramMap.get("POST_NUM").toString()));
 
-        // DB 댓글 삭제
-        commentService.delete(result);
+        if (action.equals("delete")) {
+            // DB 댓글 삭제
+            result.setCO_NUM(Integer.parseInt(paramMap.get("CO_NUM").toString()));
+            commentService.delete(result);
+        } else if (action.equals("update")) {
+            // DB 댓글 수정
+            result.setCO_NUM(Integer.parseInt(paramMap.get("CO_NUM").toString()));
+            result.setCONTENT(paramMap.get("CONTENT").toString());
+            commentService.update(result);
+        } else if (action.equals("create")) {
+            // DB 댓글 추가
+            result.setEMAIL(paramMap.get("EMAIL").toString());
+            result.setCONTENT(paramMap.get("CONTENT").toString());
+            commentService.insert(result);
+        }
 
         // 댓글 리스트 추가
         model.addAttribute("commentList", commentService.getList(result));
@@ -150,34 +136,8 @@ public class CommunityController {
         return "/view :: #commentTable";
     }
 
-    @RequestMapping(value = "/view/{action}", method = { RequestMethod.PUT })
-    public String viewUpdateMethod(Model model, @PathVariable String action,
-            @RequestParam Map<String, Object> paramMap) {
-
-        CommentBean result = new CommentBean();
-        result.setCO_NUM(Integer.parseInt(paramMap.get("CO_NUM").toString()));
-        result.setPOST_NUM(Integer.parseInt(paramMap.get("POST_NUM").toString()));
-        result.setCONTENT(paramMap.get("CONTENT").toString());
-
-        // DB 댓글 수정
-        commentService.update(result);
-
-        // 댓글 리스트 추가
-        model.addAttribute("commentList", commentService.getList(result));
-
-        // 수정&삭제 버튼 게시를 위한 유저 정보 전달
-        Map<String, Object> userInform = new HashMap<String, Object>();
-        userInform.put("userEmail", paramMap.get("EMAIL"));
-        model.addAttribute("userInform", userInform);
-
-        // 화면 일반화를 위한 정보 전달
-        Map<String, Object> resultMap = new HashMap<String, Object>();
-        resultMap.put("CATEGORY_NAME", paramMap.get("CATEGORY_NAME"));
-        model.addAttribute("resultMap", resultMap);
-        return "/view :: #commentTable";
-    }
-
-    @RequestMapping(value = "/view", method = { RequestMethod.GET })
+    // view 페이지 controller
+    @RequestMapping(value = "/view", method = { RequestMethod.POST })
     public ModelAndView viewActionMethod(@RequestParam Map<String, Object> paramMap, ModelAndView modelAndView) {
         Map<String, Object> resultMap = new HashMap<String, Object>();
         Map<String, Object> userInform = new HashMap<String, Object>();
@@ -215,6 +175,7 @@ public class CommunityController {
         return modelAndView;
     }
 
+    // 추천 추가/삭제
     @RequestMapping(value = "/view/recommend/{action}", method = { RequestMethod.PUT, RequestMethod.DELETE })
     public String recommendUpdateMethod(Model model, @PathVariable String action,
             @RequestParam Map<String, Object> paramMap) {
