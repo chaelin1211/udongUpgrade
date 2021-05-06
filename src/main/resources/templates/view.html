@@ -144,26 +144,40 @@
                 <!-- 하단 버튼 -->
                 <div class="text-right my-3">
                     <!-- 게시글 수정&삭제 버튼 -->
-                    <span th:if="${resultMap.EMAIL==userInform.userEmail}">
-                        <!-- 수정 버튼 -->
-                        <input name="submit" type="submit" value="수정" class="btn btn-outline-secondary m-1">
-
-                        <!--삭제 버튼-->
+                    <!-- <input type="hidden" name="POST_NUM" th:value="${resultMap.POST_NUM}"> -->
+                    <!-- news 게시판 -->
+                    <form th:action="${'/news/'+resultMap.CATEGORY_NAME}"
+                        th:if="${resultMap.CATEGORY_NAME=='notice'||resultMap.CATEGORY_NAME=='event'}">
+                        <!-- hidden 영역 -->
+                        <input type="hidden" name="EMAIL" th:value="${userInform.userEmail}">
                         <input type="hidden" name="POST_NUM" th:value="${resultMap.POST_NUM}">
-                        <input th:if="${resultMap.CATEGORY_NAME=='notice'||resultMap.CATEGORY_NAME=='event'}"
-                            th:formaction="${'/news/'+resultMap.CATEGORY_NAME}" type="submit" name="submit" value="삭제"
-                            class="btn btn-outline-secondary m-1">
-                        <input th:if="${resultMap.CATEGORY_NAME=='free'||resultMap.CATEGORY_NAME=='qna'}"
-                            th:formaction="${'/community/'+resultMap.CATEGORY_NAME}" type="submit" name="submit"
-                            value="삭제" class="btn btn-outline-secondary m-1">
-                    </span>
-                    <!--목록으로 버튼-->
-                    <input type="submit" value="목록으로" class="btn btn-secondary m-1"
-                        th:if="${resultMap.CATEGORY_NAME=='free'||resultMap.CATEGORY_NAME=='qna'}"
-                        th:formaction="${'/community/'+resultMap.CATEGORY_NAME}">
-                    <input type="submit" value="목록으로" class="btn btn-secondary m-1"
-                        th:if="${resultMap.CATEGORY_NAME=='notice'||resultMap.CATEGORY_NAME=='event'}"
-                        th:formaction="${'/news/'+resultMap.CATEGORY_NAME}">
+                        <input type="hidden" name="CATEGORY_NAME" th:value="${resultMap.CATEGORY_NAME}">
+                        <span th:if="${resultMap.EMAIL==userInform.userEmail}">
+                            <!-- 수정 버튼 -->
+                            <input type="submit" name="submit" value="수정" class="btn btn-outline-secondary m-1">
+                            <!--삭제 버튼-->
+                            <input type="submit" name="submit" value="삭제" class="btn btn-outline-secondary m-1">
+                        </span>
+                        <!--목록으로 버튼-->
+                        <input type="submit" value="목록으로" class="btn btn-secondary m-1">
+                    </form>
+
+                    <!-- community 게시판 -->
+                    <form th:action="${'/community/'+resultMap.CATEGORY_NAME}"
+                        th:if="${resultMap.CATEGORY_NAME=='free'||resultMap.CATEGORY_NAME=='qna'}">
+                        <!-- hidden 영역 -->
+                        <input type="hidden" name="userEmail" th:value="${userInform.userEmail}">
+                        <input type="hidden" name="POST_NUM" th:value="${resultMap.POST_NUM}">
+                        <input type="hidden" name="CATEGORY_NAME" th:value="${resultMap.CATEGORY_NAME}">
+                        <span th:if="${resultMap.EMAIL==userInform.userEmail}">
+                            <!-- 수정 버튼 -->
+                            <input type="submit" name="submit" value="수정" class="btn btn-outline-secondary m-1">
+                            <!--삭제 버튼-->
+                            <input type="submit" name="submit" value="삭제" class="btn btn-outline-secondary m-1">
+                        </span>
+                        <!--목록으로 버튼-->
+                        <input type="submit" value="목록으로" class="btn btn-secondary m-1">
+                    </form>
                 </div>
             </div>
         </div>
