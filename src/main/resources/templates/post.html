@@ -4,19 +4,19 @@
         <h1 class="text-uppercase" th:text="${paramMap.CATEGORY_NAME + ' Board'}"></h1>
         <div>
             <input type="text" class="form-control" name="TITLE" placeholder="제목을 입력하세요">
-            <textarea class="board" rows="10" name="CONTENT"></textarea>
-            <div class="row my-3 justify-content-end">
+            <textarea class="editCommentContent" rows="10" name="CONTENT"></textarea>
+            <div class="justify-content-end row mx-0 my-3">
                 <div th:if="${paramMap.CATEGORY_NUM=='1'||paramMap.CATEGORY_NUM=='2'}">
                     <input th:formaction="${'/community/'+paramMap.CATEGORY_NAME}" type="submit"
-                        class="btn m-2 btn-outline-secondary" name="submit" value="글작성">
+                        class="btn m-1 btn-outline-secondary" name="submit" value="글작성">
                     <input th:formaction="${'/community/'+paramMap.CATEGORY_NAME}" type="submit"
-                        class="btn btn-secondary m-2" value="목록으로">
+                        class="btn btn-secondary m-1" value="목록으로">
                 </div>
                 <div th:if="${paramMap.CATEGORY_NUM=='3'||paramMap.CATEGORY_NUM=='4'}">
                     <input th:formaction="${'/news/'+paramMap.CATEGORY_NAME}" type="submit"
-                        class="btn m-2 btn-outline-secondary" name="submit" value="글작성">
+                        class="btn m-1 btn-outline-secondary" name="submit" value="글작성">
                     <input th:formaction="${'/news/'+paramMap.CATEGORY_NAME}" type="submit"
-                        class="btn btn-secondary m-2" value="목록으로">
+                        class="btn btn-secondary m-1" value="목록으로">
                 </div>
             </div>
         </div>
