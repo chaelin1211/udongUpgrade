@@ -17,26 +17,18 @@ public class MemberBean implements Serializable{
     @Id
     @GeneratedValue
     String EMAIL;
-    String NAME;
-    String GENDER;
-    Integer BIRTH_YEAR;
-    Integer BIRTH_MONTH;
-    Integer BIRTH_DAY;
-    String NICKNAME;
-    Integer AREA_NUM;
 
     public MemberBean() {
+        this.GRADE = 2;
     }
 
-    public MemberBean(String EMAIL, String NAME, String GENDER, Integer BIRTH_YEAR, Integer BIRTH_MONTH, Integer BIRTH_DAY, String NICKNAME, Integer AREA_NUM) {
+    public MemberBean(String EMAIL, String NAME, Integer BIRTH_MONTH, Integer BIRTH_DAY, Integer AREA_NUM, Integer GRADE) {
         this.EMAIL = EMAIL;
         this.NAME = NAME;
-        this.GENDER = GENDER;
-        this.BIRTH_YEAR = BIRTH_YEAR;
         this.BIRTH_MONTH = BIRTH_MONTH;
         this.BIRTH_DAY = BIRTH_DAY;
-        this.NICKNAME = NICKNAME;
         this.AREA_NUM = AREA_NUM;
+        this.GRADE = GRADE;
     }
 
     public String getEMAIL() {
@@ -55,22 +47,6 @@ public class MemberBean implements Serializable{
         this.NAME = NAME;
     }
 
-    public String getGENDER() {
-        return this.GENDER;
-    }
-
-    public void setGENDER(String GENDER) {
-        this.GENDER = GENDER;
-    }
-
-    public Integer getBIRTH_YEAR() {
-        return this.BIRTH_YEAR;
-    }
-
-    public void setBIRTH_YEAR(Integer BIRTH_YEAR) {
-        this.BIRTH_YEAR = BIRTH_YEAR;
-    }
-
     public Integer getBIRTH_MONTH() {
         return this.BIRTH_MONTH;
     }
@@ -87,20 +63,20 @@ public class MemberBean implements Serializable{
         this.BIRTH_DAY = BIRTH_DAY;
     }
 
-    public String getNICKNAME() {
-        return this.NICKNAME;
-    }
-
-    public void setNICKNAME(String NICKNAME) {
-        this.NICKNAME = NICKNAME;
-    }
-
     public Integer getAREA_NUM() {
         return this.AREA_NUM;
     }
 
     public void setAREA_NUM(Integer AREA_NUM) {
         this.AREA_NUM = AREA_NUM;
+    }
+
+    public Integer getGRADE() {
+        return this.GRADE;
+    }
+
+    public void setGRADE(Integer GRADE) {
+        this.GRADE = GRADE;
     }
 
     public MemberBean EMAIL(String EMAIL) {
@@ -110,16 +86,6 @@ public class MemberBean implements Serializable{
 
     public MemberBean NAME(String NAME) {
         setNAME(NAME);
-        return this;
-    }
-
-    public MemberBean GENDER(String GENDER) {
-        setGENDER(GENDER);
-        return this;
-    }
-
-    public MemberBean BIRTH_YEAR(Integer BIRTH_YEAR) {
-        setBIRTH_YEAR(BIRTH_YEAR);
         return this;
     }
 
@@ -133,13 +99,13 @@ public class MemberBean implements Serializable{
         return this;
     }
 
-    public MemberBean NICKNAME(String NICKNAME) {
-        setNICKNAME(NICKNAME);
+    public MemberBean AREA_NUM(Integer AREA_NUM) {
+        setAREA_NUM(AREA_NUM);
         return this;
     }
 
-    public MemberBean AREA_NUM(Integer AREA_NUM) {
-        setAREA_NUM(AREA_NUM);
+    public MemberBean GRADE(Integer GRADE) {
+        setGRADE(GRADE);
         return this;
     }
 
@@ -151,12 +117,12 @@ public class MemberBean implements Serializable{
             return false;
         }
         MemberBean memberBean = (MemberBean) o;
-        return Objects.equals(EMAIL, memberBean.EMAIL) && Objects.equals(NAME, memberBean.NAME) && Objects.equals(GENDER, memberBean.GENDER) && Objects.equals(BIRTH_YEAR, memberBean.BIRTH_YEAR) && Objects.equals(BIRTH_MONTH, memberBean.BIRTH_MONTH) && Objects.equals(BIRTH_DAY, memberBean.BIRTH_DAY) && Objects.equals(NICKNAME, memberBean.NICKNAME) && Objects.equals(AREA_NUM, memberBean.AREA_NUM);
+        return Objects.equals(EMAIL, memberBean.EMAIL) && Objects.equals(NAME, memberBean.NAME) && Objects.equals(BIRTH_MONTH, memberBean.BIRTH_MONTH) && Objects.equals(BIRTH_DAY, memberBean.BIRTH_DAY) && Objects.equals(AREA_NUM, memberBean.AREA_NUM) && Objects.equals(GRADE, memberBean.GRADE);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(EMAIL, NAME, GENDER, BIRTH_YEAR, BIRTH_MONTH, BIRTH_DAY, NICKNAME, AREA_NUM);
+        return Objects.hash(EMAIL, NAME, BIRTH_MONTH, BIRTH_DAY, AREA_NUM, GRADE);
     }
 
     @Override
@@ -164,14 +130,15 @@ public class MemberBean implements Serializable{
         return "{" +
             " EMAIL='" + getEMAIL() + "'" +
             ", NAME='" + getNAME() + "'" +
-            ", GENDER='" + getGENDER() + "'" +
-            ", BIRTH_YEAR='" + getBIRTH_YEAR() + "'" +
             ", BIRTH_MONTH='" + getBIRTH_MONTH() + "'" +
             ", BIRTH_DAY='" + getBIRTH_DAY() + "'" +
-            ", NICKNAME='" + getNICKNAME() + "'" +
             ", AREA_NUM='" + getAREA_NUM() + "'" +
+            ", GRADE='" + getGRADE() + "'" +
             "}";
     }
-
-
+    String NAME;
+    Integer BIRTH_MONTH;
+    Integer BIRTH_DAY;
+    Integer AREA_NUM;
+    Integer GRADE;
 }

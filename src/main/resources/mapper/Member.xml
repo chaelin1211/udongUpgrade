@@ -8,7 +8,7 @@
 	<select id="getMember" resultType="Map" parameterType="Map">
 	    select * 
 		from MEMBER
-		where email = #{userEmail};
+		where email = #{EMAIL};
     </select>
 
 	<select id="interest" resultType="Map" parameterType="Map">
@@ -16,8 +16,8 @@
     </select>
 
 	<insert id="signup" parameterType="Map">
-		insert into MEMBER(EMAIL)
-		values (#{userEmail})
+		insert into MEMBER(EMAIL, BIRTH_DAY, BIRTH_MONTH, AREA_NUM)
+		values (#{EMAIL}, #{BIRTH_DAY}, #{BIRTH_MONTH}, #{AREA_NUM})
 	</insert>
 
 	<update id="update" parameterType="Map">
