@@ -1,96 +1,27 @@
 <div xmlns:th="http://www.thymeleaf.org" layout:decorator="layout/defaultLayout">
 
     <th:block layout:fragment="layout.content">
-        <div class="container my-5">
-            <form th:action="@{/home}" onsubmit="return check(this)">
-                <div class="card-deck">
-                    <div class="card">
-                        <div class="card-header font-weight-bold">Information</div>
-                        <div class="card-body">
-                            <div class="form-group">
-                                <div class="form-group">
-                                    <label class="font-weight-bold">
-                                        Name
-                                    </label>
-                                    <div class="input-group">
-                                        <input type="text" class="form-control col" name="NAME"
-                                            th:value="${resultBean.NAME}" placeholder="Name">
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="font-weight-bold">
-                                        Id
-                                    </label>
-                                    <div class="input-group form-row">
-                                        <input type="text" class="form-control col" name="ID"
-                                            th:value="${resultBean.ID}" placeholder="ID">
-                                    </div>
-                                    <p th:if="${idCheck}" class="text-center text-danger">중복된 아이디 입니다.</p>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="font-weight-bold">
-                                    Password
-                                </label>
-                                <div class="input-group">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text"><span class="fas fa-lock"></span></span>
-                                    </div>
-                                    <input type="password" class="form-control"
-                                        placeholder="Enter password" name="PASSWORD">
-                                </div>
-                                <div class="input-group mt-2">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text"><span class="fas fa-lock"></span></span>
-                                    </div>
-                                    <input type="password" class="form-control" placeholder="Confirm password"
-                                        id="C_PASSWORD" name="C_PASSWORD">
-                                </div>
-                            </div>
-                            <div class="text-center" id="checkPSW"></div>
+        <div class="container col-lg-7 col-md-8 col-sm-10">
+            <div class="row justify-content-center py-3 border rounded">
+                <div class="text-center px-5">
+                    <h1 class="my-4">SignUp</h1>
+                    <p>네이버 이메일로 회원가입 합니다. 추가 정보를 기입해 주세요.</p>
+                    <form method=POST th:formaction="@{/home}">
+                        <input type="hidden" name="userEmail" th:value="${resultMap.email}">
+                        <input type="hidden" name="birthMonth" th:value="${resultMap.birthMonth}">
+                        <input type="hidden" name="birthDay" th:value="${resultMap.birthDay}">
+                        <p><span th:text="${resultMap.email}"></span>님의 추가 정보를 입력해 주세요.</p>
+                        <div class="text-left border-top py-3">
+                            <p>지역을 선택해주세요!</p>
+                            <!-- 지역 선택 리스트 -->
+                            <select class="form-control custom-select" name="AREA_NAME" id="sortList">
+                                <option th:each="sortlist: ${sortList}" th:text=${sortlist.AREA_NAME}></option>
+                            </select>
                         </div>
-                    </div>
-                    <div class="card">
-                        <div class="card-header font-weight-bold">Information</div>
-                        <div class="card-body">
-                            <div class="form-group">
-                                <label for="tel" class="font-weight-bold">
-                                    Phone Number
-                                </label>
-                                <input type="tel" class="form-control col" name="TEL" th:value="${resultBean.TEL}"
-                                    placeholder="Enter your mobile phone number">
-                            </div>
-                            <div class="form-group">
-                                <label for="select" class="font-weight-bold">
-                                    Local
-                                </label>
-                                <select class="form-control col" name="AREA_NAME">
-                                    <div th:each="local:${localList}">
-                                        <option th:value="${local.AREA_NAME}" th:text="${local.AREA_NAME}"></option>
-                                    </div>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label for="select" class="font-weight-bold">Interest</label>
-                                <div>
-                                    <div class="d-inline-block" th:each="intrst: ${interestList}">
-                                        <input type="checkbox" class="m-2" name="INTEREST"
-                                            th:value="${intrst.NAME}"><span th:text="${intrst.NAME}"></span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="text-center" id="checkField"></div>
-                            <div class="text-center" id="interestField"></div>
-                            <div class="row justify-content-center">
-                                <div class="col-3 m-3 mt-0">
-                                    <input type="submit" name="submit" value="회원가입"
-                                        class="btn btn-secondary submit text-right">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                        <input type="submit" name="submit" class="btn btn-primary" value="회원가입">
+                    </form>
                 </div>
-            </form>
+            </div>
         </div>
     </th:block>
 </div>
