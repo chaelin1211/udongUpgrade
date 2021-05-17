@@ -14,6 +14,7 @@ import com.example.udong.util.MemberBean;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -27,6 +28,12 @@ public class HomeController {
     // private MemberService memberService;
     @Autowired
     private BoardService boardService;
+
+    @Autowired
+    private MemberService memberService;
+
+    @Autowired
+    private AreaService areaService;
 
     @Autowired
     private ClubService clubService;
@@ -47,56 +54,44 @@ public class HomeController {
         else
             userInform.put("userEmail", paramMap.get("userEmail"));
 
+        String email = userInform.get("userEmail").toString();
         if ("login".equals(action) && userInform.get("userEmail") != "") {
-            viewName = "/home";
+            String submitValue = (String) paramMap.get("submit");
+            if (submitValue != null && submitValue.equals("회원가입")) {
+                MemberBean memberBean = new MemberBean();
+                memberBean.setEMAIL(paramMap.get("userEmail").toString());
+                memberBean.setBIRTH_MONTH(Integer.parseInt(paramMap.get("birthMonth").toString()));
+                memberBean.setBIRTH_DAY(Integer.parseInt(paramMap.get("birthDay").toString()));
+                // 지역 번호 조회
+                Map<String, Object> areaMap = (Map<String, Object>) areaService.getAreaNum(paramMap);
+                memberBean.setAREA_NUM(Integer.parseInt(areaMap.get("AREA_NUM").toString()));
+                memberService.setMember(memberBean);
+                viewName = "/home";
+            }
+            else if (isUser(email)) {
+                viewName = "/home";
+            } else {
+                userInform.put("userEmail", "");
+                resultMap.put("email", paramMap.get("userEmail"));
+                resultMap.put("birthDay", paramMap.get("birthDay"));
+                resultMap.put("birthMonth", paramMap.get("birthMonth"));
+                viewName = "/signup";
+            }
         }
 
         // divided depending on action value
-        if ("signup".equals(action)) {
-            // Object interestList = interestService.getList(paramMap);
-            // Object localList = areaservice.getLocal(paramMap);
-            // modelAndView.addObject("interestList", interestList);
-            // modelAndView.addObject("localList", localList);
-            // modelAndView.addObject("resultBean", member);
-            // modelAndView.addObject("idCheck", false);
-        } else if ("home".equals(action) || viewName.equals("/home")) {
+        if ("home".equals(action) || viewName.equals("/home")) {
             Object clubList = clubService.getNewlylist();
             resultList = boardService.getPostList();
             modelAndView.addObject("clubList", clubList);
             // home으로 가려할 때
             if (paramMap.keySet().contains("submit")) {
                 Object submitValue = paramMap.get("submit");
-                // if (submitValue.equals("로그인")) { // 로그인 창에서 버튼을 눌렀을때
-                // resultMap = (Map) service.getMember(paramMap);
-                // if (resultMap.size() != 0) {
-                // userInform.put("userEmail", paramMap.get("userEmail"));
-                // } else {
-                // viewName = "/login";
-                // }
                 if (submitValue.equals("로그아웃")) {
                     userInform.put("userEmail", "");
-                } else if (submitValue.equals("회원가입")) {
-                    // Object interestList = interestService.getList(paramMap);
-                    // Object localList = areaservice.getLocal(paramMap);
-                    // modelAndView.addObject("interestList", interestList);
-                    // modelAndView.addObject("localList", localList);
-                    // resultMap = (Map) service.getMember(paramMap);
-                    // if (resultMap == null) {
-                    // modelAndView.addObject("idCheck", false);
-                    // service.setMember(paramMap);
-                    // viewName = "/home";
-                    // } else {
-                    // modelAndView.addObject("idCheck", true);
-                    // viewName = "/signup";
-                    // }
-                    // modelAndView.addObject("resultBean", paramMap);
-                } else if (submitValue.equals("회원탈퇴")) {
-                    // service.deleteMember(idMap);
-                    // flagMap.put("flag", false);
-                    // idMap.put("ID", "");
                 }
             }
-        } 
+        }
 
         modelAndView.setViewName(viewName);
         modelAndView.addObject("paramMap", paramMap);
@@ -104,5 +99,29 @@ public class HomeController {
         modelAndView.addObject("userInform", userInform);
         modelAndView.addObject("resultList", resultList);
         return modelAndView;
+    }
+
+    // 회원 체크
+    @RequestMapping(value = "/user/signIn", method = { RequestMethod.GET })
+    public Boolean checkUserMethod(@RequestParam Map<String, Object> paramMap) {
+        return isUser(paramMap.get("EMAIL").toString());
+    }
+
+    public Boolean isUser(String email) {
+        MemberBean memberBean = new MemberBean();
+        memberBean.setEMAIL(email);
+        Object member = memberService.getMember(memberBean);
+        if (member != null) {
+            return true;
+        }
+        return false;
+    }
+
+    // 추천 추가/삭제
+    @RequestMapping(value = "/arealist", method = { RequestMethod.GET })
+    public String areaListMethod(Model model, @RequestParam Map<String, Object> paramMap) {
+        Object sortList = areaService.getAll();
+        model.addAttribute("sortList", sortList);
+        return "/signup :: #sortList";
     }
 }
