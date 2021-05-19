@@ -3,6 +3,9 @@ package com.example.udong.controller;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import com.example.udong.service.BoardService;
 import com.example.udong.service.CategoryService;
 import com.example.udong.service.MemberService;
@@ -22,41 +25,35 @@ public class NewsController {
 
     @Autowired
     MemberService memberService;
-    
+
     @Autowired
     CategoryService categoryService;
 
     // Receive Parameters from Html Using @RequestParam Map with @PathVariable
     @RequestMapping(value = "/news/{action}", method = { RequestMethod.GET, RequestMethod.POST })
-    public ModelAndView actionMethod(@RequestParam Map<String, Object> paramMap, @PathVariable String action,
-            ModelAndView modelandView) {
+    public ModelAndView actionMethod(@RequestParam Map<String, Object> paramMap, HttpServletRequest req,
+            @PathVariable String action, ModelAndView modelandView) {
 
         Object resultList = new Object();
         Object categoryMap = new HashMap<String, Object>();
-        
+
         // get Category number - use action(03: event, 04: notice)
         paramMap.put("CATEGORY_NAME", action);
         categoryMap = categoryService.getCategoryNum(paramMap);
         int categoryNum = (int) ((Map<String, Object>) categoryMap).get("CATEGORY_NUM");
         paramMap.put("CATEGORY_NUM", categoryNum);
 
-        // set userInform
-        Map<String, Object> userInform = new HashMap<String, Object>();
+        // 로그인 체크
+        HttpSession session = req.getSession();
+        modelandView.addObject("member", common.checkMemberSession(session));
 
-        if (paramMap.get("userEmail") == "" || paramMap.get("userEmail") == null)
-            userInform.put("userEmail", "");
-        else{
-            userInform.put("userEmail", paramMap.get("userEmail"));
-            userInform.put("userGrade", ((Map<String, Object>) memberService.getMember(userInform)).get("GRADE"));
-        }
         paramMap.put("search", "");
 
-        
         // 페이지 공통 로직
         // 전체 목록 불러오기
         if (!paramMap.keySet().contains("submit")) {
             resultList = boardservice.getPost(paramMap);
-        } 
+        }
         // 검색
         else {
             Object submitValue = paramMap.get("submit");
@@ -76,7 +73,6 @@ public class NewsController {
 
         modelandView.addObject("paramMap", paramMap);
         modelandView.addObject("resultList", resultList);
-        modelandView.addObject("userInform", userInform);
         return modelandView;
     }
 }
