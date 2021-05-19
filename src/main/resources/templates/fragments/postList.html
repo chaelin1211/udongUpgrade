@@ -12,7 +12,7 @@
         </tr>
     </thead>
     <tbody>
-        <tr th:each="post:${resultList}">
+        <tr th:each="post:${boardList}">
             <form method="POST" th:action="@{'/view'}">
                 <!-- post number -->
                 <td class="col-2">

@@ -51,16 +51,14 @@ public class NewsController {
 
         // 페이지 공통 로직
         // 전체 목록 불러오기
-        if (!paramMap.keySet().contains("submit")) {
+        String submitValue = (String) paramMap.get("submit");
+        if (submitValue == null) {
             resultList = boardservice.getPost(paramMap);
         }
         // 검색
-        else {
-            Object submitValue = paramMap.get("submit");
-            if (submitValue.equals("검색")) {
-                // 검색 기능
-                resultList = boardservice.getSearchPost(paramMap);
-            }
+        else if (submitValue.equals("검색")) {
+            // 검색 기능
+            resultList = boardservice.getSearchPost(paramMap);
         }
         // divided depending on action value
         if ("notice".equals(action)) {
@@ -72,7 +70,7 @@ public class NewsController {
         modelandView.setViewName(viewName);
 
         modelandView.addObject("paramMap", paramMap);
-        modelandView.addObject("resultList", resultList);
+        modelandView.addObject("boardList", resultList);
         return modelandView;
     }
 }
