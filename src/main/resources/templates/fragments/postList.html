@@ -18,9 +18,9 @@
                 <td class="col-2">
                     <input type="submit" class="btn" name="POST_NUM" th:value="${post.POST_NUM}">
                 </td>
-                <!-- writer email -->
+                <!-- writer NICKNAME -->
                 <td>
-                    <input type="text" class="btn" readonly name="EMAIL" th:value="${post.EMAIL}">
+                    <input type="text" class="btn" readonly name="NICKNAME" th:value="${post.NICKNAME}">
                     <!-- <a th:href="" name="EMAIL" th:text="${post.EMAIL}"></a> -->
                 </td>
                 <!-- post title -->
@@ -37,7 +37,8 @@
                 <!-- <input type="hidden" name="CATEGORY_NAME" th:if="${paramMap.CATEGORY_NAME != null}" th:value="${paramMap.CATEGORY_NAME}"> -->
                 <input type="hidden" name="CATEGORY_NUM" th:value="${post.CATEGORY_NUM}">
                 <input type="hidden" name="POST_NUM" th:value="${post.POST_NUM}">
-                <input type="hidden" name="userEmail" th:value="${userInform.userEmail}">
+                <input type="hidden" class="btn" readonly name="USER_ID" th:value="${post.USER_ID}">
+                <!-- <input type="hidden" name="userEmail" th:value="${userInform.userEmail}"> -->
             </form>
         </tr>
     </tbody>
