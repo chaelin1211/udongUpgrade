@@ -3,7 +3,9 @@ package com.example.udong.service;
 import java.util.Map;
 
 import com.example.udong.repository.MemberRepository;
-import com.example.udong.util.CommonDao.CommonDao;
+import com.example.udong.util.MemberBean;
+import com.example.udong.util.MemberDao;
+// import com.example.udong.util.CommonDao.CommonDao;
 
 import org.springframework.stereotype.Service;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,11 +15,11 @@ public class MemberService{
 
     
     @Autowired
-    private CommonDao dao;
+    private MemberDao dao;
         
-    public Object getMember(Object dataMap){
+    public MemberBean getMember(MemberBean dataMap){
         String sqlMapid = "Member.getMember";
-        Object resultObject = dao.getObject(sqlMapid,dataMap);
+        MemberBean resultObject = dao.getObject(sqlMapid,dataMap);
         return resultObject;
     } 
     public Object setMember(Object dataMap){
