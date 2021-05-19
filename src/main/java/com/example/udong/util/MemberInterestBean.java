@@ -16,14 +16,14 @@ public class MemberInterestBean implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Integer INTEREST_NUM;
-    String EMAIL;
+    String USER_ID;
 
     public MemberInterestBean() {
     }
 
-    public MemberInterestBean(Integer INTEREST_NUM, String EMAIL) {
+    public MemberInterestBean(Integer INTEREST_NUM, String USER_ID) {
         this.INTEREST_NUM = INTEREST_NUM;
-        this.EMAIL = EMAIL;
+        this.USER_ID = USER_ID;
     }
 
     public Integer getINTEREST_NUM() {
@@ -34,12 +34,12 @@ public class MemberInterestBean implements Serializable{
         this.INTEREST_NUM = INTEREST_NUM;
     }
 
-    public String getEMAIL() {
-        return this.EMAIL;
+    public String getUSER_ID() {
+        return this.USER_ID;
     }
 
-    public void setEMAIL(String EMAIL) {
-        this.EMAIL = EMAIL;
+    public void setUSER_ID(String USER_ID) {
+        this.USER_ID = USER_ID;
     }
 
     public MemberInterestBean INTEREST_NUM(Integer INTEREST_NUM) {
@@ -47,8 +47,8 @@ public class MemberInterestBean implements Serializable{
         return this;
     }
 
-    public MemberInterestBean EMAIL(String EMAIL) {
-        setEMAIL(EMAIL);
+    public MemberInterestBean USER_ID(String USER_ID) {
+        setUSER_ID(USER_ID);
         return this;
     }
 
@@ -60,19 +60,20 @@ public class MemberInterestBean implements Serializable{
             return false;
         }
         MemberInterestBean memberInterestBean = (MemberInterestBean) o;
-        return Objects.equals(INTEREST_NUM, memberInterestBean.INTEREST_NUM) && Objects.equals(EMAIL, memberInterestBean.EMAIL);
+        return Objects.equals(INTEREST_NUM, memberInterestBean.INTEREST_NUM) && Objects.equals(
+                USER_ID, memberInterestBean.USER_ID);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(INTEREST_NUM, EMAIL);
+        return Objects.hash(INTEREST_NUM, USER_ID);
     }
 
     @Override
     public String toString() {
         return "{" +
             " INTEREST_NUM='" + getINTEREST_NUM() + "'" +
-            ", EMAIL='" + getEMAIL() + "'" +
+            ", USER_ID='" + getUSER_ID() + "'" +
             "}";
     }
 }
