@@ -7,6 +7,8 @@
 <mapper namespace="Club">
 	<select id="getClubArea" resultType="Map" parameterType="Map">
 		select * from CLUB
+		JOIN MEMBER
+		ON CLUB.USER_ID = MEMBER.USER_ID
 		where CLUB_NUM in (
 			select club_num
 			from CLUB_AREA
@@ -16,16 +18,22 @@
 
     <select id="getRankingList" resultType="Map" parameterType="Map">
         select * from CLUB
+		JOIN MEMBER
+		ON CLUB.USER_ID = MEMBER.USER_ID
         order by MEMBER_COUNT DESC, TIME DESC;
     </select>
 
     <select id="getNewlyList" resultType="Map" parameterType="Map">
         select * from CLUB
+		JOIN MEMBER
+		ON CLUB.USER_ID = MEMBER.USER_ID
         order by TIME DESC;
     </select>
 
 	<select id="getClubInterest" resultType="Map" parameterType="Map">
 		select * from CLUB
+		JOIN MEMBER
+		ON CLUB.USER_ID = MEMBER.USER_ID
 		where CLUB_NUM in (
 			select club_num
 			from CLUB_INTEREST
