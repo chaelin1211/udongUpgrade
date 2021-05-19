@@ -13,20 +13,31 @@
     // 접근 토큰 값 출력
     // alert(naver_id_login.oauthParams.access_token);
 
+
     window.resizeTo(600, 500);
 
     // 네이버 사용자 프로필 조회
     naver_id_login.get_naver_userprofile("naverSignInCallback()");
+
     // 네이버 사용자 프로필 조회 이후 프로필 정보를 처리할 callback function
     function naverSignInCallback() {
-      document.getElementById("userEmail").value = naver_id_login.getProfileData('email');
-      document.getElementById("email").textContent = naver_id_login.getProfileData('email');
-      // alert(naver_id_login.getProfileData('email'));
-      // alert(naver_id_login.getProfileData('nickname'));
-      // alert(naver_id_login.getProfileData('age'));
-      window.opener.document.getElementById("userEmail").value = naver_id_login.getProfileData('email');
+      // document.getElementById("userEmail").value = naver_id_login.getProfileData('email');
+      // document.getElementById("email").textContent = naver_id_login.getProfileData('email');
+
+      // 회원가입이 되어있는지 확인 후 화면 수정 - ajax
+      // signIn();
+
+      // 전달할 데이터
+      // window.opener.document.getElementById("userEmail").value = naver_id_login.getProfileData('email');
+      window.opener.document.getElementById("userId").value = naver_id_login.getProfileData('id');
+      var birthday = naver_id_login.getProfileData('birthday');
+      if (birthday != null) {
+        window.opener.document.getElementById("birthMonth").value = naver_id_login.getProfileData('birthday').split("-")[0];
+        window.opener.document.getElementById("birthDay").value = naver_id_login.getProfileData('birthday').split("-")[1];
+      }
       window.opener.document.sendEmailForm.submit();
     }
+
     function submitFunction() {
       self.close();
     }
@@ -35,12 +46,17 @@
   <div class="callback-container">
     <h2>네이버 로그인</h2>
     <form onsubmit="submitFunction()">
-      <input type="hidden" id="userEmail" name="userEmail">
+      <!-- <input type="hidden" id="userEmail" name="userEmail"> -->
       <div class="mt-5">
-        <p><span id="email"></span>님!</p>
-        <small>로그인 성공했습니다.</small>
-        <div>
-          <small>확인을 눌러 로그인을 완료하세요</small>
+        <!-- <p><span id="email"></span>님!</p> -->
+        <small>네이버 로그인 성공했습니다.</small>
+        <div id="userInform">
+          <div th:if="${member == null}">
+            <small>회원가입을 완료해주세요:)</small>
+          </div>
+          <div th:if="${member != null}">
+            <small>확인을 눌러 로그인을 완료하세요</small>
+          </div>
         </div>
       </div>
       <div class="mt-5">
