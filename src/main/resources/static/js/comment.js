@@ -4,10 +4,6 @@ function checkComment(event, form) {
     event.preventDefault();
 
     var content = form.CONTENT;
-    var email = form.EMAIL;
-
-    var result = checkUser(email.value);
-    if (result == false) return false;
 
     if (content.value == "") {
         alert("내용을 입력하세요")
@@ -21,7 +17,6 @@ function checkComment(event, form) {
 
 // 댓글 삽입
 function insertComment(form) {
-    var EMAIL = form.EMAIL.value;
     var CONTENT = form.CONTENT.value;
     var POST_NUM = form.POST_NUM.value;
     // var CATEGORY_NAME = form.CATEGORY_NAME.value;
@@ -29,7 +24,6 @@ function insertComment(form) {
         url: "/view/create",
         type: "POST",
         data: {
-            EMAIL: EMAIL,
             CONTENT: CONTENT,
             POST_NUM: POST_NUM,
             // CATEGORY_NAME: CATEGORY_NAME,
@@ -43,7 +37,6 @@ function insertComment(form) {
 // 댓글 삭제
 function deleteComment(form) {
     var CO_NUM = form.CO_NUM.value;
-    var EMAIL = form.EMAIL.value;
     var POST_NUM = form.POST_NUM.value;
     var CATEGORY_NAME = form.CATEGORY_NAME.value;
     $.ajax({
@@ -51,7 +44,6 @@ function deleteComment(form) {
         type: "DELETE",
         data: {
             CO_NUM: CO_NUM,
-            EMAIL: EMAIL,
             POST_NUM: POST_NUM,
             CATEGORY_NAME: CATEGORY_NAME,
         },
@@ -92,7 +84,6 @@ function updateComment(form) {
     var CO_NUM = form.CO_NUM.value;
     var updateData = {
         CO_NUM: CO_NUM,
-        EMAIL: form.EMAIL.value,
         POST_NUM: form.POST_NUM.value,
         CATEGORY_NAME: form.CATEGORY_NAME.value,
         CONTENT: form.CONTENT.value
