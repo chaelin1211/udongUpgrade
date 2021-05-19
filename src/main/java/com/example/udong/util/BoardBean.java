@@ -20,20 +20,19 @@ public class BoardBean implements Serializable{
     String TIME;
     String TITLE;
     String CONTENT;
-    String EMAIL;
-    String NICKNAME;
+    String USER_ID;
+
 
     public BoardBean() {
     }
 
-    public BoardBean(Integer POST_NUM, Integer CATEGORY_NUM, String TIME, String TITLE, String CONTENT, String EMAIL, String NICKNAME) {
+    public BoardBean(Integer POST_NUM, Integer CATEGORY_NUM, String TIME, String TITLE, String CONTENT, String USER_ID) {
         this.POST_NUM = POST_NUM;
         this.CATEGORY_NUM = CATEGORY_NUM;
         this.TIME = TIME;
         this.TITLE = TITLE;
         this.CONTENT = CONTENT;
-        this.EMAIL = EMAIL;
-        this.NICKNAME = NICKNAME;
+        this.USER_ID = USER_ID;
     }
 
     public Integer getPOST_NUM() {
@@ -76,20 +75,12 @@ public class BoardBean implements Serializable{
         this.CONTENT = CONTENT;
     }
 
-    public String getEMAIL() {
-        return this.EMAIL;
+    public String getUSER_ID() {
+        return this.USER_ID;
     }
 
-    public void setEMAIL(String EMAIL) {
-        this.EMAIL = EMAIL;
-    }
-
-    public String getNICKNAME() {
-        return this.NICKNAME;
-    }
-
-    public void setNICKNAME(String NICKNAME) {
-        this.NICKNAME = NICKNAME;
+    public void setUSER_ID(String USER_ID) {
+        this.USER_ID = USER_ID;
     }
 
     public BoardBean POST_NUM(Integer POST_NUM) {
@@ -117,13 +108,8 @@ public class BoardBean implements Serializable{
         return this;
     }
 
-    public BoardBean EMAIL(String EMAIL) {
-        setEMAIL(EMAIL);
-        return this;
-    }
-
-    public BoardBean NICKNAME(String NICKNAME) {
-        setNICKNAME(NICKNAME);
+    public BoardBean USER_ID(String USER_ID) {
+        setUSER_ID(USER_ID);
         return this;
     }
 
@@ -135,12 +121,13 @@ public class BoardBean implements Serializable{
             return false;
         }
         BoardBean boardBean = (BoardBean) o;
-        return Objects.equals(POST_NUM, boardBean.POST_NUM) && Objects.equals(CATEGORY_NUM, boardBean.CATEGORY_NUM) && Objects.equals(TIME, boardBean.TIME) && Objects.equals(TITLE, boardBean.TITLE) && Objects.equals(CONTENT, boardBean.CONTENT) && Objects.equals(EMAIL, boardBean.EMAIL) && Objects.equals(NICKNAME, boardBean.NICKNAME);
+        return Objects.equals(POST_NUM, boardBean.POST_NUM) && Objects.equals(CATEGORY_NUM, boardBean.CATEGORY_NUM) && Objects.equals(TIME, boardBean.TIME) && Objects.equals(TITLE, boardBean.TITLE) && Objects.equals(CONTENT, boardBean.CONTENT) && Objects.equals(
+                USER_ID, boardBean.USER_ID);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(POST_NUM, CATEGORY_NUM, TIME, TITLE, CONTENT, EMAIL, NICKNAME);
+        return Objects.hash(POST_NUM, CATEGORY_NUM, TIME, TITLE, CONTENT, USER_ID);
     }
 
     @Override
@@ -151,9 +138,7 @@ public class BoardBean implements Serializable{
             ", TIME='" + getTIME() + "'" +
             ", TITLE='" + getTITLE() + "'" +
             ", CONTENT='" + getCONTENT() + "'" +
-            ", EMAIL='" + getEMAIL() + "'" +
-            ", NICKNAME='" + getNICKNAME() + "'" +
+            ", USER_ID='" + getUSER_ID() + "'" +
             "}";
     }
-
 }

@@ -1,6 +1,5 @@
 package com.example.udong.util;
 
-
 import java.io.Serializable;
 import java.util.Objects;
 
@@ -11,40 +10,41 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="MEMBER")
-public class MemberBean implements Serializable{
+@Table(name = "MEMBER")
+public class MemberBean implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue
-    String EMAIL;
+    String USER_ID;
+    String NICKNAME;
+    Integer BIRTH_MONTH;
+    Integer BIRTH_DAY;
+    Integer AREA_NUM;
+    Integer GRADE;
 
-    public MemberBean() {
-        this.GRADE = 2;
-    }
-
-    public MemberBean(String EMAIL, String NAME, Integer BIRTH_MONTH, Integer BIRTH_DAY, Integer AREA_NUM, Integer GRADE) {
-        this.EMAIL = EMAIL;
-        this.NAME = NAME;
+    public MemberBean(String USER_ID, String NICKNAME, Integer BIRTH_MONTH, Integer BIRTH_DAY, Integer AREA_NUM, Integer GRADE) {
+        this.USER_ID = USER_ID;
+        this.NICKNAME = NICKNAME;
         this.BIRTH_MONTH = BIRTH_MONTH;
         this.BIRTH_DAY = BIRTH_DAY;
         this.AREA_NUM = AREA_NUM;
         this.GRADE = GRADE;
     }
 
-    public String getEMAIL() {
-        return this.EMAIL;
+    public String getUSER_ID() {
+        return this.USER_ID;
     }
 
-    public void setEMAIL(String EMAIL) {
-        this.EMAIL = EMAIL;
+    public void setUSER_ID(String USER_ID) {
+        this.USER_ID = USER_ID;
     }
 
-    public String getNAME() {
-        return this.NAME;
+    public String getNICKNAME() {
+        return this.NICKNAME;
     }
 
-    public void setNAME(String NAME) {
-        this.NAME = NAME;
+    public void setNICKNAME(String NICKNAME) {
+        this.NICKNAME = NICKNAME;
     }
 
     public Integer getBIRTH_MONTH() {
@@ -79,13 +79,13 @@ public class MemberBean implements Serializable{
         this.GRADE = GRADE;
     }
 
-    public MemberBean EMAIL(String EMAIL) {
-        setEMAIL(EMAIL);
+    public MemberBean USER_ID(String USER_ID) {
+        setUSER_ID(USER_ID);
         return this;
     }
 
-    public MemberBean NAME(String NAME) {
-        setNAME(NAME);
+    public MemberBean NICKNAME(String NICKNAME) {
+        setNICKNAME(NICKNAME);
         return this;
     }
 
@@ -117,28 +117,27 @@ public class MemberBean implements Serializable{
             return false;
         }
         MemberBean memberBean = (MemberBean) o;
-        return Objects.equals(EMAIL, memberBean.EMAIL) && Objects.equals(NAME, memberBean.NAME) && Objects.equals(BIRTH_MONTH, memberBean.BIRTH_MONTH) && Objects.equals(BIRTH_DAY, memberBean.BIRTH_DAY) && Objects.equals(AREA_NUM, memberBean.AREA_NUM) && Objects.equals(GRADE, memberBean.GRADE);
+        return Objects.equals(USER_ID, memberBean.USER_ID) && Objects.equals(NICKNAME, memberBean.NICKNAME) && Objects.equals(BIRTH_MONTH, memberBean.BIRTH_MONTH) && Objects.equals(BIRTH_DAY, memberBean.BIRTH_DAY) && Objects.equals(AREA_NUM, memberBean.AREA_NUM) && Objects.equals(GRADE, memberBean.GRADE);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(EMAIL, NAME, BIRTH_MONTH, BIRTH_DAY, AREA_NUM, GRADE);
+        return Objects.hash(USER_ID, NICKNAME, BIRTH_MONTH, BIRTH_DAY, AREA_NUM, GRADE);
     }
 
     @Override
     public String toString() {
         return "{" +
-            " EMAIL='" + getEMAIL() + "'" +
-            ", NAME='" + getNAME() + "'" +
+            " USER_ID='" + getUSER_ID() + "'" +
+            ", NICKNAME='" + getNICKNAME() + "'" +
             ", BIRTH_MONTH='" + getBIRTH_MONTH() + "'" +
             ", BIRTH_DAY='" + getBIRTH_DAY() + "'" +
             ", AREA_NUM='" + getAREA_NUM() + "'" +
             ", GRADE='" + getGRADE() + "'" +
             "}";
     }
-    String NAME;
-    Integer BIRTH_MONTH;
-    Integer BIRTH_DAY;
-    Integer AREA_NUM;
-    Integer GRADE;
+
+    public MemberBean() {
+        this.GRADE = 2;
+    }
 }

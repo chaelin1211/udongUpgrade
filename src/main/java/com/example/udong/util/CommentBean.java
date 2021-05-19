@@ -17,19 +17,17 @@ public class CommentBean implements Serializable{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Integer CO_NUM;
     Integer POST_NUM;
-    String EMAIL;
-    String NICKNAME;
+    String USER_ID;
     String CONTENT;
     String TIME;
 
     public CommentBean() {
     }
 
-    public CommentBean(Integer CO_NUM, Integer POST_NUM, String EMAIL, String NICKNAME, String CONTENT, String TIME) {
+    public CommentBean(Integer CO_NUM, Integer POST_NUM, String USER_ID, String CONTENT, String TIME) {
         this.CO_NUM = CO_NUM;
         this.POST_NUM = POST_NUM;
-        this.EMAIL = EMAIL;
-        this.NICKNAME = NICKNAME;
+        this.USER_ID = USER_ID;
         this.CONTENT = CONTENT;
         this.TIME = TIME;
     }
@@ -50,20 +48,12 @@ public class CommentBean implements Serializable{
         this.POST_NUM = POST_NUM;
     }
 
-    public String getEMAIL() {
-        return this.EMAIL;
+    public String getUSER_ID() {
+        return this.USER_ID;
     }
 
-    public void setEMAIL(String EMAIL) {
-        this.EMAIL = EMAIL;
-    }
-
-    public String getNICKNAME() {
-        return this.NICKNAME;
-    }
-
-    public void setNICKNAME(String NICKNAME) {
-        this.NICKNAME = NICKNAME;
+    public void setUSER_ID(String USER_ID) {
+        this.USER_ID = USER_ID;
     }
 
     public String getCONTENT() {
@@ -92,13 +82,8 @@ public class CommentBean implements Serializable{
         return this;
     }
 
-    public CommentBean EMAIL(String EMAIL) {
-        setEMAIL(EMAIL);
-        return this;
-    }
-
-    public CommentBean NICKNAME(String NICKNAME) {
-        setNICKNAME(NICKNAME);
+    public CommentBean USER_ID(String USER_ID) {
+        setUSER_ID(USER_ID);
         return this;
     }
 
@@ -120,12 +105,13 @@ public class CommentBean implements Serializable{
             return false;
         }
         CommentBean commentBean = (CommentBean) o;
-        return Objects.equals(CO_NUM, commentBean.CO_NUM) && Objects.equals(POST_NUM, commentBean.POST_NUM) && Objects.equals(EMAIL, commentBean.EMAIL) && Objects.equals(NICKNAME, commentBean.NICKNAME) && Objects.equals(CONTENT, commentBean.CONTENT) && Objects.equals(TIME, commentBean.TIME);
+        return Objects.equals(CO_NUM, commentBean.CO_NUM) && Objects.equals(POST_NUM, commentBean.POST_NUM) && Objects.equals(
+                USER_ID, commentBean.USER_ID) && Objects.equals(CONTENT, commentBean.CONTENT) && Objects.equals(TIME, commentBean.TIME);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(CO_NUM, POST_NUM, EMAIL, NICKNAME, CONTENT, TIME);
+        return Objects.hash(CO_NUM, POST_NUM, USER_ID, CONTENT, TIME);
     }
 
     @Override
@@ -133,11 +119,11 @@ public class CommentBean implements Serializable{
         return "{" +
             " CO_NUM='" + getCO_NUM() + "'" +
             ", POST_NUM='" + getPOST_NUM() + "'" +
-            ", EMAIL='" + getEMAIL() + "'" +
-            ", NICKNAME='" + getNICKNAME() + "'" +
+            ", USER_ID='" + getUSER_ID() + "'" +
             ", CONTENT='" + getCONTENT() + "'" +
             ", TIME='" + getTIME() + "'" +
             "}";
     }
+
 
 }
