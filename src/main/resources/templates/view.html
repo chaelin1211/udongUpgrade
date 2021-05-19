@@ -31,7 +31,6 @@
                         <form onsubmit="recommendFunction(this, event)">
                             <!-- hidden -->
                             <input type="hidden" name="POST_NUM" th:value="${resultMap.POST_NUM}">
-                            <input type="hidden" name="USER_ID" th:value="${resultMap.USER_ID}">
                             <input type="hidden" name="IsRecommend" th:value="${resultMap.isRecommend}">
                             <input type="hidden" name="recommend" th:value="${resultMap.recommend}">
 
@@ -76,7 +75,7 @@
                                         th:text="${#strings.substring(comment.TIME,0,19)}"></small>
                                 </div>
                                 <!-- 댓글 삭제 버튼 -->
-                                <div class="deleteButton" th:if="${comment.USER_ID == member.USER_ID}">
+                                <div class="deleteButton" th:if="${member!=null && comment.USER_ID == member.USER_ID}">
                                     <form onclick="return deleteComment(this)">
                                         <!-- hidden 영역 -->
                                         <input type="hidden" name="CO_NUM" th:value="${comment.CO_NUM}">
@@ -94,19 +93,22 @@
                             </div>
                             <form onsubmit="return editFunction(this, event)">
                                 <!-- 댓글 내용 -->
-                                <!-- 현재 사용자 = 댓글 작성자 -->
-                                <div th:if="${comment.USER_ID==member.USER_ID}">
+                                <div>
                                     <!-- 댓글 출력 -->
                                     <pre class="comment col" th:text="${comment.CONTENT}">
                                     </pre>
+                                    <!-- 현재 사용자 = 댓글 작성자 -->
                                     <!-- 댓글 수정을 위한 필드 -->
-                                    <textarea style="display: none" class="editCommentContent col" name="CONTENT"
-                                        th:text="${comment.CONTENT}">
-                                    </textarea>
-                                </div>
-                                <!-- 현재 사용자 =/= 댓글 작성자 -->
-                                <div th:if="${comment.USER_ID!=member.USER_ID}">
-                                    <pre class="comment col" th:text="${comment.CONTENT}"></pre>
+                                    <span th:if="${member!=null && comment.USER_ID==member.USER_ID}">
+                                        <textarea style="display: none" class="editCommentContent col" name="CONTENT"
+                                            th:text="${comment.CONTENT}"></textarea>
+                                        <div class="text-right">
+                                            <input type="submit" value="수정" name="editButton"
+                                                class="btn btn-sm btn-outline-secondary editButton" />
+                                            <input type="submit" value="취소" name="cancelButton" style="display: none"
+                                                class="btn btn-sm btn-outline-secondary editButton" />
+                                        </div>
+                                    </span>
                                 </div>
                                 <!-- hidden 영역 -->
                                 <input type="hidden" name="CO_NUM" th:value="${comment.CO_NUM}">
@@ -114,27 +116,27 @@
                                 <input type="hidden" name="POST_NUM" th:value="${comment.POST_NUM}">
                                 <input type="hidden" name="CATEGORY_NAME" th:value="${resultMap.CATEGORY_NAME}">
                                 <input type="hidden" name="ORIGIN_CONTENT" th:value="${comment.CONTENT}">
-                                <div class="text-right" th:if="${comment.USER_ID==member.USER_ID}">
-                                    <input type="submit" value="수정" name="editButton"
-                                        class="btn btn-sm btn-outline-secondary editButton" />
-                                    <input type="submit" value="취소" name="cancelButton" style="display: none"
-                                        class="btn btn-sm btn-outline-secondary editButton" />
-                                </div>
                             </form>
                         </div>
                     </div>
 
                     <!-- 작성란&버튼 -->
                     <div class="col justify-content-center my-1 mx-0">
-                        <form method="POST" onsubmit="checkComment(event, this)" class="row justify-content-center">
-                            <!-- hidden 영역 -->
-                            <input type="hidden" name="POST_NUM" th:value="${resultMap.POST_NUM}">
-                            <input type="hidden" name="CATEGORY_NAME" th:value="${resultMap.CATEGORY_NAME}">
+                        <div th:if="${member!=null}">
+                            <form method=" POST" onsubmit="checkComment(event, this)"
+                                class="row justify-content-center">
+                                <!-- hidden 영역 -->
+                                <input type="hidden" name="POST_NUM" th:value="${resultMap.POST_NUM}">
+                                <input type="hidden" name="CATEGORY_NAME" th:value="${resultMap.CATEGORY_NAME}">
 
-                            <!-- 입력 영역 -->
-                            <input type="text" name="CONTENT" class="col form-control">
-                            <input type="submit" class="btn btn-secondary p-1 ml-2 col-2" value="댓글작성">
-                        </form>
+                                <!-- 입력 영역 -->
+                                <input type="text" name="CONTENT" class="col form-control">
+                                <input type="submit" class="btn btn-secondary p-1 ml-2 col-2" value="댓글작성">
+                            </form>
+                        </div>
+                        <div th:if="${member == null}">
+                            <input type="text" value="댓글 작성은 로그인 후 가능합니다." readonly class="col form-control">
+                        </div>
                     </div>
                 </div>
 
@@ -169,9 +171,11 @@
                         <input type="hidden" name="CONTENT" th:value="${resultMap.CONTENT}">
                         <span th:if="${member!=null && resultMap.USER_ID==member.USER_ID}">
                             <!-- 수정 버튼 -->
-                            <input type="submit" name="submit" th:formaction="${'/update'}" value="수정" class="btn btn-outline-secondary m-1">
+                            <input type="submit" name="submit" th:formaction="${'/update'}" value="수정"
+                                class="btn btn-outline-secondary m-1">
                             <!--삭제 버튼-->
-                            <input onclick="return checkDeletePost()" type="submit" name="submit" value="삭제" class="btn btn-outline-secondary m-1">
+                            <input onclick="return checkDeletePost()" type="submit" name="submit" value="삭제"
+                                class="btn btn-outline-secondary m-1">
                         </span>
                         <!--목록으로 버튼-->
                         <input type="submit" value="목록으로" class="btn btn-secondary m-1">
