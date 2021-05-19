@@ -10,7 +10,7 @@ function checkComment(event, form) {
         return false;
     } else {
         insertComment(form);
-        content.value="";
+        content.value = "";
         return true;
     }
 }
@@ -72,7 +72,7 @@ function editFunction(form, event) {
         editButton.value = "수정";
         deleteButton.style.display = "none";
         content.style.display = "none";
-        if (content.value != "" && content.value != originContent.value) {
+        if (eventButton.value != "취소" && content.value != "" && content.value != originContent.value) {
             updateComment(form);
         }
     }
