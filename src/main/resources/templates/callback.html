@@ -21,11 +21,8 @@
 
     // 네이버 사용자 프로필 조회 이후 프로필 정보를 처리할 callback function
     function naverSignInCallback() {
-      // document.getElementById("userEmail").value = naver_id_login.getProfileData('email');
-      // document.getElementById("email").textContent = naver_id_login.getProfileData('email');
-
       // 회원가입이 되어있는지 확인 후 화면 수정 - ajax
-      // signIn();
+      signIn(naver_id_login.getProfileData('id'));
 
       // 전달할 데이터
       // window.opener.document.getElementById("userEmail").value = naver_id_login.getProfileData('email');
@@ -45,7 +42,7 @@
 
   <div class="callback-container">
     <h2>네이버 로그인</h2>
-    <form onsubmit="submitFunction()">
+    <form onsubmit="submitFunction()" th:action="@{/home}">
       <!-- <input type="hidden" id="userEmail" name="userEmail"> -->
       <div class="mt-5">
         <!-- <p><span id="email"></span>님!</p> -->

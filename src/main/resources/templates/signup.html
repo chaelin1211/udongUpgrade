@@ -6,7 +6,7 @@
                 <div class="text-center px-5">
                     <h1 class="my-4">SignUp</h1>
                     <p>네이버 이메일로 회원가입 합니다. 추가 정보를 기입해 주세요.</p>
-                    <form method=POST th:formaction="@{/home}">
+                    <form method=POST th:action="@{/home}">
                         <!-- <input type="hidden" name="userEmail" th:value="${resultMap.email}"> -->
                         <input type="hidden" name="userId" th:value="${resultMap.userId}">
                         <input type="hidden" name="birthMonth" th:value="${resultMap.birthMonth}">
