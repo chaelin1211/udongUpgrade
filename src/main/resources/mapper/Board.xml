@@ -6,7 +6,7 @@
 
 <mapper namespace="Board">
 	<select id="communityPost" resultType="Map" parameterType="Map">
-		SELECT TOP 5 BOARD.*, NVL(RECOMMEND, 0) as RECOMMEND
+		SELECT TOP 5 BOARD.*,NICKNAME, NVL(RECOMMEND, 0) as RECOMMEND
 		FROM BOARD
 		LEFT OUTER JOIN(
 			SELECT POST_NUM, COUNT(*) AS RECOMMEND
@@ -14,12 +14,14 @@
 			GROUP BY POST_NUM
 		)  RECOMMEND
 		ON BOARD.POST_NUM = RECOMMEND.POST_NUM
+		JOIN MEMBER
+		ON BOARD.USER_ID = MEMBER.USER_ID
 		WHERE CATEGORY_NUM IN (1, 2)
 		ORDER BY TIME DESC;
     </select>
 
 	<select id="post" resultType="Map" parameterType="Map">
-		SELECT BOARD.*, NVL(RECOMMEND, 0) as RECOMMEND
+		SELECT BOARD.*, NICKNAME, NVL(RECOMMEND, 0) as RECOMMEND
 		FROM BOARD
 		LEFT OUTER JOIN(
 			SELECT POST_NUM, COUNT(*) AS RECOMMEND
@@ -27,12 +29,17 @@
 			GROUP BY POST_NUM
 		)  RECOMMEND
 		ON BOARD.POST_NUM = RECOMMEND.POST_NUM
+		JOIN MEMBER
+		ON BOARD.USER_ID = MEMBER.USER_ID
 		WHERE CATEGORY_NUM = #{CATEGORY_NUM}
 		ORDER BY TIME DESC;
     </select>
 
 	<select id="postOne" resultType="Map" parameterType="Map">
-	    select * from BOARD
+	    select BOARD.*, NICKNAME 
+		from BOARD
+		JOIN MEMBER
+		ON BOARD.USER_ID = MEMBER.USER_ID
 		where POST_NUM = #{POST_NUM};
     </select>
 
