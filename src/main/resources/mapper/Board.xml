@@ -54,8 +54,8 @@
     </select>
 
 	<insert id="insertPost" parameterType="Map">
-		insert into BOARD (CATEGORY_NUM, TIME, TITLE, CONTENT, EMAIL, NICKNAME)
-		values(#{CATEGORY_NUM}, NOW(), #{TITLE}, #{CONTENT}, #{userEmail}, #{NICKNAME});
+		insert into BOARD (CATEGORY_NUM, TIME, TITLE, CONTENT, USER_ID)
+		values(#{CATEGORY_NUM}, NOW(), #{TITLE}, #{CONTENT}, #{USER_ID});
 	</insert>
 
 	<!-- 추천을 했을 때 추천 수 추가 및 감소 -->
