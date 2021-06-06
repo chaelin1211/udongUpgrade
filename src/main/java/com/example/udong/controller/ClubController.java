@@ -46,10 +46,12 @@ public class ClubController {
             // 지역 카테고리 생성을 위한 리스트
             sortList = areaService.getAll();
             resultList = clubService.getNewlylist();
+            modelandView.addObject("sortList", sortList);
         } else if ("interest".equals(action)) {
             // 분야 카테고리 생성을 위한 리스트
             sortList = interestCategoryService.getAll();
             resultList = clubService.getNewlylist();
+            modelandView.addObject("sortList", sortList);
         }
         // else if ("interest_search".equals(action)) {
         // // resultMap = clubService.getinterest_search(paramMap);
@@ -59,6 +61,13 @@ public class ClubController {
         // } else if ("clubBoard".equals(action)) {
 
         // }
+        else if("clubCreate".equals(action)){
+            sortList = areaService.getAll();
+            modelandView.addObject("locationList", sortList);
+            
+            sortList = interestCategoryService.getAll();
+            modelandView.addObject("interestList", sortList);
+        }
         else if ("ranking".equals(action)) {
             resultList = clubService.getRankingList();
         }
@@ -67,7 +76,6 @@ public class ClubController {
 
         modelandView.setViewName(viewName);
 
-        modelandView.addObject("sortList", sortList);
         modelandView.addObject("paramMap", paramMap);
         modelandView.addObject("resultList", resultList);
         modelandView.addObject("userInform", userInform);
