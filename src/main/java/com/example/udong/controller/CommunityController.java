@@ -70,7 +70,8 @@ public class CommunityController {
         // paramMap.put("search", "");
 
         HttpSession session = req.getSession();
-        modelandView.addObject("member", common.checkMemberSession(session));
+        MemberBean memberBean = common.checkMemberSession(session);
+        modelandView.addObject("member", memberBean);
 
         if (!paramMap.keySet().contains("submit")) {
             // 페이지 공통 로직
@@ -89,7 +90,12 @@ public class CommunityController {
             }
             // 글 작성
             else if (submitValue.equals("글작성")) {
-                boardService.insertPost(paramMap);
+                BoardBean boardBean = new BoardBean();
+                boardBean.setUSER_ID(memberBean.getUSER_ID());
+                boardBean.setTITLE(paramMap.get("TITLE").toString());
+                boardBean.setCONTENT(paramMap.get("CONTENT").toString());
+                boardBean.setCATEGORY_NUM(Integer.parseInt(paramMap.get("CATEGORY_NUM").toString()));
+                boardService.insertPost(boardBean);
                 boardList = boardService.getPost(paramMap);
             }
         }
@@ -159,6 +165,11 @@ public class CommunityController {
         HttpSession session = req.getSession();
         MemberBean member = common.checkMemberSession(session);
         modelAndView.addObject("member", member);
+
+        if(paramMap.get("submit")!=null && paramMap.get("submit").equals("수정")){
+            // 게시글 수정 후, 화면으로 이동
+            boardService.updatePost(paramMap);
+        }
 
         resultMap = (Map) boardService.getPostOne(paramMap);
         if (paramMap.get("CATEGORY_NAME") == null) {

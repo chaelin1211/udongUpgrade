@@ -67,6 +67,12 @@
 		update BOARD SET RECOMMEND = (RECOMMEND - 1) where POSTNUM=#{POSTNUM};
 	</update> -->
 
+	<update id="updatePost" parameterType="Map">
+		update BOARD
+		set CONTENT = #{CONTENT}, TIME = NOW()
+		where POST_NUM=#{POST_NUM};
+	</update>
+
 	<delete id="deletePost" parameterType="Map">
 		delete from BOARD
 		where POST_NUM=#{POST_NUM};

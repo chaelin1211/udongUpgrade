@@ -7,18 +7,17 @@
                 [<span th:text="${paramMap.POST_NUM}"></span>]
                 <span th:text="${paramMap.TITLE}"></span>
             </p>
-            <textarea class="editCommentContent" rows="10" th:text="${paramMap.CONTENT}" name="CONTENT"></textarea>
-            <div class="justify-content-end row mx-0 my-3">
-                <form method=POST th:action="${'/view'}">
+            <form method=POST th:action="${'/view'}">
+                <textarea class="editCommentContent" rows="10" th:text="${paramMap.CONTENT}" name="CONTENT"></textarea>
+                <div class="justify-content-end row mx-0 my-3">
                     <!-- hidden 영역 -->
-                    <input type="hidden" name="userEmail" th:value="${userInform.userEmail}">
                     <input type="hidden" name="POST_NUM" th:value="${paramMap.POST_NUM}">
                     <input type="hidden" name="CATEGORY_NAME" th:value="${paramMap.CATEGORY_NAME}">
                     <!-- 버튼s -->
-                    <input type="submit" class="btn m-1 btn-outline-secondary" name="submit" value="취소">
                     <input type="submit" class="btn m-1 btn-secondary" name="submit" value="수정">
-                </form>
-            </div>
+                    <input type="submit" class="btn m-1 btn-outline-secondary" name="submit" value="취소">
+                </div>
+            </form>
         </div>
     </th:block>
 </div>
