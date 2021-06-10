@@ -6,39 +6,43 @@
     
 <mapper namespace="Club">
 	<select id="getClubArea" resultType="Map" parameterType="Map">
-		select * from CLUB
+		SELECT CLUB.*, MEMBER.NICKNAME, NVL(0, CLUB_MEMBER.MEMBER_COUNT) AS MEMBER_COUNT
+		FROM CLUB
 		JOIN MEMBER
 		ON CLUB.USER_ID = MEMBER.USER_ID
-		where CLUB_NUM in (
-			select club_num
-			from CLUB_AREA
-			where area_num = #{AREA_NUM}
-		);
+		LEFT JOIN (SELECT COUNT(*) AS MEMBER_COUNT, CLUB_NUM FROM CLUB_MEMBER GROUP BY CLUB_NUM) AS CLUB_MEMBER
+		ON CLUB.CLUB_NUM = CLUB_MEMBER.CLUB_NUM
+		WHERE CLUB.AREA_NUM = #{AREA_NUM};
 	</select>
 
     <select id="getRankingList" resultType="Map" parameterType="Map">
-        select * from CLUB
+		SELECT CLUB.*, MEMBER.NICKNAME, NVL(0, CLUB_MEMBER.MEMBER_COUNT) AS MEMBER_COUNT
+		FROM CLUB
 		JOIN MEMBER
 		ON CLUB.USER_ID = MEMBER.USER_ID
-        order by MEMBER_COUNT DESC, TIME DESC;
+		LEFT JOIN (SELECT COUNT(*) AS MEMBER_COUNT, CLUB_NUM FROM CLUB_MEMBER GROUP BY CLUB_NUM) AS CLUB_MEMBER
+		ON CLUB.CLUB_NUM = CLUB_MEMBER.CLUB_NUM
+        ORDER BY MEMBER_COUNT DESC, TIME DESC;
     </select>
 
     <select id="getNewlyList" resultType="Map" parameterType="Map">
-        select * from CLUB
+		SELECT CLUB.*, MEMBER.NICKNAME, NVL(0, CLUB_MEMBER.MEMBER_COUNT) AS MEMBER_COUNT
+		FROM CLUB
 		JOIN MEMBER
 		ON CLUB.USER_ID = MEMBER.USER_ID
-        order by TIME DESC;
+		LEFT JOIN (SELECT COUNT(*) AS MEMBER_COUNT, CLUB_NUM FROM CLUB_MEMBER GROUP BY CLUB_NUM) AS CLUB_MEMBER
+		ON CLUB.CLUB_NUM = CLUB_MEMBER.CLUB_NUM
+        ORDER BY TIME DESC;
     </select>
 
 	<select id="getClubInterest" resultType="Map" parameterType="Map">
-		select * from CLUB
+		SELECT CLUB.*, MEMBER.NICKNAME, NVL(0, CLUB_MEMBER.MEMBER_COUNT) AS MEMBER_COUNT
+		FROM CLUB
 		JOIN MEMBER
 		ON CLUB.USER_ID = MEMBER.USER_ID
-		where CLUB_NUM in (
-			select club_num
-			from CLUB_INTEREST
-			where interest_num = #{INTEREST_NUM}
-		);
+		LEFT JOIN (SELECT COUNT(*) AS MEMBER_COUNT, CLUB_NUM FROM CLUB_MEMBER GROUP BY CLUB_NUM) AS CLUB_MEMBER
+		ON CLUB.CLUB_NUM = CLUB_MEMBER.CLUB_NUM
+		WHERE INTEREST_NUM = #{INTEREST_NUM};
 	</select>
 <!-- 
 	<insert id="insert" parameterType="Map">
