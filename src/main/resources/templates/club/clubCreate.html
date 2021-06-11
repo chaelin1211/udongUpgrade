@@ -1,0 +1,57 @@
+<div xmlns:th="http://www.thymeleaf.org" layout:decorator="layout/defaultLayout">
+    <th:block layout:fragment="layout.content">
+        <div class="row">
+            <!--사이드바-->
+            <div class="col-lg-2 col-md-12 col-sm-12">
+                <th:block th:replace="fragments/clubNav"></th:block>
+            </div>
+            <div class="col-lg-8 col-md-12 col-sm-12 my-2 p-2">
+                <div class="col">
+                    <h1>동아리 만들기</h1>
+                    <form onsubmit="return checkClubCreateField(this)" th:formaction="@{/club/introduce}">
+                        <!-- 선택 리스트 - 주제-->
+                        <div class="mt-3">원하시는 활동주제를 선택해주세요.</div>
+                        <select class="form-control custom-select" name="INTEREST_NAME" id="INTEREST_NAME">
+                            <option>--선택--</option>
+                            <option th:each="sortlist: ${interestList}" th:text=${sortlist.INTEREST_NAME}></option>
+                        </select>
+                        <!-- 선택 리스트 - 지역-->
+                        <div class="mt-3">원하시는 지역을 설정해주세요.</div>
+                        <select class="form-control custom-select" name="AREA_NAME" id="AREA_NAME">
+                            <option>--선택--</option>
+                            <option th:each="sortlist: ${locationList}" th:text=${sortlist.AREA_NAME}></option>
+                        </select>
+                        <!-- 동아리 이름 -->
+                        <div class="mt-3">동아리 이름을 입력하세요.</div>
+                        <input type="text" class="form-control" name="TITLE">
+                        <!-- 동아리 간단 소개 -->
+                        <div class="mt-3">동아리를 한 줄로 소개해 주세요!</div>
+                        <textarea class="editCommentContent" rows="2" name="CONTENT"></textarea>
+                        <!-- 상세 활동 내용 -->
+                        <div class="mt-3">동아리 상세한 활동 내용를 입력해주세요.</div>
+                        <textarea class="editCommentContent" rows="8" name="CONTENT"></textarea>
+                        <!-- 암호 -->
+                        <div class="mt-5">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="pinCheckField"
+                                    onclick="checkBoxFunction()">
+                                <label class="form-check-label" for="pinCheckField">
+                                    가입 암호를 설정하겠습니까?
+                                </label>
+                            </div>
+                            <input type="text" class="form-control" id="PINField" name="PIN" disabled>
+                        </div>
+                        <!-- notice field -->
+                        <div class="mt-4 text-danger text-right" id="noticeField">
+                        </div>
+                        <!-- 확인 버튼 -->
+                        <div class="row mt-3 justify-content-end">
+                            <input type="submit" class="btn m-2 btn-secondary" name="submit" value="동아리 만들기!">
+                            <input type="button" class="btn m-2 btn-outline-secondary" value="취소">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </th:block>
+</div>
