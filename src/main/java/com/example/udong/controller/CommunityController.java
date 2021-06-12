@@ -115,7 +115,7 @@ public class CommunityController {
 
     // 댓글 추가/삭제/수정
     @RequestMapping(value = "/view/{action}", method = { RequestMethod.POST, RequestMethod.DELETE, RequestMethod.PUT })
-    public String viewDeleteMethod(Model model, @PathVariable String action, HttpServletRequest req,
+    public String viewMethod(Model model, @PathVariable String action, HttpServletRequest req,
             @RequestParam Map<String, Object> paramMap) {
         // 로그인 체크
         HttpSession session = req.getSession();
