@@ -18,14 +18,16 @@ public class FaqBean implements Serializable{
     Integer FAQ_NUM;
     String TITLE;
     String CONTENT;
+    String USER_ID;
 
     public FaqBean() {
     }
 
-    public FaqBean(Integer FAQ_NUM, String TITLE, String CONTENT) {
+    public FaqBean(Integer FAQ_NUM, String TITLE, String CONTENT, String USER_ID) {
         this.FAQ_NUM = FAQ_NUM;
         this.TITLE = TITLE;
         this.CONTENT = CONTENT;
+        this.USER_ID = USER_ID;
     }
 
     public Integer getFAQ_NUM() {
@@ -52,6 +54,14 @@ public class FaqBean implements Serializable{
         this.CONTENT = CONTENT;
     }
 
+    public String getUSER_ID() {
+        return this.USER_ID;
+    }
+
+    public void setUSER_ID(String USER_ID) {
+        this.USER_ID = USER_ID;
+    }
+
     public FaqBean FAQ_NUM(Integer FAQ_NUM) {
         setFAQ_NUM(FAQ_NUM);
         return this;
@@ -67,6 +77,11 @@ public class FaqBean implements Serializable{
         return this;
     }
 
+    public FaqBean USER_ID(String USER_ID) {
+        setUSER_ID(USER_ID);
+        return this;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (o == this)
@@ -75,12 +90,12 @@ public class FaqBean implements Serializable{
             return false;
         }
         FaqBean faqBean = (FaqBean) o;
-        return Objects.equals(FAQ_NUM, faqBean.FAQ_NUM) && Objects.equals(TITLE, faqBean.TITLE) && Objects.equals(CONTENT, faqBean.CONTENT);
+        return Objects.equals(FAQ_NUM, faqBean.FAQ_NUM) && Objects.equals(TITLE, faqBean.TITLE) && Objects.equals(CONTENT, faqBean.CONTENT) && Objects.equals(USER_ID, faqBean.USER_ID);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(FAQ_NUM, TITLE, CONTENT);
+        return Objects.hash(FAQ_NUM, TITLE, CONTENT, USER_ID);
     }
 
     @Override
@@ -89,6 +104,7 @@ public class FaqBean implements Serializable{
             " FAQ_NUM='" + getFAQ_NUM() + "'" +
             ", TITLE='" + getTITLE() + "'" +
             ", CONTENT='" + getCONTENT() + "'" +
+            ", USER_ID='" + getUSER_ID() + "'" +
             "}";
     }
 
