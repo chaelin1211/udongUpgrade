@@ -19,17 +19,24 @@ public class ClubBean implements Serializable{
     String INTRO;
     String CONTENT;
     String USER_ID;
+    String PIN;
     String TIME;
-    Integer MEMBER_COUNT;
+    Integer AREA_NUM;
+    Integer INTEREST_NUM;
 
-    public ClubBean(Integer CLUB_NUM, String CLUB_NAME, String INTRO, String CONTENT, String USER_ID, String TIME, Integer MEMBER_COUNT) {
+    public ClubBean() {
+    }
+
+    public ClubBean(Integer CLUB_NUM, String CLUB_NAME, String INTRO, String CONTENT, String USER_ID, String PIN, String TIME, Integer AREA_NUM, Integer INTEREST_NUM) {
         this.CLUB_NUM = CLUB_NUM;
         this.CLUB_NAME = CLUB_NAME;
         this.INTRO = INTRO;
         this.CONTENT = CONTENT;
         this.USER_ID = USER_ID;
+        this.PIN = PIN;
         this.TIME = TIME;
-        this.MEMBER_COUNT = MEMBER_COUNT;
+        this.AREA_NUM = AREA_NUM;
+        this.INTEREST_NUM = INTEREST_NUM;
     }
 
     public Integer getCLUB_NUM() {
@@ -72,6 +79,14 @@ public class ClubBean implements Serializable{
         this.USER_ID = USER_ID;
     }
 
+    public String getPIN() {
+        return this.PIN;
+    }
+
+    public void setPIN(String PIN) {
+        this.PIN = PIN;
+    }
+
     public String getTIME() {
         return this.TIME;
     }
@@ -80,12 +95,20 @@ public class ClubBean implements Serializable{
         this.TIME = TIME;
     }
 
-    public Integer getMEMBER_COUNT() {
-        return this.MEMBER_COUNT;
+    public Integer getAREA_NUM() {
+        return this.AREA_NUM;
     }
 
-    public void setMEMBER_COUNT(Integer MEMBER_COUNT) {
-        this.MEMBER_COUNT = MEMBER_COUNT;
+    public void setAREA_NUM(Integer AREA_NUM) {
+        this.AREA_NUM = AREA_NUM;
+    }
+
+    public Integer getINTEREST_NUM() {
+        return this.INTEREST_NUM;
+    }
+
+    public void setINTEREST_NUM(Integer INTEREST_NUM) {
+        this.INTEREST_NUM = INTEREST_NUM;
     }
 
     public ClubBean CLUB_NUM(Integer CLUB_NUM) {
@@ -113,13 +136,23 @@ public class ClubBean implements Serializable{
         return this;
     }
 
+    public ClubBean PIN(String PIN) {
+        setPIN(PIN);
+        return this;
+    }
+
     public ClubBean TIME(String TIME) {
         setTIME(TIME);
         return this;
     }
 
-    public ClubBean MEMBER_COUNT(Integer MEMBER_COUNT) {
-        setMEMBER_COUNT(MEMBER_COUNT);
+    public ClubBean AREA_NUM(Integer AREA_NUM) {
+        setAREA_NUM(AREA_NUM);
+        return this;
+    }
+
+    public ClubBean INTEREST_NUM(Integer INTEREST_NUM) {
+        setINTEREST_NUM(INTEREST_NUM);
         return this;
     }
 
@@ -131,13 +164,12 @@ public class ClubBean implements Serializable{
             return false;
         }
         ClubBean clubBean = (ClubBean) o;
-        return Objects.equals(CLUB_NUM, clubBean.CLUB_NUM) && Objects.equals(CLUB_NAME, clubBean.CLUB_NAME) && Objects.equals(INTRO, clubBean.INTRO) && Objects.equals(CONTENT, clubBean.CONTENT) && Objects.equals(
-                USER_ID, clubBean.USER_ID) && Objects.equals(TIME, clubBean.TIME) && Objects.equals(MEMBER_COUNT, clubBean.MEMBER_COUNT);
+        return Objects.equals(CLUB_NUM, clubBean.CLUB_NUM) && Objects.equals(CLUB_NAME, clubBean.CLUB_NAME) && Objects.equals(INTRO, clubBean.INTRO) && Objects.equals(CONTENT, clubBean.CONTENT) && Objects.equals(USER_ID, clubBean.USER_ID) && Objects.equals(PIN, clubBean.PIN) && Objects.equals(TIME, clubBean.TIME) && Objects.equals(AREA_NUM, clubBean.AREA_NUM) && Objects.equals(INTEREST_NUM, clubBean.INTEREST_NUM);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(CLUB_NUM, CLUB_NAME, INTRO, CONTENT, USER_ID, TIME, MEMBER_COUNT);
+        return Objects.hash(CLUB_NUM, CLUB_NAME, INTRO, CONTENT, USER_ID, PIN, TIME, AREA_NUM, INTEREST_NUM);
     }
 
     @Override
@@ -148,11 +180,11 @@ public class ClubBean implements Serializable{
             ", INTRO='" + getINTRO() + "'" +
             ", CONTENT='" + getCONTENT() + "'" +
             ", USER_ID='" + getUSER_ID() + "'" +
+            ", PIN='" + getPIN() + "'" +
             ", TIME='" + getTIME() + "'" +
-            ", MEMBER_COUNT='" + getMEMBER_COUNT() + "'" +
+            ", AREA_NUM='" + getAREA_NUM() + "'" +
+            ", INTEREST_NUM='" + getINTEREST_NUM() + "'" +
             "}";
     }
 
-    public ClubBean() {
-    }
 }
