@@ -21,7 +21,7 @@
     </select>
 
 	<select id="post" resultType="Map" parameterType="Map">
-		SELECT BOARD.*, NICKNAME, NVL(RECOMMEND, 0) as RECOMMEND
+		SELECT BOARD.*, NICKNAME, NVL(RECOMMEND, 0) AS RECOMMEND
 		FROM BOARD
 		LEFT OUTER JOIN(
 			SELECT POST_NUM, COUNT(*) AS RECOMMEND

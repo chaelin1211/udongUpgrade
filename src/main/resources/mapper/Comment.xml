@@ -17,8 +17,8 @@
         order by TIME asc;
     </select>
     <insert id="insert" parameterType="Map">
-        insert into COMMENT (USER_ID, POST_NUM, CONTENT, TIME)
-        values (#{USER_ID},#{POST_NUM},#{CONTENT},NOW());
+        INSERT INTO COMMENT (USER_ID, POST_NUM, CONTENT, TIME)
+        VALUES (#{USER_ID},#{POST_NUM},#{CONTENT},NOW());
     </insert>
     <delete id="delete" parameterType="Map">
         delete from Comment where CO_NUM=#{CO_NUM};
