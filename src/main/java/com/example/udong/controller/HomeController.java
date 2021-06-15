@@ -46,16 +46,16 @@ public class HomeController {
             HttpServletRequest req) {
         String viewName = "/login";
         modelAndView.addObject("paramMap", paramMap);
-        MemberBean memberBean = (MemberBean) memberService.getMember(paramMap);
-        if (memberBean != null) {
-            // 네이버 로그인 성공 후, 기존 회원은 홈화면으로
-            setHomePage(modelAndView);
-            HttpSession session = req.getSession();
-            session.setAttribute("member", memberBean);
-            modelAndView.addObject("member", memberBean);
-            viewName = "/home";
-        } else {
-            if (paramMap.get("userId") != null) {
+        if (paramMap.get("userId") != null) {
+            MemberBean memberBean = isUser(paramMap.get("userId").toString());
+            if (memberBean != null) {
+                // 네이버 로그인 성공 후, 기존 회원은 홈화면으로
+                setHomePage(modelAndView);
+                HttpSession session = req.getSession();
+                session.setAttribute("member", memberBean);
+                modelAndView.addObject("member", memberBean);
+                viewName = "/home";
+            } else {
                 // 네이버 로그인 성공 후, 회원가입 화면으로 이동
                 Map<String, Object> resultMap = new HashMap<String, Object>();
                 resultMap.put("userId", paramMap.get("userId"));
@@ -84,7 +84,7 @@ public class HomeController {
 
         // 로그인 체크
         HttpSession session = req.getSession();
-        modelAndView.addObject("member", common.checkMemberSession(session));
+        modelAndView.addObject("member", (MemberBean)session.getAttribute("member"));
 
         // divided depending on action value
         if ("home".equals(action)) {
@@ -100,23 +100,31 @@ public class HomeController {
                     MemberBean memberBean = new MemberBean();
                     memberBean.setUSER_ID(paramMap.get("userId").toString());
                     memberBean.setNICKNAME(paramMap.get("nickname").toString());
-                    memberBean.setBIRTH_MONTH(Integer.parseInt(paramMap.get("birthMonth").toString()));
-                    memberBean.setBIRTH_DAY(Integer.parseInt(paramMap.get("birthDay").toString()));
+                    int birthMonth = 1;
+                    int birthDay = 1;
+                    if(paramMap.get("birthMonth") != ""){
+                        birthMonth = Integer.parseInt(paramMap.get("birthMonth").toString());
+                    }
+                    if(paramMap.get("birthDay") != ""){
+                        birthDay = Integer.parseInt(paramMap.get("birthDay").toString());
+                    }
+                    memberBean.setBIRTH_MONTH(birthMonth);
+                    memberBean.setBIRTH_DAY(birthDay);
                     // 지역 번호 조회
                     Map<String, Object> areaMap = (Map<String, Object>) areaService.getAreaNum(paramMap);
                     memberBean.setAREA_NUM(Integer.parseInt(areaMap.get("AREA_NUM").toString()));
                     memberService.setMember(memberBean);
 
                     // 세션 설정
-                    Object member = memberService.getMember(memberBean);
+                    MemberBean member = memberService.getMember(memberBean);
                     if (member != null) {
                         session.setAttribute("member", member);
                         modelAndView.addObject("member", member);
                     } else {
                         session.setAttribute("member", null);
                     }
-                }else if(submitValue.equals("회원탈퇴")){
-                    MemberBean memberBean = common.checkMemberSession(session);
+                } else if (submitValue.equals("회원탈퇴")) {
+                    MemberBean memberBean = (MemberBean) session.getAttribute("member");
                     memberService.deleteMember(memberBean);
                     session.invalidate();
                     modelAndView.addObject("member", null);
@@ -135,19 +143,15 @@ public class HomeController {
         String userId = paramMap.get("userId").toString();
         MemberBean memberBean = new MemberBean();
         memberBean.setUSER_ID(userId);
-        Object member = memberService.getMember(memberBean);
-        model.addAttribute("member", member);
+        memberBean = memberService.getMember(memberBean);
+        model.addAttribute("member", memberBean);
         return "/callback :: #userInform";
     }
 
-    public boolean isUser(String userId) {
+    public MemberBean isUser(String userId) {
         MemberBean memberBean = new MemberBean();
         memberBean.setUSER_ID(userId);
-        Object member = memberService.getMember(memberBean);
-        if (member != null) {
-            return true;
-        }
-        return false;
+        return memberService.getMember(memberBean);
     }
 
     // 지역 분류 리스트 받아오기
