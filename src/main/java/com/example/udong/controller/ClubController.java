@@ -3,9 +3,14 @@ package com.example.udong.controller;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import com.example.udong.service.AreaService;
 import com.example.udong.service.ClubService;
 import com.example.udong.service.InterestCategoryService;
+import com.example.udong.util.ClubBean;
+import com.example.udong.util.MemberBean;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -27,19 +32,21 @@ public class ClubController {
     @Autowired
     private InterestCategoryService interestCategoryService;
 
+    private Common common = new Common();
+
     // Receive Parameters from Html Using @RequestParam Map with @PathVariable
     @RequestMapping(value = "/club/{action}", method = { RequestMethod.GET, RequestMethod.POST })
     public ModelAndView actionMethod(@RequestParam Map<String, Object> paramMap, @PathVariable String action,
-            ModelAndView modelandView) {
+            ModelAndView modelandView, HttpServletRequest req) {
         Object resultList = new Object();
         Object sortList = new Object();
 
-        Map<String, Object> userInform = new HashMap<String, Object>();
+        // 로그인 체크
+        HttpSession session = req.getSession();
+        MemberBean member = common.checkMemberSession(session);
+        modelandView.addObject("member", member);
 
-        if (paramMap.get("userEmail") == null)
-            userInform.put("userEmail", "");
-        else
-            userInform.put("userEmail", paramMap.get("userEmail"));
+        String viewName = "/club/" + action;
 
         // divided depending on action value
         if ("location".equals(action)) {
@@ -61,24 +68,31 @@ public class ClubController {
         // } else if ("clubBoard".equals(action)) {
 
         // }
-        else if("clubCreate".equals(action)){
+        else if ("clubCreate".equals(action)) {
             sortList = areaService.getAll();
             modelandView.addObject("locationList", sortList);
-            
+
             sortList = interestCategoryService.getAll();
             modelandView.addObject("interestList", sortList);
-        }
-        else if ("ranking".equals(action)) {
+        } else if ("ranking".equals(action)) {
             resultList = clubService.getRankingList();
+        } else if ("create".equals(action)) {
+            ClubBean clubBean = new ClubBean();
+            clubBean.setAREA_NUM(Integer.parseInt(areaService.getAreaNum(paramMap).toString()));
+            clubBean.setINTEREST_NUM(Integer.parseInt(interestCategoryService.getInterestNum(paramMap).toString()));
+            clubBean.setCLUB_NAME((String) paramMap.get("CLUB_NAME"));
+            clubBean.setCONTENT((String) paramMap.get("CONTENT"));
+            clubBean.setINTRO((String) paramMap.get("INTRO"));
+            clubBean.setUSER_ID(member.getUSER_ID());
+            clubBean.setPIN((String) paramMap.get("PIN"));
+            clubService.insertClub(clubBean);
+            viewName = "/club/introduce";
         }
-
-        String viewName = "/club/" + action;
 
         modelandView.setViewName(viewName);
 
         modelandView.addObject("paramMap", paramMap);
         modelandView.addObject("resultList", resultList);
-        modelandView.addObject("userInform", userInform);
         return modelandView;
     }
 
@@ -107,9 +121,7 @@ public class ClubController {
         // 특정 지역
         else {
             // 지역 번호 조회
-            Map<String, Object> areaMap = new HashMap<String, Object>();
-            areaMap = (Map<String, Object>) areaService.getAreaNum(paramMap);
-            paramMap.put("AREA_NUM", areaMap.get("AREA_NUM").toString());
+            paramMap.put("AREA_NUM", areaService.getAreaNum(paramMap));
 
             // 출력 리스트
             resultList = clubService.getClubArea(paramMap);
@@ -126,9 +138,7 @@ public class ClubController {
         // 특정 분야
         else {
             // 분야 번호 조회
-            Object interestMap = new HashMap<String, Object>();
-            interestMap = interestCategoryService.getInterestNum(paramMap);
-            paramMap.put("INTEREST_NUM", ((Map<String, Object>) interestMap).get("INTEREST_NUM").toString());
+            paramMap.put("INTEREST_NUM", interestCategoryService.getInterestNum(paramMap));
 
             // 출력 리스트
             resultList = clubService.getClubInterest(paramMap);
