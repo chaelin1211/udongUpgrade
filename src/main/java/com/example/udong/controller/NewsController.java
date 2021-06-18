@@ -29,6 +29,8 @@ public class NewsController {
     @Autowired
     CategoryService categoryService;
 
+    private Common common = new Common();
+
     // Receive Parameters from Html Using @RequestParam Map with @PathVariable
     @RequestMapping(value = "/news/{action}", method = { RequestMethod.GET, RequestMethod.POST })
     public ModelAndView actionMethod(@RequestParam Map<String, Object> paramMap, HttpServletRequest req,

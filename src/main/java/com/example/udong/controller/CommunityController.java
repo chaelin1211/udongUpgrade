@@ -45,6 +45,8 @@ public class CommunityController {
     @Autowired
     private CategoryService categoryService;
 
+    private Common common = new Common();
+    
     // Receive Parameters from Html Using @RequestParam Map with @PathVariable
     @RequestMapping(value = "/community/{action}", method = { RequestMethod.GET, RequestMethod.POST })
     public ModelAndView actionMethod(@RequestParam Map<String, Object> paramMap, HttpServletRequest req,
