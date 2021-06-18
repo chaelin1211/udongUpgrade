@@ -44,11 +44,13 @@
 		ON CLUB.CLUB_NUM = CLUB_MEMBER.CLUB_NUM
 		WHERE INTEREST_NUM = #{INTEREST_NUM};
 	</select>
-<!-- 
+
 	<insert id="insert" parameterType="Map">
+		INSERT INTO CLUB (USER_ID, CLUB_NAME,CONTENT, INTRO, AREA_NUM, INTEREST_NUM, PIN, TIME)
+        VALUES (#{USER_ID}, #{CLUB_NAME}, #{CONTENT}, #{INTRO}, #{AREA_NUM}, #{INTEREST_NUM}, #{PIN}, NOW());
 	</insert>
 
-	<update id="update" parameterType="Map">
+	<!-- <update id="update" parameterType="Map">
 	</update>
 
 	<delete id="delete" parameterType="Map">

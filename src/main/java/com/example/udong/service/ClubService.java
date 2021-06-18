@@ -5,21 +5,26 @@ import java.util.HashMap;
 import java.util.Map;
 
 import com.example.udong.repository.ClubRepository;
+import com.example.udong.util.ClubBean;
 import com.example.udong.util.CommonDao.CommonDao;
 
 import org.springframework.stereotype.Service;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.scheduling.annotation.Async;
 
 @Service
 public class ClubService {
 
-    @Autowired
-    private ClubRepository repository;
+    // @Autowired
+    // private ClubRepository repository;
 
     @Autowired
     private CommonDao dao;
 
+    public Object insertClub(Object dataMap){
+        String sqlMapid = "Club.insert";
+        Object resultObject = dao.saveObject(sqlMapid, dataMap);
+        return resultObject;
+    }
     public Object getClubArea(Object dataMap){
         String sqlMapid = "Club.getClubArea";
         Object resultObject = dao.getList(sqlMapid,dataMap);
