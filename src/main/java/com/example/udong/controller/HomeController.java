@@ -28,7 +28,6 @@ import org.springframework.web.servlet.ModelAndView;
 public class HomeController {
 
     // @Autowired
-    // private MemberService memberService;
     @Autowired
     private BoardService boardService;
 
@@ -111,8 +110,7 @@ public class HomeController {
                     memberBean.setBIRTH_MONTH(birthMonth);
                     memberBean.setBIRTH_DAY(birthDay);
                     // 지역 번호 조회
-                    Map<String, Object> areaMap = (Map<String, Object>) areaService.getAreaNum(paramMap);
-                    memberBean.setAREA_NUM(Integer.parseInt(areaMap.get("AREA_NUM").toString()));
+                    memberBean.setAREA_NUM(Integer.parseInt(areaService.getAreaNum(paramMap).toString()));
                     memberService.setMember(memberBean);
 
                     // 세션 설정
