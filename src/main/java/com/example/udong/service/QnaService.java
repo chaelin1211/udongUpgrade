@@ -10,72 +10,72 @@ import org.springframework.stereotype.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 
 @Service
-public class QnaService{
+public class QnaService {
 
-    @Autowired
-    private QnaRepository repository;
-    
-    @Autowired
-    private CommonDao dao;
+  @Autowired
+  private QnaRepository repository;
 
-    public Object getList(Object dataMap) {
+  @Autowired
+  private CommonDao dao;
 
-		Object resultObject = new HashMap<>();
-		// ((Map<String, Object>) resultObject).put("resultList", dao.getList(sqlMapId,
-		// dataMap));
-		((Map<String, Object>) resultObject).put("resultList", repository.findAll());
+  public Object getList(Object dataMap) {
 
-		return resultObject;
-    }
-    
-    public Object getObject(Object dataMap){
-        String sqlMapid = "Answer.read";
-        Object resultObject = dao.getObject(sqlMapid,dataMap);
-        return resultObject;
-    }
+    Object resultObject = new HashMap<>();
+    // ((Map<String, Object>) resultObject).put("resultList", dao.getList(sqlMapId,
+    // dataMap));
+    ((Map<String, Object>) resultObject).put("resultList", repository.findAll());
 
-    // public Object saveObject(Map<String, Object> dataMap) {
-    //   String uniqueSequence = (String) dataMap.get("NUM");
-  
-    //   // if ("".equals(uniqueSequence)) {
-    //   //   uniqueSequence = commonUtil.getUniqueSequence();
-    //   // }
-    //   dataMap.put("NUM", uniqueSequence);
-  
-    //   String sqlMapId = "Answer.insert";
-  
-    //   Integer resultKey = (Integer) dao.saveObject(sqlMapId, dataMap);
-  
-    //   Object resultObject = this.getObject(dataMap);
-  
-    //   return resultObject;
-    // }
-
-    public Object setObject(Object dataMap){
-      String sqlMapid = "Answer.insert";
-      Object resultObject = dao.saveObject(sqlMapid,dataMap);
-      return resultObject;
+    return resultObject;
   }
 
-    // public Object updateObject(Map<String, Object> dataMap) {
-    //   String sqlMapId = "Answer.update";
-  
-    //   Integer resultKey = (Integer) dao.saveObject(sqlMapId, dataMap);
-  
-    //   Object resultObject = this.getObject(dataMap);
-  
-    //   return resultObject;
-  
-    // }
-  
-    public Object deleteObject(Object dataMap) {
-      String sqlMapId = "Answer.delete";
-  
-      Integer resultKey = (Integer) dao.deleteObject(sqlMapId, dataMap);
-  
-      Object resultObject = this.getList(dataMap);
-  
-      return resultObject;
-    }
-    
+  public Object getObject(Object dataMap) {
+    String sqlMapid = "Answer.read";
+    Object resultObject = dao.getObject(sqlMapid, dataMap);
+    return resultObject;
+  }
+
+  // public Object saveObject(Map<String, Object> dataMap) {
+  // String uniqueSequence = (String) dataMap.get("NUM");
+
+  // // if ("".equals(uniqueSequence)) {
+  // // uniqueSequence = commonUtil.getUniqueSequence();
+  // // }
+  // dataMap.put("NUM", uniqueSequence);
+
+  // String sqlMapId = "Answer.insert";
+
+  // Integer resultKey = (Integer) dao.saveObject(sqlMapId, dataMap);
+
+  // Object resultObject = this.getObject(dataMap);
+
+  // return resultObject;
+  // }
+
+  public Object setObject(Object dataMap) {
+    String sqlMapid = "Answer.insert";
+    Object resultObject = dao.saveObject(sqlMapid, dataMap);
+    return resultObject;
+  }
+
+  // public Object updateObject(Map<String, Object> dataMap) {
+  // String sqlMapId = "Answer.update";
+
+  // Integer resultKey = (Integer) dao.saveObject(sqlMapId, dataMap);
+
+  // Object resultObject = this.getObject(dataMap);
+
+  // return resultObject;
+
+  // }
+
+  public Object deleteObject(Object dataMap) {
+    String sqlMapId = "Answer.delete";
+
+    Integer resultKey = (Integer) dao.deleteObject(sqlMapId, dataMap);
+
+    Object resultObject = this.getList(dataMap);
+
+    return resultObject;
+  }
+
 }
