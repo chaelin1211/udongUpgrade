@@ -6,18 +6,18 @@
     
 <mapper namespace="Member">
 	<select id="getMember" resultType="com.example.udong.util.MemberBean" parameterType="Map">
-	    select * 
-		from MEMBER
-		where USER_ID = #{USER_ID};
+	    SELECT * 
+		FROM MEMBER
+		WHERE USER_ID = #{USER_ID};
     </select>
 
 	<select id="interest" resultType="Map" parameterType="Map">
-	    select * from INTEREST_CATEGORY;
+	    SELECT * FROM INTEREST_CATEGORY;
     </select>
 
 	<insert id="signup" parameterType="Map">
-		insert into MEMBER(USER_ID, NICKNAME, BIRTH_DAY, BIRTH_MONTH, AREA_NUM)
-		values (#{USER_ID}, #{NICKNAME}, #{BIRTH_DAY}, #{BIRTH_MONTH}, #{AREA_NUM})
+		INSERT INTD MEMBER(USER_ID, NICKNAME, BIRTH_DAY, BIRTH_MONTH, AREA_NUM, GRADE)
+		VALUES (#{USER_ID}, #{NICKNAME}, #{BIRTH_DAY}, #{BIRTH_MONTH}, #{AREA_NUM}, #{GRADE})
 	</insert>
 
 	<update id="update" parameterType="Map">
