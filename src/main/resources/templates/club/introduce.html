@@ -1,16 +1,29 @@
 <div xmlns:th="http://www.thymeleaf.org" layout:decorator="layout/defaultLayout">
     <th:block layout:fragment="layout.content">
         <th:block th:replace="fragments/clubBoardNav"></th:block>
-        <textarea class="board col border rounded mt-4 p-4 bg-white" disabled rows="10" data-spy="scroll">
 
-            동아리에 오신 것을 환영합니다!!!
-            남녀노소 누구나 가입할 수 있습니당~
-            많은 가입 부탁드려요!
-           
-        </textarea>
-        <div class="row m-4 justify-content-center">
-            <input type="submit" value="가입하기" formaction="" class="btn m-2 btn-outline-secondary">
-            <input type="submit" value="탈퇴하기" formaction="" class="btn m-2 btn-secondary">
+        <!-- 글 정보 -->
+        <div class="row border rounded p-3 mt-2 mx-0 justify-content-between">
+            <div class="" th:text="${club.CLUB_NUM}"></div>
+            <div class="text-left" th:text="${club.NICKNAME}"></div>
+            <div class="text-decoration" th:text="${club.CLUB_NAME}"></div>
+            <div class="text-right" th:text="${#strings.substring(club.TIME,0,19)}"></div>
+            <!-- <div class="text-left" th:text="${resultMap.NICKNAME}"></div>
+                <div class="text-decoration" th:text="${resultMap.TITLE}"></div>
+                <div class="text-right" th:text="${#strings.substring(resultMap.TIME,0,19)}"></div> -->
+        </div>
+        <div class="editCommentContent col p-4">
+            <p class="border-bottom py-3" th:text="${club.INTRO}">
+            </p>
+            <p class="py-3" th:text="${club.CONTENT}">
+            </p>
+            <div class="row m-4 justify-content-center">
+                <input type="submit" value="가입" formaction="" class="btn mr-2 btn-outline-secondary">
+                <input type="submit" value="탈퇴" formaction="" class="btn mr-2 btn-secondary">
+            </div>
+        </div>
+        <div class="float-right">
+            <input type="submit" value="목록으로" class="btn my-2 btn-secondary">
         </div>
     </th:block>
 </div>
