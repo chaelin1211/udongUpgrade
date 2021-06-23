@@ -20,14 +20,15 @@ public class ClubService {
     @Autowired
     private CommonDao dao;
 
-    public Object insertClub(Object dataMap){
+    public Object insertClub(Object dataMap) {
         String sqlMapid = "Club.insert";
-        Object resultObject = dao.saveObject(sqlMapid, dataMap);
-        return resultObject;
+        dao.saveObject(sqlMapid, dataMap);
+        return dataMap;
     }
-    public Object getClubArea(Object dataMap){
+
+    public Object getClubArea(Object dataMap) {
         String sqlMapid = "Club.getClubArea";
-        Object resultObject = dao.getList(sqlMapid,dataMap);
+        Object resultObject = dao.getList(sqlMapid, dataMap);
         return resultObject;
     }
 
@@ -37,20 +38,20 @@ public class ClubService {
         return resultObject;
     }
 
-    public Object getlocation_search(Object dataMap){
+    public Object getlocation_search(Object dataMap) {
         String sqlMapid = "Club.location_search";
-        Object resultObject = dao.getList(sqlMapid,dataMap);
-        ((ArrayList<HashMap<String, Object>>)resultObject).add((HashMap<String, Object>) dataMap);
+        Object resultObject = dao.getList(sqlMapid, dataMap);
+        ((ArrayList<HashMap<String, Object>>) resultObject).add((HashMap<String, Object>) dataMap);
         return resultObject;
     }
-    
-    public Object getClubInterest(Object dataMap){
+
+    public Object getClubInterest(Object dataMap) {
         String sqlMapid = "Club.getClubInterest";
-        Object resultObject = dao.getList(sqlMapid,dataMap);
+        Object resultObject = dao.getList(sqlMapid, dataMap);
         return resultObject;
     }
-    
-    public Object getRankingList(){
+
+    public Object getRankingList() {
         String sqlMapid = "Club.getRankingList";
         Object resultObject = dao.getAll(sqlMapid);
         return resultObject;
