@@ -5,6 +5,16 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
     
 <mapper namespace="Club">
+	<select id="get" resultType="Map" parameterType="Map">
+		SELECT CLUB.*, MEMBER.NICKNAME, NVL(0, CLUB_MEMBER.MEMBER_COUNT) AS MEMBER_COUNT
+		FROM CLUB
+		JOIN MEMBER
+		ON CLUB.USER_ID = MEMBER.USER_ID
+		LEFT JOIN (SELECT COUNT(*) AS MEMBER_COUNT, CLUB_NUM FROM CLUB_MEMBER GROUP BY CLUB_NUM) AS CLUB_MEMBER
+		ON CLUB.CLUB_NUM = CLUB_MEMBER.CLUB_NUM
+		WHERE CLUB.CLUB_NUM = #{CLUB_NUM};
+	</select>
+
 	<select id="getClubArea" resultType="Map" parameterType="Map">
 		SELECT CLUB.*, MEMBER.NICKNAME, NVL(0, CLUB_MEMBER.MEMBER_COUNT) AS MEMBER_COUNT
 		FROM CLUB
@@ -45,7 +55,7 @@
 		WHERE INTEREST_NUM = #{INTEREST_NUM};
 	</select>
 
-	<insert id="insert" parameterType="Map">
+	<insert id="insert" parameterType="Map" useGeneratedKeys="true" keyProperty="CLUB_NUM">
 		INSERT INTO CLUB (USER_ID, CLUB_NAME,CONTENT, INTRO, AREA_NUM, INTEREST_NUM, PIN, TIME)
         VALUES (#{USER_ID}, #{CLUB_NAME}, #{CONTENT}, #{INTRO}, #{AREA_NUM}, #{INTEREST_NUM}, #{PIN}, NOW());
 	</insert>

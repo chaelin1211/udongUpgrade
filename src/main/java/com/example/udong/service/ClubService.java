@@ -56,4 +56,10 @@ public class ClubService {
         Object resultObject = dao.getAll(sqlMapid);
         return resultObject;
     }
+
+    public Object getClub(Object dataMap) {
+        String sqlMapid = "Club.get";
+        Object resultObject = dao.getObject(sqlMapid, dataMap);
+        return resultObject;
+    }
 }
