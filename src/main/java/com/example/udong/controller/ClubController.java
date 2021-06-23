@@ -85,8 +85,14 @@ public class ClubController {
             clubBean.setINTRO((String) paramMap.get("INTRO"));
             clubBean.setUSER_ID(member.getUSER_ID());
             clubBean.setPIN((String) paramMap.get("PIN"));
-            clubService.insertClub(clubBean);
-            viewName = "/club/introduce";
+            try{
+                clubBean = (ClubBean) clubService.insertClub(clubBean);
+                Object newClub = clubService.getClub(clubBean);
+                viewName = "/club/introduce";
+                modelandView.addObject("club", newClub);
+            }catch(Exception e){
+                e.printStackTrace();
+            }
         }
 
         modelandView.setViewName(viewName);
